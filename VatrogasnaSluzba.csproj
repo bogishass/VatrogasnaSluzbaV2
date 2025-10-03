@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.4.1" />
+    <PackageReference Include="Iesi.Collections" Version="4.1.1" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="NHibernate.Linq" Version="1.0.0" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entiteti\" />
+    <Folder Include="Mapiranja\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\VolonteriForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
