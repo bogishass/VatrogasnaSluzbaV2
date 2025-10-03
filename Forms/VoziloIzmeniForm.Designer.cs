@@ -1,6 +1,6 @@
 ﻿namespace VatrogasnaSluzba.Forms
 {
-    partial class VoziloDodajForm
+    partial class VoziloIzmeniForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@
             listBoxInter = new ListBox();
             listBoxSertifikati = new ListBox();
             txbPodtip = new TextBox();
-            btnDodaj = new Button();
+            btnIzmeni = new Button();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -270,27 +270,27 @@
             txbPodtip.Size = new Size(175, 23);
             txbPodtip.TabIndex = 18;
             // 
-            // btnDodaj
+            // btnIzmeni
             // 
-            btnDodaj.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnDodaj.Location = new Point(93, 358);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(129, 37);
-            btnDodaj.TabIndex = 1;
-            btnDodaj.Text = "Dodaj vozilo";
-            btnDodaj.UseVisualStyleBackColor = true;
-            btnDodaj.Click += button1_Click;
+            btnIzmeni.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnIzmeni.Location = new Point(93, 358);
+            btnIzmeni.Name = "btnIzmeni";
+            btnIzmeni.Size = new Size(129, 37);
+            btnIzmeni.TabIndex = 1;
+            btnIzmeni.Text = "Izmeni vozilo";
+            btnIzmeni.UseVisualStyleBackColor = true;
+            btnIzmeni.Click += button1_Click;
             // 
-            // VoziloDodajForm
+            // VoziloIzmeniForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(319, 407);
-            Controls.Add(btnDodaj);
+            Controls.Add(btnIzmeni);
             Controls.Add(groupBox1);
-            Name = "VoziloDodajForm";
-            Text = "VoziloDodajForm";
-            Load += VoziloDodajForm_Load;
+            Name = "VoziloIzmeniForm";
+            Text = "VoziloIzmeniForm";
+            Load += VoziloIzmeniForm_Load;
             groupBox1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
@@ -318,7 +318,7 @@
         private DateTimePicker dateTimeIstek;
         private ListBox listBoxInter;
         private ListBox listBoxSertifikati;
-        private Button btnDodaj;
+        private Button btnIzmeni;
         private TextBox txbPodtip;
     }
 }

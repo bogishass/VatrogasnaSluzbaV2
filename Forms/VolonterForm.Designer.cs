@@ -1,6 +1,6 @@
 ﻿namespace VatrogasnaSluzba.Forms
 {
-    partial class VolonteriForm
+    partial class VolonterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
+            columnHeader8 = new ColumnHeader();
             groupBox2 = new GroupBox();
             btnIzmeni = new Button();
             btnDodaj = new Button();
@@ -53,12 +54,12 @@
             groupBox1.Size = new Size(643, 428);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Lista volontera";
+            groupBox1.Text = "Lista Volontera";
             groupBox1.Enter += groupBox1_Enter;
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
+            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7, columnHeader8 });
             listView1.Location = new Point(6, 22);
             listView1.Name = "listView1";
             listView1.Size = new Size(631, 400);
@@ -94,6 +95,10 @@
             // 
             columnHeader7.Text = "Email";
             // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "Telefoni";
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(btnIzmeni);
@@ -104,7 +109,7 @@
             groupBox2.Size = new Size(161, 156);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Upravljanje volonterima";
+            groupBox2.Text = "Upravljanje Volonterima";
             // 
             // btnIzmeni
             // 
@@ -123,6 +128,7 @@
             btnDodaj.TabIndex = 0;
             btnDodaj.Text = "Dodaj volontera";
             btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.Click += btnDodaj_Click;
             // 
             // btnObrisi
             // 
@@ -133,7 +139,7 @@
             btnObrisi.Text = "Obrisi volontera";
             btnObrisi.UseVisualStyleBackColor = true;
             // 
-            // VolonteriForm
+            // VolonterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -141,7 +147,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "VolonteriForm";
+            Name = "VolonterForm";
             Text = "Volonteri";
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
@@ -159,6 +165,7 @@
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
         private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
         private GroupBox groupBox2;
         private Button btnIzmeni;
         private Button btnDodaj;

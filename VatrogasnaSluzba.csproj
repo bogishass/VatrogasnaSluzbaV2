@@ -21,10 +21,4 @@
     <Folder Include="Mapiranja\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Forms\VolonteriForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-  </ItemGroup>
-
 </Project>
