@@ -17,16 +17,30 @@ namespace VatrogasnaSluzba.Forms
             InitializeComponent();
         }
 
-        private void btnZaposleni_Click(object sender, EventArgs e)
-        {
-            ZaposleniForm forma = new ZaposleniForm();
-            forma.ShowDialog();
-        }
+        //private void btnZaposleni_Click(object sender, EventArgs e)
+        //{
+        //    ZaposleniForm forma = new ZaposleniForm();
+        //    forma.ShowDialog();
+        //}
 
-        private void btnVolonteri_Click(object sender, EventArgs e)
+        //private void btnVolonteri_Click(object sender, EventArgs e)
+        //{
+        //    VolonteriForm forma = new VolonteriForm();
+        //    forma.ShowDialog();
+        //}
+
+        private void BtnTest_Click(object sender, EventArgs e)
         {
-            VolonteriForm forma = new VolonteriForm();
-            forma.ShowDialog();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

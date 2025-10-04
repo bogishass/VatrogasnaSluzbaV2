@@ -9,13 +9,13 @@ namespace VatrogasnaSluzba.Mapiranja
         {
             Table("LICE");
 
-            // Primary key
+            //
             Id(x => x.MaticniBroj)
                 .Column("MATICNI_BROJ")
                 .GeneratedBy.Assigned()
                 .Length(13);
 
-            // Basic properties
+            //
             Map(x => x.Ime)
                 .Column("IME")
                 .Not.Nullable()
@@ -54,7 +54,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Nullable()
                 .Length(50);
 
-            // Uncomment these when you have the corresponding mapping classes
+            //
 
             References(x => x.Smena)
                 .Column("ID_SMENE")

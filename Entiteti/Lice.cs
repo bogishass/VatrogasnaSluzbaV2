@@ -24,5 +24,11 @@ namespace VatrogasnaSluzba.Entiteti
 
         public virtual IList<string> Telefoni { get; set; } = new List<string>();
         public virtual IList<Intervencija> Intervencije { get; set; } = new List<Intervencija>();
+    
+
+    public Lice() {
+
+        }
     }
+
 }

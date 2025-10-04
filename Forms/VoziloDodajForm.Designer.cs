@@ -116,7 +116,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 42);
             label2.Name = "label2";
-            label2.Size = new Size(23, 15);
+            label2.Size = new Size(24, 15);
             label2.TabIndex = 1;
             label2.Text = "Tip";
             // 

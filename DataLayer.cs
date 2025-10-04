@@ -28,13 +28,12 @@ namespace VatrogasnaSluzba
         {
             try
             {
-                // Use the original configuration that was working
+                var cfg = OracleManagedDataClientConfiguration.Oracle10
+                .ConnectionString(c =>
+                c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S19396;Password=bogdan003"));
+                // 
                 return Fluently.Configure()
-                    .Database(
-                        OracleManagedDataClientConfiguration.Oracle10
-                            .ConnectionString("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S19396;Password=bogdan003")
-                            .ShowSql()
-                    )
+                    .Database(cfg.ShowSql())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<LiceMap>())
                     .BuildSessionFactory();
             }

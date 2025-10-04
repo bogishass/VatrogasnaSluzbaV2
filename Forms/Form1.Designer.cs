@@ -35,6 +35,7 @@
             btnOprema = new Button();
             btnStanice = new Button();
             btnSmene = new Button();
+            BtnTest = new Button();
             SuspendLayout();
             // 
             // btnZaposleni
@@ -102,11 +103,22 @@
             btnSmene.Text = "Smene";
             btnSmene.UseVisualStyleBackColor = true;
             // 
+            // BtnTest
+            // 
+            BtnTest.Location = new Point(185, 283);
+            BtnTest.Name = "BtnTest";
+            BtnTest.Size = new Size(99, 52);
+            BtnTest.TabIndex = 7;
+            BtnTest.Text = "Test";
+            BtnTest.UseVisualStyleBackColor = true;
+            BtnTest.Click += BtnTest_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(321, 366);
+            Controls.Add(BtnTest);
             Controls.Add(btnSmene);
             Controls.Add(btnStanice);
             Controls.Add(btnOprema);
@@ -129,5 +141,6 @@
         private Button btnOprema;
         private Button btnStanice;
         private Button btnSmene;
+        private Button BtnTest;
     }
 }
