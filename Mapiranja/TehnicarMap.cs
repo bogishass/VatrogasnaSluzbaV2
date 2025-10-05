@@ -3,14 +3,15 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.Mapiranja
 {
-    public class TehnicarMap : ClassMap<Tehnicar>
+    public class TehnicarMap : SubclassMap<Tehnicar>
     {
         public TehnicarMap()
         {
             Table("TEHNICAR");
-            Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
+            //Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
 
-            HasOne(x => x.Lice).Constrained();
+            //HasOne(x => x.Lice).Constrained();
+            KeyColumn("MATICNI_BROJ");
 
             Map(x => x.Specijalizacija).Column("Specijalizacija");
 

@@ -2,7 +2,7 @@
 
 namespace VatrogasnaSluzba.Entiteti
 {
-    public class Tehnicar
+    public class Tehnicar : Lice
     {
         public virtual string MaticniBroj { get; set; } // shared PK
         public virtual Lice Lice { get; set; }

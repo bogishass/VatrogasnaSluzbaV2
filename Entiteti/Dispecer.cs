@@ -1,6 +1,6 @@
 namespace VatrogasnaSluzba.Entiteti
 {
-    public class Dispecer
+    public class Dispecer : Lice
     {
         public virtual string MaticniBroj { get; set; }
         public virtual Lice Lice { get; set; }

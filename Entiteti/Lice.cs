@@ -27,7 +27,8 @@ namespace VatrogasnaSluzba.Entiteti
     
 
     public Lice() {
-
+            Telefoni = new List<string>();
+            Intervencije = new List<Intervencija>();
         }
     }
 

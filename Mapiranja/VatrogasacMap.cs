@@ -3,17 +3,21 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.Mapiranja
 {
-    public class VatrogasacMap : ClassMap<Vatrogasac>
+    // subclass umesto class map valjda
+    public class VatrogasacMap : SubclassMap<Vatrogasac>
     {
         public VatrogasacMap()
         {
-            Table("VATROGASAC");
-            Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
-            HasOne(x => x.Lice).Constrained();
 
-            Map(x => x.NivoObucenosti).Column("Nivo_obucenosti");
-            Map(x => x.FizickaSprema).Column("Fizicka_sprema");
-            Map(x => x.BrojSertifikata).Column("Broj_sertifikata");
+            Table("VATROGASAC");
+            //Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
+            //HasOne(x => x.Lice).Constrained();
+
+            KeyColumn("MATICNI_BROJ");
+
+            Map(x => x.NivoObucenosti).Column("NIVO_OBUCENOSTI");
+            Map(x => x.FizickaSprema).Column("FIZICKA_SPREMA");
+            Map(x => x.BrojSertifikata).Column("BROJ_SERTIFIKATA");
         }
     }
 }

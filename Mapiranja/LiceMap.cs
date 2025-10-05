@@ -3,7 +3,8 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.Mapiranja
 {
-    public class LiceMap : ClassMap<Lice>
+    // dodao sam abstract jer moraju nesto od pozicija da budu
+    public abstract class LiceMap : ClassMap<Lice>
     {
         public LiceMap()
         {
@@ -49,10 +50,12 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Column("DAT_POCETKA_ANGAZ")
                 .Nullable();
 
-            Map(x => x.Pozicija)
-                .Column("POZICIJA")
-                .Nullable()
-                .Length(50);
+            //Map(x => x.Pozicija)
+            //    .Column("POZICIJA")
+            //    .Nullable()
+            //    .Length(50);
+
+            //
 
             //
 
@@ -60,17 +63,17 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Column("ID_SMENE")
                 .Nullable();
 
-            HasOne(x => x.Tehnicar)
-                .PropertyRef(t => t.Lice)
-                .Cascade.All();
+            //HasOne(x => x.Tehnicar)
+            //    .PropertyRef(t => t.Lice)
+            //    .Cascade.All();
 
-            HasOne(x => x.Dispecer)
-                .PropertyRef(d => d.Lice)
-                .Cascade.All();
+            //HasOne(x => x.Dispecer)
+            //    .PropertyRef(d => d.Lice)
+            //    .Cascade.All();
 
-            HasOne(x => x.Vatrogasac)
-                .PropertyRef(v => v.Lice)
-                .Cascade.All();
+            //HasOne(x => x.Vatrogasac)
+            //    .PropertyRef(v => v.Lice)
+            //    .Cascade.All();
 
             HasMany(x => x.Telefoni)
                 .Table("LICE_TELEFON")
