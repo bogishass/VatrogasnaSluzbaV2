@@ -13,7 +13,7 @@ namespace VatrogasnaSluzba.Entiteti
         public virtual DateTime DatumRodjenja { get; set; }
         public virtual string Adresa { get; set; }
         public virtual string Email { get; set; }
-        public virtual DateTime DatPocetkaAngaz { get; set; }
+        public virtual DateTime? DatPocetkaAngaz { get; set; }
         public virtual string Pozicija { get; set; } // 'Tehnicar' | 'Dispecer' | 'Vatrogasac'
 
         public virtual Smena Smena { get; set; }
@@ -24,12 +24,10 @@ namespace VatrogasnaSluzba.Entiteti
 
         public virtual IList<string> Telefoni { get; set; } = new List<string>();
         public virtual IList<Intervencija> Intervencije { get; set; } = new List<Intervencija>();
-    
 
-    public Lice() {
+        public Lice() {
             Telefoni = new List<string>();
             Intervencije = new List<Intervencija>();
         }
     }
-
 }

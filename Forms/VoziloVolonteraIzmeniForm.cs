@@ -21,21 +21,5 @@ namespace VatrogasnaSluzba.Forms
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Vozilo vozilo = new Vozilo();
-            vozilo.RegBroj = txbReg.Text;
-            vozilo.Tip = comboTip.SelectedItem.ToString();
-            vozilo.Podtip = txbPodtip.Text;
-            vozilo.Proizvodjac = txbProiz.Text;
-            vozilo.GodProizvodnje = Int32.Parse(txbGodProiz.Text);
-            vozilo.Kapacitet = Int32.Parse(txbKapacitet.Text);
-            vozilo.DatIstekaReg = dateTimeIstek.Value;
-
-            //DTOManager.dodajVozilo(vozilo);
-
-            MessageBox.Show("Uspesno ste dodali vozilo!");
-        }
     }
 }

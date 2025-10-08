@@ -45,11 +45,6 @@ namespace VatrogasnaSluzba.Forms
             //}
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDodaj_Click(object sender, EventArgs e)
         {
             ZaposleniDodajForm forma = new ZaposleniDodajForm();

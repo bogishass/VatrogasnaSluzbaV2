@@ -160,7 +160,6 @@
             btnDodaj.TabIndex = 1;
             btnDodaj.Text = "Dodaj vozilo";
             btnDodaj.UseVisualStyleBackColor = true;
-            btnDodaj.Click += button1_Click;
             // 
             // VoziloVolonteraIzmeniForm
             // 

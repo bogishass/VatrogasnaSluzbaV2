@@ -8,17 +8,14 @@ namespace VatrogasnaSluzba.Mapiranja
         public TehnicarMap()
         {
             Table("TEHNICAR");
-            //Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
-
-            //HasOne(x => x.Lice).Constrained();
             KeyColumn("MATICNI_BROJ");
 
-            Map(x => x.Specijalizacija).Column("Specijalizacija");
+            Map(x => x.Specijalizacija).Column("SPECIJALIZACIJA").Nullable();
 
             HasMany(x => x.Alati)
                 .Table("TEHNICAR_ALAT")
-                .KeyColumn("Mbr_tehnicara")
-                .Element("Alat")
+                .KeyColumn("MBR_TEHNICARA")
+                .Element("ALAT")
                 .Cascade.AllDeleteOrphan();
         }
     }
