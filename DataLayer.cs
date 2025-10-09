@@ -2,6 +2,7 @@ using System;
 using NHibernate;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Oracle.ManagedDataAccess.Client;
 using VatrogasnaSluzba.Mapiranja;
 
 namespace VatrogasnaSluzba
@@ -18,7 +19,10 @@ namespace VatrogasnaSluzba
                 lock (objLock)
                 {
                     if (_factory == null)
+                    {
                         _factory = CreateSessionFactory();
+                        MessageBox.Show("Factory session kreiran!");
+                    }
                 }
             }
             return _factory.OpenSession();
@@ -28,10 +32,10 @@ namespace VatrogasnaSluzba
         {
             try
             {
-                var cfg = OracleManagedDataClientConfiguration.Oracle10
-                .ConnectionString(c =>
-                c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S19396;Password=bogdan003"));
-                // 
+                var cfg = OracleManagedDataClientConfiguration.Oracle10.ConnectionString(
+                    c => c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S19396;Password=bogdan003")
+                );
+                
                 return Fluently.Configure()
                     .Database(cfg.ShowSql())
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<LiceMap>())

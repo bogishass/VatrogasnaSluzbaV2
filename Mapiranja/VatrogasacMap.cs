@@ -8,11 +8,7 @@ namespace VatrogasnaSluzba.Mapiranja
     {
         public VatrogasacMap()
         {
-
             Table("VATROGASAC");
-            //Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
-            //HasOne(x => x.Lice).Constrained();
-
             KeyColumn("MATICNI_BROJ");
 
             Map(x => x.NivoObucenosti).Column("NIVO_OBUCENOSTI");

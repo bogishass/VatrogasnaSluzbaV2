@@ -8,9 +8,6 @@ namespace VatrogasnaSluzba.Mapiranja
         public DispecerMap()
         {
             Table("DISPECER");
-            //Id(x => x.MaticniBroj).Column("Maticni_broj").GeneratedBy.Assigned();
-            //HasOne(x => x.Lice).Constrained();
-
             KeyColumn("MATICNI_BROJ");
 
             Map(x => x.TipKomunikacioneOpreme).Column("Tip_komunikacione_opreme");

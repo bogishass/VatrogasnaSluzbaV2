@@ -251,7 +251,6 @@
             btnDodaj.TabIndex = 9;
             btnDodaj.Text = "Izmeni volontera";
             btnDodaj.UseVisualStyleBackColor = true;
-            btnDodaj.Click += btnDodaj_Click;
             // 
             // VolonterIzmeniForm
             // 

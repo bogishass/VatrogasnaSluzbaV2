@@ -64,5 +64,10 @@ namespace VatrogasnaSluzba.Forms
         {
 
         }
+
+        private void txbMatbr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
