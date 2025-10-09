@@ -41,9 +41,9 @@
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
             groupBox2 = new GroupBox();
-            button1 = new Button();
-            button2 = new Button();
             button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -67,6 +67,7 @@
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
@@ -120,14 +121,14 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Upravljanje vozilima";
             // 
-            // button1
+            // button3
             // 
-            button1.Location = new Point(6, 22);
-            button1.Name = "button1";
-            button1.Size = new Size(149, 35);
-            button1.TabIndex = 0;
-            button1.Text = "Dodaj vozilo";
-            button1.UseVisualStyleBackColor = true;
+            button3.Location = new Point(6, 104);
+            button3.Name = "button3";
+            button3.Size = new Size(149, 35);
+            button3.TabIndex = 2;
+            button3.Text = "Izmeni vozilo";
+            button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -138,14 +139,14 @@
             button2.Text = "Obrisi vozilo";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button1
             // 
-            button3.Location = new Point(6, 104);
-            button3.Name = "button3";
-            button3.Size = new Size(149, 35);
-            button3.TabIndex = 2;
-            button3.Text = "Izmeni vozilo";
-            button3.UseVisualStyleBackColor = true;
+            button1.Location = new Point(6, 22);
+            button1.Name = "button1";
+            button1.Size = new Size(149, 35);
+            button1.TabIndex = 0;
+            button1.Text = "Dodaj vozilo";
+            button1.UseVisualStyleBackColor = true;
             // 
             // VoziloForm
             // 

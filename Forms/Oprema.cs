@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace VatrogasnaSluzba.Forms
 {
-    public partial class VoziloForm : Form
+    public partial class Oprema : Form
     {
-        public VoziloForm()
+        public Oprema()
         {
             InitializeComponent();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
