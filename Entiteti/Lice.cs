@@ -16,11 +16,7 @@ namespace VatrogasnaSluzba.Entiteti
         public virtual DateTime? DatPocetkaAngaz { get; set; }
         public virtual string Pozicija { get; set; } // 'Tehnicar' | 'Dispecer' | 'Vatrogasac'
 
-        public virtual Smena Smena { get; set; }
-
-        public virtual Tehnicar Tehnicar { get; set; }
-        public virtual Dispecer Dispecer { get; set; }
-        public virtual Vatrogasac Vatrogasac { get; set; }
+        public virtual VatrogasnaStanica Stanica { get; set; }
 
         public virtual IList<string> Telefoni { get; set; } = new List<string>();
         public virtual IList<Intervencija> Intervencije { get; set; } = new List<Intervencija>();

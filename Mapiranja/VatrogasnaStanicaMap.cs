@@ -8,7 +8,7 @@ namespace VatrogasnaSluzba.Mapiranja
         public VatrogasnaStanicaMap()
         {
             Table("VATROGASNA_STANICA");
-            Id(x => x.IdStanice).Column("ID_stanice").GeneratedBy.Assigned();
+            Id(x => x.IdStanice).Column("ID_stanice").GeneratedBy.Increment(); // bilo GeneratedBy.Assigned()
 
             Map(x => x.Naziv).Column("Naziv").Not.Nullable();
             Map(x => x.Adresa).Column("Adresa").Not.Nullable();

@@ -8,7 +8,7 @@ namespace VatrogasnaSluzba.Mapiranja
         public IntervencijaMap()
         {
             Table("INTERVENCIJA");
-            Id(x => x.IdIntervencije).Column("ID_intervencije").GeneratedBy.Assigned();
+            Id(x => x.IdIntervencije).Column("ID_intervencije").GeneratedBy.Increment(); // bilo GeneratedBy.Assigned()
 
             Map(x => x.VrstaIntervencije).Column("Vrsta_intervencije");
             Map(x => x.AdresaIntervencije).Column("Adresa_intervencije");
@@ -26,8 +26,8 @@ namespace VatrogasnaSluzba.Mapiranja
                 .ChildKeyColumn("ID_smene")
                 .Cascade.None();
 
-            HasManyToMany(x => x.Zaposleni)
-                .Table("ZAPOSLENI_U_INTERVENCIJI")
+            HasManyToMany(x => x.Lice)
+                .Table("LICE_U_INTERVENCIJI")
                 .ParentKeyColumn("ID_intervencije")
                 .ChildKeyColumn("Maticni_broj")
                 .Cascade.None();

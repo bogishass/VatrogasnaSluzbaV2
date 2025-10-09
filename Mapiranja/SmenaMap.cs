@@ -17,7 +17,7 @@ namespace VatrogasnaSluzba.Mapiranja
 
             References(x => x.Stanica).Column("ID_stanice").Not.Nullable();
 
-            HasMany(x => x.Zaposleni)
+            HasMany(x => x.Lice)
                 .KeyColumn("ID_smene")
                 .Inverse()
                 .Cascade.None();
