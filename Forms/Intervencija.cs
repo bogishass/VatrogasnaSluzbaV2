@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace VatrogasnaSluzba.Forms
 {
-    public partial class VoziloForm : Form
+    public partial class Intervencija : Form
     {
-        public VoziloForm()
+        public Intervencija()
         {
             InitializeComponent();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
