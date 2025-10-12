@@ -29,119 +29,120 @@
         private void InitializeComponent()
         {
             btnZaposleni = new Button();
-            btnVolonteri = new Button();
             btnVozila = new Button();
-            btnVozilaVol = new Button();
             btnOprema = new Button();
             btnStanice = new Button();
-            btnSmene = new Button();
-            BtnTest = new Button();
+            btnIntervencije = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnZaposleni
             // 
-            btnZaposleni.Location = new Point(36, 37);
+            btnZaposleni.BackColor = Color.IndianRed;
+            btnZaposleni.FlatStyle = FlatStyle.Flat;
+            btnZaposleni.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnZaposleni.ForeColor = Color.White;
+            btnZaposleni.Location = new Point(11, 26);
             btnZaposleni.Name = "btnZaposleni";
-            btnZaposleni.Size = new Size(99, 52);
+            btnZaposleni.Size = new Size(146, 38);
             btnZaposleni.TabIndex = 0;
             btnZaposleni.Text = "Zaposleni";
-            btnZaposleni.UseVisualStyleBackColor = true;
+            btnZaposleni.UseVisualStyleBackColor = false;
             btnZaposleni.Click += btnZaposleni_Click;
-            // 
-            // btnVolonteri
-            // 
-            btnVolonteri.Location = new Point(36, 120);
-            btnVolonteri.Name = "btnVolonteri";
-            btnVolonteri.Size = new Size(99, 52);
-            btnVolonteri.TabIndex = 1;
-            btnVolonteri.Text = "Volonteri";
-            btnVolonteri.UseVisualStyleBackColor = true;
-            btnVolonteri.Click += btnVolonteri_Click;
             // 
             // btnVozila
             // 
-            btnVozila.Location = new Point(36, 199);
+            btnVozila.BackColor = Color.IndianRed;
+            btnVozila.FlatStyle = FlatStyle.Flat;
+            btnVozila.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnVozila.ForeColor = Color.White;
+            btnVozila.Location = new Point(11, 158);
             btnVozila.Name = "btnVozila";
-            btnVozila.Size = new Size(99, 52);
+            btnVozila.Size = new Size(145, 38);
             btnVozila.TabIndex = 2;
             btnVozila.Text = "Vozila";
-            btnVozila.UseVisualStyleBackColor = true;
-            // 
-            // btnVozilaVol
-            // 
-            btnVozilaVol.Location = new Point(36, 283);
-            btnVozilaVol.Name = "btnVozilaVol";
-            btnVozilaVol.Size = new Size(99, 52);
-            btnVozilaVol.TabIndex = 3;
-            btnVozilaVol.Text = "Vozila volontera";
-            btnVozilaVol.UseVisualStyleBackColor = true;
+            btnVozila.UseVisualStyleBackColor = false;
+            btnVozila.Click += btnVozila_Click;
             // 
             // btnOprema
             // 
-            btnOprema.Location = new Point(185, 37);
+            btnOprema.BackColor = Color.IndianRed;
+            btnOprema.FlatStyle = FlatStyle.Flat;
+            btnOprema.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnOprema.ForeColor = Color.White;
+            btnOprema.Location = new Point(12, 202);
             btnOprema.Name = "btnOprema";
-            btnOprema.Size = new Size(99, 52);
+            btnOprema.Size = new Size(145, 38);
             btnOprema.TabIndex = 4;
             btnOprema.Text = "Oprema";
-            btnOprema.UseVisualStyleBackColor = true;
+            btnOprema.UseVisualStyleBackColor = false;
+            btnOprema.Click += btnOprema_Click;
             // 
             // btnStanice
             // 
-            btnStanice.Location = new Point(185, 120);
+            btnStanice.BackColor = Color.IndianRed;
+            btnStanice.FlatStyle = FlatStyle.Flat;
+            btnStanice.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnStanice.ForeColor = Color.White;
+            btnStanice.Location = new Point(11, 70);
             btnStanice.Name = "btnStanice";
-            btnStanice.Size = new Size(99, 52);
+            btnStanice.Size = new Size(145, 38);
             btnStanice.TabIndex = 5;
             btnStanice.Text = "Stanice";
-            btnStanice.UseVisualStyleBackColor = true;
+            btnStanice.UseVisualStyleBackColor = false;
             // 
-            // btnSmene
+            // btnIntervencije
             // 
-            btnSmene.Location = new Point(185, 199);
-            btnSmene.Name = "btnSmene";
-            btnSmene.Size = new Size(99, 52);
-            btnSmene.TabIndex = 6;
-            btnSmene.Text = "Smene";
-            btnSmene.UseVisualStyleBackColor = true;
+            btnIntervencije.BackColor = Color.IndianRed;
+            btnIntervencije.FlatStyle = FlatStyle.Flat;
+            btnIntervencije.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnIntervencije.ForeColor = Color.White;
+            btnIntervencije.Location = new Point(12, 114);
+            btnIntervencije.Name = "btnIntervencije";
+            btnIntervencije.Size = new Size(145, 38);
+            btnIntervencije.TabIndex = 7;
+            btnIntervencije.Text = "Intervencije";
+            btnIntervencije.UseVisualStyleBackColor = false;
             // 
-            // BtnTest
+            // pictureBox1
             // 
-            BtnTest.Location = new Point(185, 283);
-            BtnTest.Name = "BtnTest";
-            BtnTest.Size = new Size(99, 52);
-            BtnTest.TabIndex = 7;
-            BtnTest.Text = "Test";
-            BtnTest.UseVisualStyleBackColor = true;
-            BtnTest.Click += BtnTest_Click;
+            pictureBox1.Image = Properties.Resources.pozadina;
+            pictureBox1.Location = new Point(153, -153);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(420, 587);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(321, 359);
-            Controls.Add(BtnTest);
-            Controls.Add(btnSmene);
+            BackColor = Color.White;
+            ClientSize = new Size(561, 264);
+            Controls.Add(btnIntervencije);
             Controls.Add(btnStanice);
             Controls.Add(btnOprema);
-            Controls.Add(btnVozilaVol);
             Controls.Add(btnVozila);
-            Controls.Add(btnVolonteri);
             Controls.Add(btnZaposleni);
+            Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pocetna stranica";
+            Text = "Vatrogasna služba";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnZaposleni;
-        private Button btnVolonteri;
         private Button btnVozila;
-        private Button btnVozilaVol;
         private Button btnOprema;
         private Button btnStanice;
-        private Button btnSmene;
-        private Button BtnTest;
+        private Button btnIntervencije;
+        private PictureBox pictureBox1;
     }
 }

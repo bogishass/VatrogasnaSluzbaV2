@@ -17,56 +17,22 @@ namespace VatrogasnaSluzba.Forms
         public Form1()
         {
             InitializeComponent();
-
-            //// da se konektujemo odma
-            //var s = DataLayer.GetSession();
-            //s.Close();
         }
-
         private void btnZaposleni_Click(object sender, EventArgs e)
         {
             ZaposleniForm forma = new ZaposleniForm();
             forma.ShowDialog();
         }
-
-        private void btnVolonteri_Click(object sender, EventArgs e)
+        private void btnVozila_Click(object sender, EventArgs e)
         {
-            LiceDTO lice = LiceDTOManager.GetLice("4567890123456");
-            var form = new VozilaVolonteraForm((VolonterDTO)lice);
-            form.ShowDialog();
+            VoziloForm forma = new VoziloForm();
+            forma.ShowDialog();
         }
 
-        private void BtnTest_Click(object sender, EventArgs e)
+        private void btnOprema_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (var s = DataLayer.GetSession())
-                {
-                    var lica = s.Query<Lice>().ToList();
-                    s.Close();
-                    MessageBox.Show($"Lica u bazi: {lica.Count}");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                var details = new StringBuilder();
-                details.AppendLine("Database Error: " + ex.Message);
-
-                if (ex.InnerException != null)
-                {
-                    details.AppendLine("\nInner Exception:");
-                    details.AppendLine(ex.InnerException.Message);
-                }
-
-                if (ex is NHibernate.HibernateException hEx && hEx.InnerException != null)
-                {
-                    details.AppendLine("\nNHibernate Details:");
-                    details.AppendLine(hEx.InnerException.ToString());
-                }
-
-                MessageBox.Show(details.ToString());
-            }
+            OpremaForm forma = new OpremaForm();
+            forma.ShowDialog();
         }
     }
 }
