@@ -68,5 +68,17 @@ namespace VatrogasnaSluzba.Forms
                 MessageBox.Show(details.ToString());
             }
         }
+
+        private void btnOprema_Click(object sender, EventArgs e)
+        {
+            OpremaForm forma = new OpremaForm();
+            forma.ShowDialog();
+        }
+
+        private void btnVozila_Click(object sender, EventArgs e)
+        {
+            VoziloForm forma = new VoziloForm();
+            forma.ShowDialog();
+        }
     }
 }

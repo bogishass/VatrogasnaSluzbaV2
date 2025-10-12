@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VatrogasnaSluzba.Forms
 {
-    public partial class Intervencija : Form
+    public partial class IntervencijaForm : Form
     {
-        public Intervencija()
+        public IntervencijaForm()
         {
             InitializeComponent();
         }
@@ -23,6 +23,21 @@ namespace VatrogasnaSluzba.Forms
         }
 
         private void Intervencija_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txbMatbr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }

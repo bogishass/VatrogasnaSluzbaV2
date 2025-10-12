@@ -1,6 +1,6 @@
 ﻿namespace VatrogasnaSluzba.Forms
 {
-    partial class Intervencija
+    partial class IntervencijaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -66,6 +66,14 @@
             label8 = new Label();
             label10 = new Label();
             txbTelefoni = new TextBox();
+            label9 = new Label();
+            dateTimePicker2 = new DateTimePicker();
+            label11 = new Label();
+            dateTimePicker3 = new DateTimePicker();
+            textBox1 = new TextBox();
+            label12 = new Label();
+            label13 = new Label();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -166,7 +174,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(650, 306);
+            button1.Location = new Point(777, 306);
             button1.Name = "button1";
             button1.Size = new Size(146, 31);
             button1.TabIndex = 2;
@@ -176,7 +184,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(802, 306);
+            button2.Location = new Point(929, 306);
             button2.Name = "button2";
             button2.Size = new Size(146, 31);
             button2.TabIndex = 3;
@@ -185,7 +193,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(954, 306);
+            button3.Location = new Point(1081, 306);
             button3.Name = "button3";
             button3.Size = new Size(146, 31);
             button3.TabIndex = 4;
@@ -197,7 +205,7 @@
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Location = new Point(12, 306);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(632, 308);
+            groupBox1.Size = new Size(759, 308);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Dodaj intervenciju";
@@ -209,6 +217,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 182F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 22F));
+            tableLayoutPanel1.Controls.Add(dateTimePicker3, 3, 1);
             tableLayoutPanel1.Controls.Add(dateTimePicker1, 1, 3);
             tableLayoutPanel1.Controls.Add(label2, 0, 0);
             tableLayoutPanel1.Controls.Add(label7, 0, 6);
@@ -225,6 +234,13 @@
             tableLayoutPanel1.Controls.Add(label8, 0, 5);
             tableLayoutPanel1.Controls.Add(label10, 0, 7);
             tableLayoutPanel1.Controls.Add(txbTelefoni, 1, 7);
+            tableLayoutPanel1.Controls.Add(dateTimePicker2, 3, 0);
+            tableLayoutPanel1.Controls.Add(textBox1, 3, 2);
+            tableLayoutPanel1.Controls.Add(label11, 2, 1);
+            tableLayoutPanel1.Controls.Add(label12, 2, 2);
+            tableLayoutPanel1.Controls.Add(label9, 2, 0);
+            tableLayoutPanel1.Controls.Add(label13, 2, 3);
+            tableLayoutPanel1.Controls.Add(textBox2, 3, 3);
             tableLayoutPanel1.Location = new Point(6, 22);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 8;
@@ -238,8 +254,9 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(619, 277);
+            tableLayoutPanel1.Size = new Size(659, 277);
             tableLayoutPanel1.TabIndex = 10;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // dateTimePicker1
             // 
@@ -284,6 +301,7 @@
             txbMatbr.Name = "txbMatbr";
             txbMatbr.Size = new Size(155, 23);
             txbMatbr.TabIndex = 0;
+            txbMatbr.TextChanged += txbMatbr_TextChanged;
             // 
             // label3
             // 
@@ -385,6 +403,71 @@
             txbTelefoni.Size = new Size(155, 23);
             txbTelefoni.TabIndex = 19;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(274, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(82, 15);
+            label9.TabIndex = 22;
+            label9.Text = "VremeDolaska";
+            label9.Click += label9_Click;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(456, 3);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 23;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(274, 34);
+            label11.Name = "label11";
+            label11.Size = new Size(89, 15);
+            label11.TabIndex = 24;
+            label11.Text = "VremePromena";
+            // 
+            // dateTimePicker3
+            // 
+            dateTimePicker3.Location = new Point(456, 37);
+            dateTimePicker3.Name = "dateTimePicker3";
+            dateTimePicker3.Size = new Size(200, 23);
+            dateTimePicker3.TabIndex = 25;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(456, 71);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 26;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(274, 68);
+            label12.Name = "label12";
+            label12.Size = new Size(39, 15);
+            label12.TabIndex = 27;
+            label12.Text = "Status";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(274, 102);
+            label13.Name = "label13";
+            label13.Size = new Size(43, 15);
+            label13.TabIndex = 28;
+            label13.Text = "Smena";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(456, 105);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 23);
+            textBox2.TabIndex = 29;
+            // 
             // Intervencija
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -447,5 +530,13 @@
         private Label label8;
         private Label label10;
         private TextBox txbTelefoni;
+        private Label label9;
+        private DateTimePicker dateTimePicker2;
+        private Label label11;
+        private DateTimePicker dateTimePicker3;
+        private TextBox textBox1;
+        private Label label12;
+        private Label label13;
+        private TextBox textBox2;
     }
 }

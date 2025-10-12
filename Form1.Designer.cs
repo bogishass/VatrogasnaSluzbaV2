@@ -66,6 +66,7 @@
             btnVozila.TabIndex = 2;
             btnVozila.Text = "Vozila";
             btnVozila.UseVisualStyleBackColor = true;
+            btnVozila.Click += btnVozila_Click;
             // 
             // btnVozilaVol
             // 
@@ -84,6 +85,7 @@
             btnOprema.TabIndex = 4;
             btnOprema.Text = "Oprema";
             btnOprema.UseVisualStyleBackColor = true;
+            btnOprema.Click += btnOprema_Click;
             // 
             // btnStanice
             // 

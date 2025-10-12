@@ -1,3 +1,4 @@
+
 using FluentNHibernate.Mapping;
 using VatrogasnaSluzba.Entiteti;
 
@@ -8,7 +9,10 @@ namespace VatrogasnaSluzba.Mapiranja
         public OpremaMap()
         {
             Table("OPREMA");
-            Id(x => x.InventarskiBroj).Column("Inventarski_broj").GeneratedBy.Assigned();
+
+            Id(x => x.InventarskiBroj)
+                .Column("Inventarski_broj")
+                .GeneratedBy.Assigned();
 
             Map(x => x.Naziv).Column("Naziv").Not.Nullable();
             Map(x => x.Tip).Column("Tip").Not.Nullable();
@@ -21,7 +25,9 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Table("OPREMA_U_INTERVENCIJI")
                 .ParentKeyColumn("Inventarski_broj")
                 .ChildKeyColumn("ID_intervencije")
-                .Cascade.AllDeleteOrphan();
+                .Cascade.None()         
+                .LazyLoad()
+                .AsBag();
         }
     }
 }
