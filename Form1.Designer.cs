@@ -117,7 +117,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(321, 366);
+            ClientSize = new Size(321, 359);
             Controls.Add(BtnTest);
             Controls.Add(btnSmene);
             Controls.Add(btnStanice);
@@ -128,6 +128,7 @@
             Controls.Add(btnZaposleni);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Pocetna stranica";
             ResumeLayout(false);
         }

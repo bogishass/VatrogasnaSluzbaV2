@@ -17,7 +17,7 @@ namespace VatrogasnaSluzba.Mapiranja
 
             References(x => x.Stanica).Column("ID_stanice").Not.Nullable();
 
-            HasMany(x => x.Lice)
+            HasMany(x => x.Lica)
                 .KeyColumn("ID_smene")
                 .Inverse()
                 .Cascade.None();
@@ -26,7 +26,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Table("INTERVENCIJA_SMENA")
                 .ParentKeyColumn("ID_smene")
                 .ChildKeyColumn("ID_intervencije")
-                .Cascade.None();
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

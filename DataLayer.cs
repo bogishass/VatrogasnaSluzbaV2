@@ -21,7 +21,7 @@ namespace VatrogasnaSluzba
                     if (_factory == null)
                     {
                         _factory = CreateSessionFactory();
-                        MessageBox.Show("Factory session kreiran!");
+                        //MessageBox.Show("Factory session kreiran");
                     }
                 }
             }

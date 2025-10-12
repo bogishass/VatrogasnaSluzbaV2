@@ -48,7 +48,7 @@
             listBoxInter = new ListBox();
             listBoxSertifikati = new ListBox();
             txbPodtip = new TextBox();
-            btnDodaj = new Button();
+            btnUpisi = new Button();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -270,23 +270,23 @@
             txbPodtip.Size = new Size(175, 23);
             txbPodtip.TabIndex = 18;
             // 
-            // btnDodaj
+            // btnUpisi
             // 
-            btnDodaj.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnDodaj.Location = new Point(93, 358);
-            btnDodaj.Name = "btnDodaj";
-            btnDodaj.Size = new Size(129, 37);
-            btnDodaj.TabIndex = 1;
-            btnDodaj.Text = "Dodaj vozilo";
-            btnDodaj.UseVisualStyleBackColor = true;
-            btnDodaj.Click += button1_Click;
+            btnUpisi.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnUpisi.Location = new Point(93, 358);
+            btnUpisi.Name = "btnUpisi";
+            btnUpisi.Size = new Size(129, 37);
+            btnUpisi.TabIndex = 1;
+            btnUpisi.Text = "Dodaj vozilo";
+            btnUpisi.UseVisualStyleBackColor = true;
+            btnUpisi.Click += button1_Click;
             // 
             // VoziloDodajForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(319, 407);
-            Controls.Add(btnDodaj);
+            Controls.Add(btnUpisi);
             Controls.Add(groupBox1);
             Name = "VoziloDodajForm";
             Text = "VoziloDodajForm";
@@ -318,7 +318,7 @@
         private DateTimePicker dateTimeIstek;
         private ListBox listBoxInter;
         private ListBox listBoxSertifikati;
-        private Button btnDodaj;
+        private Button btnUpisi;
         private TextBox txbPodtip;
     }
 }

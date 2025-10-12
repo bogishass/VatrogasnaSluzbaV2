@@ -21,7 +21,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Table("OPREMA_U_INTERVENCIJI")
                 .ParentKeyColumn("Inventarski_broj")
                 .ChildKeyColumn("ID_intervencije")
-                .Cascade.None();
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

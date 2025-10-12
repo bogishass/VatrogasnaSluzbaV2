@@ -26,7 +26,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .ChildKeyColumn("ID_smene")
                 .Cascade.None();
 
-            HasManyToMany(x => x.Lice)
+            HasManyToMany(x => x.Lica)
                 .Table("LICE_U_INTERVENCIJI")
                 .ParentKeyColumn("ID_intervencije")
                 .ChildKeyColumn("Maticni_broj")

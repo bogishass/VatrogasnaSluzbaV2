@@ -18,7 +18,7 @@ namespace VatrogasnaSluzba.Mapiranja
             Map(x => x.DatumRodjenja).Column("DATUM_RODJENJA").Not.Nullable();
             Map(x => x.Adresa).Column("ADRESA").Not.Nullable().Length(200);
             Map(x => x.Email).Column("EMAIL").Nullable().Length(100);
-            Map(x => x.DatPocetkaAngaz).Column("DAT_POCETKA_ANGAZ").Nullable();
+            Map(x => x.DatPocetkaAngaz).Column("DAT_POCETKA_ANGAZ").Nullable(); // ovo ne bi trebalo vljd bude nullable
             Map(x => x.Pozicija).Column("POZICIJA").Not.Nullable().Length(20);
 
             References(x => x.Stanica).Column("ID_STANICE").Nullable();
@@ -33,7 +33,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .Table("LICE_U_INTERVENCIJI")
                 .ParentKeyColumn("MATICNI_BROJ")
                 .ChildKeyColumn("ID_INTERVENCIJE")
-                .Cascade.None();
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

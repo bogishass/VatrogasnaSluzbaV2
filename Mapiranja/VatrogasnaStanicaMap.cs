@@ -14,7 +14,6 @@ namespace VatrogasnaSluzba.Mapiranja
             Map(x => x.Adresa).Column("Adresa").Not.Nullable();
             Map(x => x.BrojZaposlenih).Column("Broj_zaposlenih");
             Map(x => x.BrojVozila).Column("Broj_vozila");
-            Map(x => x.DostupnaInfrastruktura).Column("Dostupna_infrastruktura");
             Map(x => x.PovrsinaObjekta).Column("Povrsina_objekta");
 
             References(x => x.Komandir).Column("Mbr_komandira").Nullable();

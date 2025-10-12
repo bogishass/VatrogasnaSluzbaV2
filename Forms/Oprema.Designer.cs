@@ -52,7 +52,6 @@
             label1.Size = new Size(50, 15);
             label1.TabIndex = 0;
             label1.Text = "Oprema";
-            label1.Click += this.label1_Click;
             // 
             // dataGridView1
             // 
@@ -62,7 +61,6 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(662, 392);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += this.dataGridView1_CellContentClick;
             // 
             // INVBroj
             // 
@@ -112,7 +110,6 @@
             button1.TabIndex = 2;
             button1.Text = "Dodaj opremu";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click;
             // 
             // button2
             // 

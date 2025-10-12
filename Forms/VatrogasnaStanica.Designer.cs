@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             dataGridView1 = new DataGridView();
             ID_Stanice = new DataGridViewTextBoxColumn();
             IdStanice = new DataGridViewTextBoxColumn();
@@ -39,9 +42,6 @@
             PovrsinaObjekta = new DataGridViewTextBoxColumn();
             Komandir = new DataGridViewTextBoxColumn();
             Smene = new DataGridViewTextBoxColumn();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -59,6 +59,34 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "VatrogasnaStanica";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1397, 223);
+            button3.Name = "button3";
+            button3.Size = new Size(122, 81);
+            button3.TabIndex = 3;
+            button3.Text = "Izmeni Stanicu";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(1397, 120);
+            button2.Name = "button2";
+            button2.Size = new Size(122, 81);
+            button2.TabIndex = 2;
+            button2.Text = "Obrisi Stanicu";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1397, 22);
+            button1.Name = "button1";
+            button1.Size = new Size(122, 81);
+            button1.TabIndex = 1;
+            button1.Text = "Dodaj Stanicu";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
@@ -114,39 +142,11 @@
             Smene.HeaderText = "Smene";
             Smene.Name = "Smene";
             // 
-            // button1
-            // 
-            button1.Location = new Point(1397, 22);
-            button1.Name = "button1";
-            button1.Size = new Size(122, 81);
-            button1.TabIndex = 1;
-            button1.Text = "Dodaj Stanicu";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(1397, 120);
-            button2.Name = "button2";
-            button2.Size = new Size(122, 81);
-            button2.TabIndex = 2;
-            button2.Text = "Obrisi Stanicu";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(1397, 223);
-            button3.Name = "button3";
-            button3.Size = new Size(122, 81);
-            button3.TabIndex = 3;
-            button3.Text = "Izmeni Stanicu";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // VatrogasnaStanica
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1758, 804);
+            ClientSize = new Size(1549, 564);
             Controls.Add(groupBox1);
             Name = "VatrogasnaStanica";
             Text = "VatrogasnaStanica";

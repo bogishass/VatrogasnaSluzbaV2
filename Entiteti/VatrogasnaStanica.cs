@@ -10,7 +10,6 @@ namespace VatrogasnaSluzba.Entiteti
         public virtual string Adresa { get; set; }
         public virtual int? BrojZaposlenih { get; set; }
         public virtual int? BrojVozila { get; set; }
-        public virtual string DostupnaInfrastruktura { get; set; }
         public virtual double? PovrsinaObjekta { get; set; }
 
         public virtual Lice Komandir { get; set; }

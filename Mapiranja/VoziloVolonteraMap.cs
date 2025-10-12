@@ -10,7 +10,7 @@ namespace VatrogasnaSluzba.Mapiranja
             Table("VOZILO_VOLONTERA");
             Id(x => x.RegBroj).Column("Reg_broj").GeneratedBy.Assigned();
             Map(x => x.Tip).Column("Tip");
-            Map(x => x.Marka).Column("Marka");
+            Map(x => x.Proizvodjac).Column("Proizvodjac");
 
             References(x => x.Vlasnik).Column("Mbr_volontera").Not.Nullable();
 

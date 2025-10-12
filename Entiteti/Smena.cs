@@ -12,7 +12,7 @@ namespace VatrogasnaSluzba.Entiteti
         public virtual int? BrojIntervencija { get; set; }
 
         public virtual VatrogasnaStanica Stanica { get; set; }
-        public virtual IList<Lice> Lice { get; set; } = new List<Lice>();
+        public virtual IList<Lice> Lica { get; set; } = new List<Lice>();
         public virtual IList<Intervencija> Intervencije { get; set; } = new List<Intervencija>();
     }
 }

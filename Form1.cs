@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VatrogasnaSluzba.DTO;
 
 namespace VatrogasnaSluzba.Forms
 {
@@ -15,6 +17,10 @@ namespace VatrogasnaSluzba.Forms
         public Form1()
         {
             InitializeComponent();
+
+            //// da se konektujemo odma
+            //var s = DataLayer.GetSession();
+            //s.Close();
         }
 
         private void btnZaposleni_Click(object sender, EventArgs e)
@@ -25,8 +31,9 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnVolonteri_Click(object sender, EventArgs e)
         {
-            VolonterForm forma = new VolonterForm();
-            forma.ShowDialog();
+            LiceDTO lice = LiceDTOManager.GetLice("4567890123456");
+            var form = new VozilaVolonteraForm((VolonterDTO)lice);
+            form.ShowDialog();
         }
 
         private void BtnTest_Click(object sender, EventArgs e)

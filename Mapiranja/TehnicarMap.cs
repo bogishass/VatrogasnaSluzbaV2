@@ -17,6 +17,10 @@ namespace VatrogasnaSluzba.Mapiranja
                 .KeyColumn("MBR_TEHNICARA")
                 .Element("ALAT")
                 .Cascade.AllDeleteOrphan();
+
+            HasMany<Servis>(x => x.Servisi)
+                .KeyColumn("MBR_TEHNICARA")
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

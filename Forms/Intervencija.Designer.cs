@@ -84,9 +84,9 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, VrstaIntervencije, AdresaIntervencije, DatumPocetka, DatumKraja, OpisSituacije, BrojVatrogasaca, VremeDolaska, DatumPromene, Status, Smene, Zaposleni, Vozila, Volonteri, VozilaVolontera });
-            dataGridView1.Location = new Point(12, 42);
+            dataGridView1.Location = new Point(12, 39);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1546, 251);
+            dataGridView1.Size = new Size(1550, 251);
             dataGridView1.TabIndex = 1;
             // 
             // ID
@@ -166,9 +166,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1575, 27);
+            button1.Location = new Point(650, 306);
             button1.Name = "button1";
-            button1.Size = new Size(146, 93);
+            button1.Size = new Size(146, 31);
             button1.TabIndex = 2;
             button1.Text = "Dodaj intervenciju";
             button1.UseVisualStyleBackColor = true;
@@ -176,18 +176,18 @@
             // 
             // button2
             // 
-            button2.Location = new Point(1575, 126);
+            button2.Location = new Point(802, 306);
             button2.Name = "button2";
-            button2.Size = new Size(146, 93);
+            button2.Size = new Size(146, 31);
             button2.TabIndex = 3;
             button2.Text = "Obrisi intervenciju";
             button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(1575, 225);
+            button3.Location = new Point(954, 306);
             button3.Name = "button3";
-            button3.Size = new Size(146, 93);
+            button3.Size = new Size(146, 31);
             button3.TabIndex = 4;
             button3.Text = "Izmeni intervenciju";
             button3.UseVisualStyleBackColor = true;
@@ -195,9 +195,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(12, 338);
+            groupBox1.Location = new Point(12, 306);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1546, 414);
+            groupBox1.Size = new Size(632, 308);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Dodaj intervenciju";
@@ -238,14 +238,14 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(619, 568);
+            tableLayoutPanel1.Size = new Size(619, 277);
             tableLayoutPanel1.TabIndex = 10;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.CustomFormat = "";
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(113, 214);
+            dateTimePicker1.Location = new Point(113, 105);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(155, 23);
             dateTimePicker1.TabIndex = 20;
@@ -255,7 +255,7 @@
             // 
             label2.Anchor = AnchorStyles.Left;
             label2.AutoSize = true;
-            label2.Location = new Point(3, 28);
+            label2.Location = new Point(3, 9);
             label2.Name = "label2";
             label2.Size = new Size(18, 15);
             label2.TabIndex = 8;
@@ -265,7 +265,7 @@
             // 
             label7.Anchor = AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(3, 448);
+            label7.Location = new Point(3, 213);
             label7.Name = "label7";
             label7.Size = new Size(91, 15);
             label7.TabIndex = 14;
@@ -273,7 +273,7 @@
             // 
             // txbEmail
             // 
-            txbEmail.Location = new Point(113, 424);
+            txbEmail.Location = new Point(113, 207);
             txbEmail.Name = "txbEmail";
             txbEmail.Size = new Size(155, 23);
             txbEmail.TabIndex = 4;
@@ -289,7 +289,7 @@
             // 
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(3, 98);
+            label3.Location = new Point(3, 43);
             label3.Name = "label3";
             label3.Size = new Size(87, 15);
             label3.TabIndex = 9;
@@ -299,7 +299,7 @@
             // 
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
-            label5.Location = new Point(3, 308);
+            label5.Location = new Point(3, 145);
             label5.Name = "label5";
             label5.Size = new Size(63, 15);
             label5.TabIndex = 12;
@@ -307,7 +307,7 @@
             // 
             // txbAdresa
             // 
-            txbAdresa.Location = new Point(113, 354);
+            txbAdresa.Location = new Point(113, 173);
             txbAdresa.Name = "txbAdresa";
             txbAdresa.Size = new Size(155, 23);
             txbAdresa.TabIndex = 3;
@@ -316,7 +316,7 @@
             // 
             datumRodjenja.CustomFormat = "";
             datumRodjenja.Format = DateTimePickerFormat.Short;
-            datumRodjenja.Location = new Point(113, 284);
+            datumRodjenja.Location = new Point(113, 139);
             datumRodjenja.Name = "datumRodjenja";
             datumRodjenja.Size = new Size(155, 23);
             datumRodjenja.TabIndex = 5;
@@ -324,7 +324,7 @@
             // 
             // txbIme
             // 
-            txbIme.Location = new Point(113, 74);
+            txbIme.Location = new Point(113, 37);
             txbIme.Name = "txbIme";
             txbIme.Size = new Size(155, 23);
             txbIme.TabIndex = 1;
@@ -333,7 +333,7 @@
             // 
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(3, 238);
+            label4.Location = new Point(3, 111);
             label4.Name = "label4";
             label4.Size = new Size(85, 15);
             label4.TabIndex = 11;
@@ -343,7 +343,7 @@
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 168);
+            label6.Location = new Point(3, 77);
             label6.Name = "label6";
             label6.Size = new Size(104, 15);
             label6.TabIndex = 10;
@@ -351,7 +351,7 @@
             // 
             // txbPrezime
             // 
-            txbPrezime.Location = new Point(113, 144);
+            txbPrezime.Location = new Point(113, 71);
             txbPrezime.Name = "txbPrezime";
             txbPrezime.Size = new Size(155, 23);
             txbPrezime.TabIndex = 2;
@@ -360,7 +360,7 @@
             // 
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
-            label8.Location = new Point(3, 378);
+            label8.Location = new Point(3, 179);
             label8.Name = "label8";
             label8.Size = new Size(75, 15);
             label8.TabIndex = 13;
@@ -370,7 +370,7 @@
             // 
             label10.Anchor = AnchorStyles.Left;
             label10.AutoSize = true;
-            label10.Location = new Point(3, 522);
+            label10.Location = new Point(3, 250);
             label10.Name = "label10";
             label10.Size = new Size(91, 15);
             label10.TabIndex = 18;
@@ -379,7 +379,7 @@
             // 
             // txbTelefoni
             // 
-            txbTelefoni.Location = new Point(113, 494);
+            txbTelefoni.Location = new Point(113, 241);
             txbTelefoni.Name = "txbTelefoni";
             txbTelefoni.PlaceholderText = "60 1234, 60 5678...";
             txbTelefoni.Size = new Size(155, 23);
@@ -389,7 +389,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1754, 776);
+            ClientSize = new Size(1568, 626);
             Controls.Add(groupBox1);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -398,6 +398,7 @@
             Controls.Add(label1);
             Name = "Intervencija";
             Text = "Intervencija";
+            Load += Intervencija_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
