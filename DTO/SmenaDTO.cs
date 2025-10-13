@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NHibernate;
-using NHibernate.Transform;
-using VatrogasnaSluzba.Entiteti;
-using System.Linq;          
+﻿using NHibernate;
 using NHibernate.Linq;      
+using NHibernate.Transform;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Linq;          
+using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.DTO
 {
-    // =======================
-    // DTO klasa
-    // =======================
     public class SmenaDTO
     {
+        [DisplayName("ID smene")]
         public int IdSmene { get; set; }
+        [DisplayName("Datum smene")]
         public DateTime Datum { get; set; }
+        [DisplayName("Početak")]
         public DateTime VremePocetka { get; set; }
+        [DisplayName("Kraj")]
         public DateTime? VremeKraja { get; set; }
+        [DisplayName("Br. intervencija")]
         public int? BrojIntervencija { get; set; }
-
-        // Informativna polja za grid
-        public int BrVatrogasaca { get; set; }
-        public int BrDispecera { get; set; }
-
-        // Jednostavan DTO za stanicu (kao u LiceDTO)
+        [DisplayName("Br. vatrogasaca")]
+        public int? BrVatrogasaca { get; set; }
+        [DisplayName("Br. dispečera")]
+        public int? BrDispecera { get; set; }
         public StanicaSimpleDTO Stanica { get; set; }
 
         public SmenaDTO() { }
 
-        // Konstruktor iz entiteta (isti pattern kao LiceDTO(Lice l))
         public SmenaDTO(Smena s)
         {
             IdSmene = s.IdSmene;
@@ -38,8 +38,6 @@ namespace VatrogasnaSluzba.DTO
             VremeKraja = s.VremeKraja;
             BrojIntervencija = s.BrojIntervencija;
 
-            // Ako NHibernate učita kolekciju, brojke će se lepo izračunati;
-            // ako je lazy – ostaju 0 (mi ih svakako popunjavamo u Manager-u).
             BrVatrogasaca = s.Lica?.Count(l => l.Pozicija == "Vatrogasac") ?? 0;
             BrDispecera = s.Lica?.Count(l => l.Pozicija == "Dispecer") ?? 0;
 
@@ -47,12 +45,8 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // =======================
-    // DTO MANAGER
-    // =======================
     public static class SmenaDTOManager
     {
-        // --- mapiranje entitet -> dto (bez brojanja) ---
         private static SmenaDTO ToDto(Smena s)
         {
             return new SmenaDTO
@@ -67,17 +61,8 @@ namespace VatrogasnaSluzba.DTO
             };
         }
 
-        // Ako koristiš Assigned Id u mapi, sledeća vrednost iz sekvence
-        private static int NextId(ISession s)
-        {
-            var raw = s.CreateSQLQuery("select SMENA_SEQ.NEXTVAL from dual").UniqueResult();
-            return Convert.ToInt32(raw);
-        }
-
-        // --- pomoćni counteri (radimo nad pomoćnim tabelama, bez 'Lice.Smena') ---
         private static int CountByPozicija(ISession s, int idSmene, string pozicija)
         {
-            // LICE_U_SMENI (ID_smene, MATICNI_BROJ), LICE (MATICNI_BROJ, POZICIJA)
             return Convert.ToInt32(
                 s.CreateSQLQuery(@"
                     select count(*) 
@@ -100,7 +85,7 @@ namespace VatrogasnaSluzba.DTO
             );
         }
 
-        // -------- READ (filter) --------
+        // -------- FILTER --------
         public static List<SmenaDTO> GetByFilter(int? idStanice, DateTime od, DateTime @do)
         {
             using var s = DataLayer.GetSession();
@@ -108,21 +93,17 @@ namespace VatrogasnaSluzba.DTO
             var start = od.Date;
             var end = @do.Date.AddDays(1).AddTicks(-1);
 
-            // 1) kreneš od IQueryable<Smena> i primeniš SVE Where uslove
             IQueryable<Smena> q = s.Query<Smena>()
                                    .Where(x => x.Datum >= start && x.Datum <= end);
 
             if (idStanice.HasValue)
                 q = q.Where(x => x.Stanica.IdStanice == idStanice.Value);
 
-            // 2) tek onda Fetch (jedan join na stanicu, bez kolekcija)
             var smene = q.Fetch(x => x.Stanica)
                          .ToList();
 
-            // 3) mapiranje -> DTO (lambda da izbegnemo method-group zabunu)
             var dtos = smene.Select(x => ToDto(x)).ToList();
 
-            // 4) dopuni brojčana polja jeftinim COUNT upitima
             foreach (var dto in dtos)
             {
                 dto.BrVatrogasaca = CountByPozicija(s, dto.IdSmene, "Vatrogasac");
@@ -152,11 +133,8 @@ namespace VatrogasnaSluzba.DTO
                 Stanica = s.Get<VatrogasnaStanica>(dto.Stanica.IdStanice)
             };
 
-            // Ako ti je u mapi Assigned(), dodeli iz sekvence
-            if (e.IdSmene == 0)
-            {
-                try { e.IdSmene = NextId(s); } catch { /* NH će dodeliti ako je SequenceIdentity */ }
-            }
+            MessageBox.Show(dto.BrojIntervencija.ToString());
+            MessageBox.Show(e.BrojIntervencija.ToString());
 
             s.Save(e);
             tx.Commit();
@@ -177,6 +155,9 @@ namespace VatrogasnaSluzba.DTO
             e.VremePocetka = dto.VremePocetka;
             e.VremeKraja = dto.VremeKraja;
             e.BrojIntervencija = dto.BrojIntervencija;
+
+            MessageBox.Show(dto.BrojIntervencija.ToString());
+            MessageBox.Show(e.BrojIntervencija.ToString());
 
             if (dto.Stanica != null)
                 e.Stanica = s.Get<VatrogasnaStanica>(dto.Stanica.IdStanice);

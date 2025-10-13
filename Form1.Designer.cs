@@ -35,6 +35,7 @@
             btnStanice = new Button();
             btnIntervencije = new Button();
             pictureBox1 = new PictureBox();
+            btnSmene = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -118,12 +119,27 @@
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
+            // btnSmene
+            // 
+            btnSmene.BackColor = Color.IndianRed;
+            btnSmene.FlatStyle = FlatStyle.Flat;
+            btnSmene.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnSmene.ForeColor = Color.White;
+            btnSmene.Location = new Point(163, 202);
+            btnSmene.Name = "btnSmene";
+            btnSmene.Size = new Size(145, 38);
+            btnSmene.TabIndex = 9;
+            btnSmene.Text = "Smene direkt";
+            btnSmene.UseVisualStyleBackColor = false;
+            btnSmene.Click += btnSmene_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(561, 264);
+            Controls.Add(btnSmene);
             Controls.Add(btnIntervencije);
             Controls.Add(btnStanice);
             Controls.Add(btnOprema);
@@ -147,5 +163,6 @@
         private Button btnStanice;
         private Button btnIntervencije;
         private PictureBox pictureBox1;
+        private Button btnSmene;
     }
 }
