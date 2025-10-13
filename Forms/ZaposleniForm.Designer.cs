@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnIzmeni = new Button();
-            btnUpisi = new Button();
+            btnNovi = new Button();
             btnObrisi = new Button();
             txbPretraga = new TextBox();
             tabControl = new TabControl();
@@ -90,6 +90,8 @@
             tableLayoutPanel5 = new TableLayoutPanel();
             label21 = new Label();
             btnSpisakVozila = new Button();
+            btnSacuvaj = new Button();
+            btnOtkazi = new Button();
             tabControl.SuspendLayout();
             Vatrogasac.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridVatrogasci).BeginInit();
@@ -121,15 +123,15 @@
             btnIzmeni.UseVisualStyleBackColor = true;
             btnIzmeni.Click += btnIzmeni_Click;
             // 
-            // btnUpisi
+            // btnNovi
             // 
-            btnUpisi.Location = new Point(277, 263);
-            btnUpisi.Name = "btnUpisi";
-            btnUpisi.Size = new Size(124, 23);
-            btnUpisi.TabIndex = 0;
-            btnUpisi.Text = "Novi zaposleni";
-            btnUpisi.UseVisualStyleBackColor = true;
-            btnUpisi.Click += btnUpisi_Click;
+            btnNovi.Location = new Point(277, 263);
+            btnNovi.Name = "btnNovi";
+            btnNovi.Size = new Size(124, 23);
+            btnNovi.TabIndex = 0;
+            btnNovi.Text = "Novi zaposleni";
+            btnNovi.UseVisualStyleBackColor = true;
+            btnNovi.Click += btnNovi_Click;
             // 
             // btnObrisi
             // 
@@ -143,7 +145,7 @@
             // 
             // txbPretraga
             // 
-            txbPretraga.Location = new Point(58, 263);
+            txbPretraga.Location = new Point(56, 263);
             txbPretraga.Name = "txbPretraga";
             txbPretraga.PlaceholderText = "Pretraga";
             txbPretraga.Size = new Size(213, 23);
@@ -413,7 +415,6 @@
             // comboPol
             // 
             comboPol.FormattingEnabled = true;
-            comboPol.Items.AddRange(new object[] { "M", "Z" });
             comboPol.Location = new Point(161, 112);
             comboPol.Name = "comboPol";
             comboPol.Size = new Size(152, 23);
@@ -634,7 +635,7 @@
             // gbInfoTehnicar
             // 
             gbInfoTehnicar.Controls.Add(tableLayoutPanel3);
-            gbInfoTehnicar.Location = new Point(12, 635);
+            gbInfoTehnicar.Location = new Point(12, 642);
             gbInfoTehnicar.Name = "gbInfoTehnicar";
             gbInfoTehnicar.Size = new Size(270, 84);
             gbInfoTehnicar.TabIndex = 13;
@@ -707,7 +708,7 @@
             // gbInfoDispecer
             // 
             gbInfoDispecer.Controls.Add(tableLayoutPanel4);
-            gbInfoDispecer.Location = new Point(12, 785);
+            gbInfoDispecer.Location = new Point(12, 792);
             gbInfoDispecer.Name = "gbInfoDispecer";
             gbInfoDispecer.Size = new Size(270, 83);
             gbInfoDispecer.TabIndex = 14;
@@ -778,7 +779,7 @@
             // gbInfoVolonter
             // 
             gbInfoVolonter.Controls.Add(tableLayoutPanel5);
-            gbInfoVolonter.Location = new Point(12, 722);
+            gbInfoVolonter.Location = new Point(12, 729);
             gbInfoVolonter.Name = "gbInfoVolonter";
             gbInfoVolonter.Size = new Size(270, 57);
             gbInfoVolonter.TabIndex = 15;
@@ -829,18 +830,38 @@
             btnSpisakVozila.Text = "Spisak vozila";
             btnSpisakVozila.UseVisualStyleBackColor = true;
             // 
+            // btnSacuvaj
+            // 
+            btnSacuvaj.Location = new Point(459, 596);
+            btnSacuvaj.Name = "btnSacuvaj";
+            btnSacuvaj.Size = new Size(98, 23);
+            btnSacuvaj.TabIndex = 16;
+            btnSacuvaj.Text = "Sačuvaj zaposlenog";
+            btnSacuvaj.UseVisualStyleBackColor = true;
+            // 
+            // btnOtkazi
+            // 
+            btnOtkazi.Location = new Point(563, 596);
+            btnOtkazi.Name = "btnOtkazi";
+            btnOtkazi.Size = new Size(98, 23);
+            btnOtkazi.TabIndex = 17;
+            btnOtkazi.Text = "Otkaži";
+            btnOtkazi.UseVisualStyleBackColor = true;
+            // 
             // ZaposleniForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(665, 610);
+            ClientSize = new Size(670, 625);
+            Controls.Add(btnOtkazi);
+            Controls.Add(btnSacuvaj);
             Controls.Add(gbInfoVolonter);
             Controls.Add(gbInfoTehnicar);
             Controls.Add(gbInfoDispecer);
             Controls.Add(gbInfoVatrogasac);
             Controls.Add(btnIzmeni);
             Controls.Add(label14);
-            Controls.Add(btnUpisi);
+            Controls.Add(btnNovi);
             Controls.Add(txbPretraga);
             Controls.Add(btnObrisi);
             Controls.Add(groupBox4);
@@ -880,7 +901,7 @@
 
         #endregion
         private Button btnIzmeni;
-        private Button btnUpisi;
+        private Button btnNovi;
         private Button btnObrisi;
         private TabControl tabControl;
         private TabPage Vatrogasac;
@@ -941,5 +962,7 @@
         private DataGridView dataGridVolonteri;
         private DataGridView dataGridTehnicari;
         private ComboBox comboObucenost;
+        private Button btnSacuvaj;
+        private Button btnOtkazi;
     }
 }

@@ -34,17 +34,5 @@ namespace VatrogasnaSluzba.Forms
             OpremaForm forma = new OpremaForm();
             forma.ShowDialog();
         }
-
-        private void btnOprema_Click(object sender, EventArgs e)
-        {
-            OpremaForm forma = new OpremaForm();
-            forma.ShowDialog();
-        }
-
-        private void btnVozila_Click(object sender, EventArgs e)
-        {
-            VoziloForm forma = new VoziloForm();
-            forma.ShowDialog();
-        }
     }
 }

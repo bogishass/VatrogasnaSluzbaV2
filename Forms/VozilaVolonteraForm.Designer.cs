@@ -100,6 +100,7 @@
             btnObrisi.TabIndex = 3;
             btnObrisi.Text = "Obrisi vozilo";
             btnObrisi.UseVisualStyleBackColor = true;
+            btnObrisi.Click += btnObrisi_Click;
             // 
             // btnIzmeni
             // 
@@ -252,8 +253,9 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "VozilaVolonteraForm";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Vozila volontera";
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridVozila).EndInit();

@@ -14,7 +14,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .KeyColumn("Mbr_volontera")
                 .Table("VOZILO_VOLONTERA")
                 .Cascade.AllDeleteOrphan()
-                .Inverse();
+                .Inverse(); // ?
         }
     }
 }

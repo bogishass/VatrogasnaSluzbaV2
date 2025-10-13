@@ -95,13 +95,13 @@ namespace VatrogasnaSluzba.DTO
     public class TehnicarDTO : LiceDTO
     {
         public string Specijalizacija { get; set; }
-        public IList<string> Alati { get; set; } = new List<string>();
+        public List<string> Alati { get; set; } = new();
 
         public TehnicarDTO() { }
         public TehnicarDTO(Tehnicar t) : base(t)
         {
             Specijalizacija = t.Specijalizacija;
-            Alati = t.Alati != null ? new List<string>(t.Alati) : new List<string>();
+            Alati = new List<string>(t.Alati);
         }
     }
 
@@ -201,10 +201,7 @@ namespace VatrogasnaSluzba.DTO
                     case VolonterDTO vol:
                         newEntity = new Volonter
                         {
-                            Vozila = vol.Vozila != null ? new List<VoziloVolontera>(vol.Vozila.Select(vz => new VoziloVolontera
-                            {
-                                // mapiranje polja ako je potrebno
-                            })) : new List<VoziloVolontera>()
+                            Vozila = new List<VoziloVolontera>()
                         };
                         break;
 
@@ -321,7 +318,21 @@ namespace VatrogasnaSluzba.DTO
 
                     case Tehnicar t when liceDto is TehnicarDTO td:
                         t.Specijalizacija = td.Specijalizacija;
-                        t.Alati = td.Alati ?? new List<string>();
+
+                        t.Alati.Clear();
+                        if (td.Alati != null)
+                        {
+                            foreach (string alat in td.Alati)
+                            {
+                                t.Alati.Add(alat);
+                                //MessageBox.Show(alat);
+                            }
+                            //MessageBox.Show("obradjena lista alata iz tehnicardto");
+                        }
+                        //else
+                        //{
+                            //MessageBox.Show("td alati null");
+                        //}
                         break;
 
                     case Dispecer d when liceDto is DispecerDTO dd:
@@ -330,21 +341,29 @@ namespace VatrogasnaSluzba.DTO
                         break;
 
                     case Volonter vol when liceDto is VolonterDTO voldto:
+                        var existing = vol.Vozila.ToDictionary(v => v.RegBroj);
+
                         vol.Vozila.Clear();
 
-                        if (voldto.Vozila != null)
+                        foreach (var dto in voldto.Vozila)
                         {
-                            foreach (var voziloDto in voldto.Vozila)
+                            if (existing.TryGetValue(dto.RegBroj, out var found))
                             {
-                                var vozilo = new VoziloVolontera
-                                {
-                                    RegBroj = voziloDto.RegBroj,
-                                    Tip = voziloDto.Tip,
-                                    Proizvodjac = voziloDto.Proizvodjac,
-                                    Vlasnik = vol
-                                };
-                                vol.Vozila.Add(vozilo);
+                                found.Tip = dto.Tip;
+                                found.Proizvodjac = dto.Proizvodjac;
+                                vol.Vozila.Add(found);
                             }
+                            else
+                            {
+                                vol.Vozila.Add(new VoziloVolontera
+                                {
+                                    RegBroj = dto.RegBroj,
+                                    Tip = dto.Tip,
+                                    Proizvodjac = dto.Proizvodjac,
+                                    Vlasnik = vol
+                                });
+                            }
+                            //MessageBox.Show($"{vol.Vozila.Vlasnik.MaticniBroj}, {vol.Vozila.RegBroj}, {vol.Vozila.Tip}, {vol.Vozila.Proizvodjac}");
                         }
                         break;
                 }

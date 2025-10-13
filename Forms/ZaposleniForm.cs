@@ -6,22 +6,22 @@ using VatrogasnaSluzba.DTO;
 using VatrogasnaSluzba.Entiteti;
 using VatrogasnaSluzba.Helpers;
 
-// TODO: izbaci validaciju za polja koja nisu obavezna
-// TODO: volonteri nemaju stanicu?
-
 namespace VatrogasnaSluzba.Forms
 {
+    public enum FormMode { Default, Creating, Editing }
+
     public partial class ZaposleniForm : Form
     {
         private readonly Dictionary<string, (DataGridView Grid, GroupBox Box)> pozicijeMap;
         private readonly Point infoBoxPosition = new Point(12, 492);
-        private bool isCreatingNew = false;
+
+        private LiceDTO? currentLice;
+        private FormMode CurrentMode = FormMode.Default;
 
         public ZaposleniForm()
         {
             InitializeComponent();
 
-            // cuvanje dinamickih UI elemenata
             pozicijeMap = new()
             {
                 ["Vatrogasac"] = (dataGridVatrogasci, gbInfoVatrogasac),
@@ -30,13 +30,13 @@ namespace VatrogasnaSluzba.Forms
                 ["Volonter"] = (dataGridVolonteri, gbInfoVolonter)
             };
 
-            // pripremanje UI elemenata
             InitUI();
-
-            // ucitavanje podataka u ui elemente
+            SetMode(FormMode.Default);
             PopulateStanice();
             PopulateLica();
         }
+
+        // ---------------- UI inicijalizacija ----------------
 
         private void InitUI()
         {
@@ -45,208 +45,153 @@ namespace VatrogasnaSluzba.Forms
                 var grid = pair.Grid;
                 var box = pair.Box;
 
-                // podesavanje gridova
-
                 grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 grid.MultiSelect = false;
                 grid.ReadOnly = true;
                 grid.AllowUserToAddRows = false;
                 grid.AllowUserToDeleteRows = false;
-
-                // event handler za promenu selekcije u svakom gridu
                 grid.SelectionChanged += DataGrid_SelectionChanged;
 
-                // podesavanje group boxova
                 box.Location = infoBoxPosition;
                 box.Visible = false;
             }
 
             gbInfoVatrogasac.Visible = true;
 
-            comboPol.Items.AddRange(new[] { "M", "Ž" });
+            comboPol.Items.AddRange(new[] { "M", "Z" });
             comboPozicija.Items.AddRange(pozicijeMap.Keys.ToArray());
 
-            // dodavanje event handlera za btnSpisakVozila i btnAlati
             btnSpisakVozila.Click += btnSpisakVozila_Click;
+            btnAlati.Click += btnAlati_Click;
+
+            // dugmici sacuvaj, otkazi
+            btnSacuvaj.Click += btnSacuvaj_Click;
+            btnOtkazi.Click += btnOtkazi_Click;
+            btnSacuvaj.Visible = false;
+            btnOtkazi.Visible = false;
         }
 
         private void PopulateStanice()
         {
             var stanice = StanicaDTOManager.GetSveStaniceSimple();
             comboStanica.DataSource = stanice;
-            comboStanica.DisplayMember = "Naziv";   // prikazuje korisniku
-            comboStanica.ValueMember = "IdStanice";        // u pozadini cuva ID
+            comboStanica.DisplayMember = "Naziv";
+            comboStanica.ValueMember = "IdStanice";
             comboStanica.SelectedIndex = -1;
         }
 
         private void PopulateLica()
         {
-            // ocisti svaki datagrid za svaki slucaj
-            foreach (var valuePair in pozicijeMap.Values) // valuePair je svaki par (DataGridView Grid, GroupBox Box)
+            foreach (var valuePair in pozicijeMap.Values)
             {
                 valuePair.Grid.Rows.Clear();
                 valuePair.Grid.DataSource = null;
             }
 
-            // vraca sva lica iz baze u obliku dto i pravi listu
             var svaLica = LiceDTOManager.GetSvaLicaList();
 
-            // odvajanje po poziciji
             foreach (var pair in pozicijeMap)
             {
                 var list = svaLica.Where(l => l.Pozicija == pair.Key).ToList();
                 pair.Value.Grid.DataSource = new BindingList<LiceListDTO>(list);
                 pair.Value.Grid.Columns["Pozicija"].Visible = false;
             }
-
-            //var vatrogasci = svaLica.Where(l => l.Pozicija == "Vatrogasac").ToList();
-            //var tehnicari = svaLica.Where(l => l.Pozicija == "Tehnicar").ToList();
-            //var dispeceri = svaLica.Where(l => l.Pozicija == "Dispecer").ToList();
-            //var volonteri = svaLica.Where(l => l.Pozicija == "Volonter").ToList();
-
-            //pozicijeMap["Vatrogasac"].Grid.DataSource = new BindingList<LiceListDTO>(vatrogasci);
-            //pozicijeMap["Vatrogasac"].Grid.Columns["Pozicija"].Visible = false;
-
-            //pozicijeMap["Tehnicar"].Grid.DataSource = new BindingList<LiceListDTO>(tehnicari);
-            //pozicijeMap["Tehnicar"].Grid.Columns["Pozicija"].Visible = false;
-
-            //pozicijeMap["Dispecer"].Grid.DataSource = new BindingList<LiceListDTO>(dispeceri);
-            //pozicijeMap["Dispecer"].Grid.Columns["Pozicija"].Visible = false;
-
-            //pozicijeMap["Volonter"].Grid.DataSource = new BindingList<LiceListDTO>(volonteri);
-            //pozicijeMap["Volonter"].Grid.Columns["Pozicija"].Visible = false;
         }
 
-        private LiceDTO? GetSelectedLice()
+        // ---------------- Stanja forme ----------------
+
+        private void SetMode(FormMode mode)
         {
-            if (tabControl.SelectedTab == null) { return null; }
+            CurrentMode = mode;
+            bool active = mode != FormMode.Default;
 
-            var key = tabControl.SelectedTab.Name; // naziv pozicije: Vatrogasac/Tehnicar/Dispecer/Volonter
-            var grid = pozicijeMap[key].Grid;
+            btnSacuvaj.Visible = active;
+            btnOtkazi.Visible = active;
 
-            if (grid.SelectedCells.Count == 0 || grid.SelectedCells[0].Visible == false)
+            btnNovi.Enabled = !active;
+            btnIzmeni.Enabled = !active;
+            btnObrisi.Enabled = !active;
+            txbPretraga.Enabled = !active;
+            tabControl.Enabled = !active;
+            btnSpisakVozila.Enabled = ((currentLice is VolonterDTO || currentLice == null) && mode != FormMode.Creating); // spisak vozila moze da se otvori u FormMode.Default (samo pregled) i FormMode.Editing (dozvoljene izmene)
+            btnAlati.Enabled = ((currentLice is TehnicarDTO || currentLice == null) && mode != FormMode.Creating);
+
+            foreach (var pair in pozicijeMap.Values)
+            {
+                pair.Grid.Enabled = !active;
+            }
+
+            if (mode == FormMode.Creating)
             {
                 ClearSelection();
                 ClearInfoBox();
-                return null;
+                txbMatbr.Enabled = true;
+                comboPozicija.SelectedIndex = -1;
+                comboPol.SelectedIndex = -1;
+                comboStanica.SelectedIndex = -1;
+                currentLice = null;
             }
-
-            if (grid.CurrentRow?.DataBoundItem is not LiceListDTO data)
+            else if (mode == FormMode.Editing)
             {
-                return null;
-            }
-
-            return LiceDTOManager.GetLice(data.MaticniBroj); // trazimo LiceDTO na osnovu LiceListDTO iz selektovanog reda koji nema sve podatke
-        }
-
-        private void SelectForEdit()
-        {
-            LiceDTO? selectedLice = GetSelectedLice();
-            if (selectedLice == null) { return; }
-
-            txbMatbr.Text = selectedLice.MaticniBroj;
-            txbMatbr.Enabled = false;
-
-            txbIme.Text = selectedLice.Ime;
-            txbPrezime.Text = selectedLice.Prezime;
-            txbAdresa.Text = selectedLice.Adresa;
-            txbEmail.Text = selectedLice.Email;
-            txbTelefoni.Text = selectedLice.Telefoni != null ? string.Join(", ", selectedLice.Telefoni) : "";
-
-            comboPol.SelectedItem = selectedLice.Pol;
-            comboPozicija.SelectedItem = selectedLice.Pozicija;
-            comboStanica.SelectedValue = selectedLice.Stanica.IdStanice;
-
-            dateRodjenje.Value = selectedLice.DatumRodjenja;
-            dateAngazovanje.Value = selectedLice.DatPocetkaAngaz ?? DateTime.MinValue;
-
-            DisplayInfoBox(selectedLice.Pozicija);
-            UpdateInfoBox(selectedLice);
-        }
-
-        private void UpdateInfoBox(LiceDTO selectedLice)
-        {
-            switch (selectedLice)
-            {
-                case VatrogasacDTO v:
-                    comboObucenost.SelectedItem = v.NivoObucenosti;
-                    txbSprema.Text = v.FizickaSprema;
-                    txbSertifikati.Text = v.BrojSertifikata.ToString();
-                    break;
-
-                case TehnicarDTO t:
-                    txbSpecijalizacija.Text = t.Specijalizacija;
-                    // TODO: alati dugme
-                    break;
-
-                case DispecerDTO d:
-                    txbTipOpreme.Text = d.TipKomunikacioneOpreme;
-                    txbBrSmena.Text = d.BrojSmenaMesecno?.ToString();
-                    break;
-
-                case VolonterDTO vol:
-                    // TODO: vozila dugme
-                    break;
-
-                default:
-                    break;
+                txbMatbr.Enabled = false;
             }
         }
 
-        private void ClearSelection()
+        // ---------------- Dugmad ----------------
+
+        private void btnNovi_Click(object sender, EventArgs e)
         {
-            txbMatbr.Clear();
-            txbIme.Clear();
-            txbPrezime.Clear();
-            txbAdresa.Clear();
-            txbEmail.Clear();
-            txbTelefoni.Clear();
-
-            dateRodjenje.Value = DateTime.Today;
-            dateAngazovanje.Value = DateTime.Today;
-
-            comboPol.SelectedIndex = -1;
-            comboPozicija.SelectedIndex = -1;
-            comboStanica.SelectedIndex = -1;
+            SetMode(FormMode.Creating);
         }
 
-        private void ClearInfoBox(string? pozicija = null)
+        private void btnIzmeni_Click(object sender, EventArgs e)
         {
-            if (pozicija == "Vatrogasac" || pozicija == null)
+            if (currentLice == null)
             {
-                txbSprema.Clear();
-                txbSertifikati.Clear();
-                comboObucenost.SelectedIndex = -1;
+                MessageBox.Show("Izaberite zaposlenog za izmenu.");
+                return;
             }
 
-            if (pozicija == "Tehnicar" || pozicija == null)
-            {
-                txbSpecijalizacija.Clear();
-            }
-
-            if (pozicija == "Dispecer" || pozicija == null)
-            {
-                txbTipOpreme.Clear();
-                txbBrSmena.Clear();
-            }
+            SetMode(FormMode.Editing);
         }
 
-        private void DisplayInfoBox(string pozicija)
+        private void btnOtkazi_Click(object sender, EventArgs e)
         {
+            ClearSelection();
+            ClearInfoBox();
+            currentLice = null;
+            SetMode(FormMode.Default);
+            PopulateLica();
+        }
+
+        // -------------- Search -----------------
+        private void txbPretraga_TextChanged(object sender, EventArgs e)
+        {
+            if (CurrentMode != FormMode.Default)
+                return;
+
+            string filterText = txbPretraga.Text.Trim().ToLower();
+            bool isFilterEmpty = string.IsNullOrEmpty(filterText);
+
             foreach (var item in pozicijeMap.Values)
             {
-                item.Box.Visible = item.Box == pozicijeMap[pozicija].Box;
+                var grid = item.Grid;
+                var cm = (CurrencyManager)BindingContext[grid.DataSource];
+
+                cm.SuspendBinding();
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    if (isFilterEmpty)
+                    {
+                        row.Visible = true;
+                        continue;
+                    }
+
+                    bool match = FilterRow(row, filterText, new List<int> { 0, 1, 2, 4 });
+                    row.Visible = match;
+                }
+                cm.ResumeBinding();
             }
-        }
-
-        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectForEdit();
-        }
-
-        private void DataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            SelectForEdit();
         }
 
         private bool FilterRow(DataGridViewRow row, string filterText, List<int> columnIndices)
@@ -263,88 +208,10 @@ namespace VatrogasnaSluzba.Forms
             return false;
         }
 
-        private void txbPretraga_TextChanged(object sender, EventArgs e)
-        {
-            string filterText = txbPretraga.Text.Trim().ToLower(); // tekst za pretragu
-            bool isFilterEmpty = string.IsNullOrEmpty(filterText);
-
-            foreach (var item in pozicijeMap.Values)
-            {
-                foreach (DataGridViewRow row in item.Grid.Rows)
-                {
-                    if (isFilterEmpty)
-                    {
-                        row.Visible = true;
-                        continue;
-                    }
-
-                    bool match = FilterRow(row, filterText, [0, 1, 2, 4]);
-
-                    CurrencyManager cm = (CurrencyManager)BindingContext[item.Grid.DataSource];
-                    cm.SuspendBinding();
-                    row.Visible = match; // ako nije match, red se sakrije
-                    cm.ResumeBinding();
-                }
-            }
-        }
-        private void comboPozicija_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selected = comboPozicija.SelectedItem?.ToString();
-
-            if (selected == tabControl.SelectedTab?.Name)
-            {
-                ClearInfoBox();
-            }
-
-            foreach (var (key, item) in pozicijeMap)
-            {
-                item.Box.Visible = (key == selected);
-            }
-        }
-
-        private void RestrictControls(bool restrict)
-        {
-            btnIzmeni.Enabled = !restrict;
-            btnObrisi.Enabled = !restrict;
-            tabControl.Enabled = !restrict;
-            txbPretraga.Enabled = !restrict;
-            btnSpisakVozila.Enabled = !restrict;
-            btnAlati.Enabled = !restrict;
-        }
-
-        private void btnUpisi_Click(object sender, EventArgs e)
+        private void btnSacuvaj_Click(object sender, EventArgs e)
         {
             try
             {
-                // === 1️⃣ KLIK NA "Novi zaposleni" ===
-                if (!isCreatingNew)
-                {
-                    isCreatingNew = true;
-                    btnUpisi.Text = "Sačuvaj zaposlenog";
-
-                    // ocisti formu i spremi za unos novog
-                    ClearSelection();
-                    ClearInfoBox();
-                    DisplayInfoBox(tabControl.SelectedTab.Name);
-                    comboPol.SelectedIndex = -1;
-                    comboPozicija.SelectedIndex = -1;
-                    comboStanica.SelectedIndex = -1;
-                    txbMatbr.Enabled = true;
-
-                    // onemogucavamo sve ostale ui elemente dok kreiramo lice
-                    RestrictControls(true);
-
-                    foreach (var pair in pozicijeMap.Values)
-                    {
-                        pair.Grid.ClearSelection();
-                        pair.Grid.Enabled = false;
-                    }
-
-                    return;
-                }
-
-                // === 2️⃣ KLIK NA "Sačuvaj zaposlenog" ===
-                // validacija osnovnih polja
                 if (!LiceValidator.ValidateLiceForm(
                     txbMatbr, txbIme, txbPrezime,
                     comboPol, txbAdresa, txbEmail,
@@ -354,94 +221,32 @@ namespace VatrogasnaSluzba.Forms
                 }
 
                 StanicaSimpleDTO selektovanaStanica = (StanicaSimpleDTO)comboStanica.SelectedItem;
-                string pozicija = comboPozicija.SelectedItem.ToString();
-                LiceDTO newLice;
+                string pozicija = comboPozicija.SelectedItem?.ToString() ?? "";
 
-                // kreiranje konkretnog DTO objekta u zavisnosti od pozicije
-                switch (pozicija)
+                if (CurrentMode == FormMode.Creating)
                 {
-                    case "Vatrogasac":
-                        if (!LiceValidator.ValidateVatrogasac(comboObucenost, txbSprema, txbSertifikati))
-                            return;
-                        newLice = new VatrogasacDTO
-                        {
-                            NivoObucenosti = comboObucenost.SelectedItem?.ToString(),
-                            FizickaSprema = txbSprema.Text,
-                            BrojSertifikata = int.Parse(txbSertifikati.Text)
-                        };
-                        break;
-
-                    case "Tehnicar":
-                        if (!LiceValidator.ValidateTehnicar(txbSpecijalizacija))
-                            return;
-                        newLice = new TehnicarDTO
-                        {
-                            Specijalizacija = txbSpecijalizacija.Text,
-                            Alati = new List<string>()
-                        };
-                        break;
-
-                    case "Dispecer":
-                        if (!LiceValidator.ValidateDispecer(txbTipOpreme, txbBrSmena))
-                            return;
-                        newLice = new DispecerDTO
-                        {
-                            TipKomunikacioneOpreme = txbTipOpreme.Text,
-                            BrojSmenaMesecno = int.Parse(txbBrSmena.Text)
-                        };
-                        break;
-
-                    case "Volonter":
-                        newLice = new VolonterDTO
-                        {
-                            Vozila = new List<VoziloVolonteraSimpleDTO>()
-                        };
-                        break;
-
-                    default:
-                        MessageBox.Show("Nepoznata pozicija zaposlenog.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                    var newLice = CreateLiceDTOFromForm(pozicija, selektovanaStanica);
+                    if (LiceDTOManager.AddLice(newLice))
+                        MessageBox.Show("Zaposleni uspešno dodat.");
                 }
-
-                // zajednička polja
-                newLice.MaticniBroj = txbMatbr.Text.Trim();
-                newLice.Ime = txbIme.Text.Trim();
-                newLice.Prezime = txbPrezime.Text.Trim();
-                newLice.Pol = comboPol.SelectedItem?.ToString();
-                newLice.Adresa = txbAdresa.Text.Trim();
-                newLice.Email = txbEmail.Text.Trim();
-                newLice.DatPocetkaAngaz = dateAngazovanje.Value;
-                newLice.DatumRodjenja = dateRodjenje.Value;
-                newLice.Pozicija = pozicija;
-                newLice.Stanica = selektovanaStanica;
-                newLice.Telefoni = txbTelefoni.Text
-                    .Split(',')
-                    .Select(t => t.Trim())
-                    .Where(t => !string.IsNullOrEmpty(t))
-                    .ToList();
-
-                // dodavanje u bazu
-                bool isSuccess = LiceDTOManager.AddLice(newLice);
-
-                if (isSuccess)
+                else if (CurrentMode == FormMode.Editing)
                 {
-                    MessageBox.Show("Zaposleni uspešno dodat.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PopulateLica();
-
-                    // vrati formu u normalno stanje
-                    isCreatingNew = false;
-                    btnUpisi.Text = "Novi zaposleni";
-                    RestrictControls(false);
-
-                    foreach (var pair in pozicijeMap.Values)
+                    if (currentLice == null)
                     {
-                        pair.Grid.Enabled = true;
+                        MessageBox.Show("Nema selektovanog zaposlenog.");
+                        return;
                     }
 
-
-                    ClearSelection();
-                    ClearInfoBox();
+                    var updatedLice = CreateLiceDTOFromForm(pozicija, selektovanaStanica, currentLice);
+                    if (LiceDTOManager.UpdateLice(updatedLice))
+                        MessageBox.Show("Podaci uspešno izmenjeni.");
                 }
+
+                ClearSelection();
+                ClearInfoBox();
+                currentLice = null;
+                SetMode(FormMode.Default);
+                PopulateLica();
             }
             catch (Exception ex)
             {
@@ -453,28 +258,23 @@ namespace VatrogasnaSluzba.Forms
         {
             try
             {
-                LiceDTO? selectedLice = GetSelectedLice();
-
-                if (selectedLice == null) { return; }
+                if (currentLice == null)
+                {
+                    MessageBox.Show("Izaberite zaposlenog za brisanje.");
+                    return;
+                }
 
                 var result = MessageBox.Show(
-                    $"Da li ste sigurni da želite da obrišete zaposlenog {selectedLice.Ime} {selectedLice.Prezime}, JMBG {selectedLice.MaticniBroj}?",
-                    "Potvrda",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                );
+                    $"Da li ste sigurni da želite da obrišete {currentLice.Ime} {currentLice.Prezime}?",
+                    "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.Yes && LiceDTOManager.DeleteLice(currentLice.MaticniBroj))
                 {
-                    bool isSuccess = LiceDTOManager.DeleteLice(selectedLice.MaticniBroj);
-
-                    if (isSuccess)
-                    {
-                        MessageBox.Show("Lice uspešno obrisano.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        PopulateLica();
-                        SelectForEdit();
-                        ClearInfoBox();
-                    }
+                    MessageBox.Show("Lice uspešno obrisano.");
+                    PopulateLica();
+                    ClearSelection();
+                    ClearInfoBox();
+                    currentLice = null;
                 }
             }
             catch (Exception ex)
@@ -485,115 +285,228 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnSpisakVozila_Click(object sender, EventArgs e)
         {
-            var lice = GetSelectedLice() as VolonterDTO;
-            if (lice == null)
+            if (currentLice is not VolonterDTO lice)
             {
-                MessageBox.Show("Izaberite volontera.");
+                MessageBox.Show("Izaberite volontera za pregled vozila.");
                 return;
             }
 
-            using (var form = new VozilaVolonteraForm(lice))
+            bool isViewOnly = CurrentMode == FormMode.Default;
+            using (var form = new VozilaVolonteraForm(lice, isViewOnly))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // Preuzmi ažurirani DTO (sa novim vozilima)
-                    var azurirani = form.Volonter;
-                    lice.Vozila = new List<VoziloVolonteraSimpleDTO>(azurirani.Vozila);
+                    MessageBox.Show($"Novi spisak zabeležn. Ukupan broj vozila sada: {lice.Vozila.Count}. Sačuvajte izmene volontera kako bi se sačuvala nova vozila.");
+                }
+            }
+        }
+        private void btnAlati_Click(object sender, EventArgs e)
+        {
+            if (currentLice is not TehnicarDTO lice)
+            {
+                MessageBox.Show("Izaberite tehnicara za izmenu alata.");
+                return;
+            }
 
-                    MessageBox.Show("Izmene su preuzete iz forme!");
+            bool isViewOnly = CurrentMode == FormMode.Default;
+            using (var form = new AlatiTehnicaraForm(lice, isViewOnly))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show($"Novi spisak alata zabeležen. Sačuvajte izmene zaposlenog kako bi se sačuvao spisak alata.");
                 }
             }
         }
 
-        private void btnIzmeni_Click(object sender, EventArgs e)
+        // ---------------- Helpers ----------------
+
+        private LiceDTO CreateLiceDTOFromForm(string pozicija, StanicaSimpleDTO stanica, LiceDTO? baseLice = null)
         {
-            try
+            // pravimo novo prazno lice 
+            LiceDTO lice = baseLice switch
             {
-                LiceDTO? selectedLice = GetSelectedLice();
-                if (selectedLice == null)
+                VatrogasacDTO => new VatrogasacDTO(),
+                TehnicarDTO => new TehnicarDTO(),
+                DispecerDTO => new DispecerDTO(),
+                VolonterDTO => new VolonterDTO(),
+                _ => pozicija switch
                 {
-                    MessageBox.Show("Niste izabrali lice za izmenu.");
-                    return;
+                    "Vatrogasac" => new VatrogasacDTO(),
+                    "Tehnicar" => new TehnicarDTO(),
+                    "Dispecer" => new DispecerDTO(),
+                    "Volonter" => new VolonterDTO(),
+                    _ => new LiceDTO()
                 }
+            };
 
-                if (!LiceValidator.ValidateLiceForm(
-                    txbMatbr, txbIme, txbPrezime,
-                    comboPol, txbAdresa, txbEmail,
-                    comboPozicija, comboStanica))
-                {
-                    return;
-                }
+            lice.MaticniBroj = baseLice?.MaticniBroj ?? txbMatbr.Text.Trim();
+            lice.Ime = txbIme.Text.Trim();
+            lice.Prezime = txbPrezime.Text.Trim();
+            lice.Pol = comboPol.SelectedItem?.ToString();
+            lice.Adresa = txbAdresa.Text.Trim();
+            lice.Email = txbEmail.Text.Trim();
+            lice.DatumRodjenja = dateRodjenje.Value;
+            lice.DatPocetkaAngaz = dateAngazovanje.Value;
+            lice.Stanica = stanica;
+            lice.Pozicija = pozicija;
+            lice.Telefoni = txbTelefoni.Text.Split(',')
+                .Select(t => t.Trim())
+                .Where(t => !string.IsNullOrEmpty(t))
+                .ToList();
 
-                StanicaSimpleDTO selektovanaStanica = (StanicaSimpleDTO)comboStanica.SelectedItem;
-                string pozicija = comboPozicija.SelectedItem.ToString();
-
-                LiceDTO updatedLice;
-
-                switch (pozicija)
-                {
-                    case "Vatrogasac":
-                        updatedLice = new VatrogasacDTO
-                        {
-                            NivoObucenosti = comboObucenost.SelectedItem?.ToString(),
-                            FizickaSprema = txbSprema.Text,
-                            BrojSertifikata = int.TryParse(txbSertifikati.Text, out int b) ? b : null
-                        };
-                        break;
-
-                    case "Tehnicar":
-                        updatedLice = new TehnicarDTO
-                        {
-                            Specijalizacija = txbSpecijalizacija.Text
-                        };
-                        break;
-
-                    case "Dispecer":
-                        updatedLice = new DispecerDTO
-                        {
-                            TipKomunikacioneOpreme = txbTipOpreme.Text,
-                            BrojSmenaMesecno = int.TryParse(txbBrSmena.Text, out int s) ? s : null
-                        };
-                        break;
-
-                    case "Volonter":
-                        updatedLice = new VolonterDTO()
-                        {
-                            Vozila = ((VolonterDTO)selectedLice).Vozila
-                        };
-                        break;
-
-                    default:
-                        return;
-                }
-
-                // zajednička polja
-                updatedLice.MaticniBroj = selectedLice.MaticniBroj; //txbMatbr.Text.Trim();
-                updatedLice.Ime = txbIme.Text.Trim();
-                updatedLice.Prezime = txbPrezime.Text.Trim();
-                updatedLice.Pol = comboPol.SelectedItem?.ToString();
-                updatedLice.Adresa = txbAdresa.Text.Trim();
-                updatedLice.Email = txbEmail.Text.Trim();
-                updatedLice.DatPocetkaAngaz = dateAngazovanje.Value;
-                updatedLice.DatumRodjenja = dateRodjenje.Value;
-                updatedLice.Pozicija = pozicija;
-                updatedLice.Stanica = selektovanaStanica;
-                updatedLice.Telefoni = txbTelefoni.Text
-                    .Split(',')
-                    .Select(t => t.Trim())
-                    .Where(t => !string.IsNullOrEmpty(t))
-                    .ToList();
-
-                bool isSuccess = LiceDTOManager.UpdateLice(updatedLice);
-
-                if (isSuccess)
-                {
-                    MessageBox.Show("Podaci uspešno izmenjeni.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PopulateLica();
-                }
+            if (lice is VatrogasacDTO v)
+            {
+                v.NivoObucenosti = comboObucenost.SelectedItem?.ToString();
+                v.FizickaSprema = txbSprema.Text;
+                v.BrojSertifikata = int.TryParse(txbSertifikati.Text, out int b) ? b : 0;
             }
-            catch (Exception ex)
+
+            if (lice is TehnicarDTO t)
             {
-                MessageBox.Show("Greška prilikom izmene: " + ex.Message);
+                t.Specijalizacija = txbSpecijalizacija.Text;
+                t.Alati = (baseLice as TehnicarDTO).Alati ?? new List<string>();
+            }
+
+            if (lice is DispecerDTO d)
+            {
+                d.TipKomunikacioneOpreme = txbTipOpreme.Text;
+                d.BrojSmenaMesecno = int.TryParse(txbBrSmena.Text, out int s) ? s : null;
+            }
+
+            if (lice is VolonterDTO vol)
+            {
+                vol.Vozila = (baseLice as VolonterDTO).Vozila ?? new List<VoziloVolonteraSimpleDTO>();
+            }
+
+            return lice;
+        }
+
+        private LiceDTO? GetSelectedLice()
+        {
+            if (tabControl.SelectedTab == null) return null;
+
+            var key = tabControl.SelectedTab.Name;
+            var grid = pozicijeMap[key].Grid;
+            if (grid.CurrentRow?.DataBoundItem is not LiceListDTO data)
+                return null;
+
+            return LiceDTOManager.GetLice(data.MaticniBroj);
+        }
+
+        private void DataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (CurrentMode != FormMode.Default) return;
+            UpdateSelection();
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CurrentMode != FormMode.Default) return;
+            UpdateSelection();
+        }
+
+        private void comboPozicija_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CurrentMode == FormMode.Default)
+                return;
+
+            var selected = comboPozicija.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selected))
+            {
+                return;
+            }
+
+            if (selected == tabControl.SelectedTab?.Name)
+            {
+                ClearInfoBox();
+            }
+
+            DisplayInfoBox(selected);
+        }
+
+        private void UpdateSelection(LiceDTO? lice = null)
+        {
+            currentLice = lice ?? GetSelectedLice();
+            if (currentLice == null) return;
+
+            txbMatbr.Enabled = false;
+
+            txbMatbr.Text = currentLice.MaticniBroj;
+            txbIme.Text = currentLice.Ime;
+            txbPrezime.Text = currentLice.Prezime;
+            txbAdresa.Text = currentLice.Adresa;
+            txbEmail.Text = currentLice.Email;
+            txbTelefoni.Text = string.Join(", ", currentLice.Telefoni ?? new List<string>());
+            comboPol.SelectedItem = currentLice.Pol;
+            comboPozicija.SelectedItem = currentLice.Pozicija;
+            comboStanica.SelectedValue = currentLice.Stanica.IdStanice;
+            dateRodjenje.Value = currentLice.DatumRodjenja;
+            dateAngazovanje.Value = currentLice.DatPocetkaAngaz ?? DateTime.Today;
+
+            DisplayInfoBox(currentLice.Pozicija);
+            UpdateInfoBox(currentLice);
+        }
+
+        private void DisplayInfoBox(string pozicija)
+        {
+            foreach (var item in pozicijeMap.Values)
+            {
+                item.Box.Visible = item.Box == pozicijeMap[pozicija].Box;
+            }
+        }
+
+        private void UpdateInfoBox(LiceDTO selected)
+        {
+            switch (selected)
+            {
+                case VatrogasacDTO v:
+                    comboObucenost.SelectedItem = v.NivoObucenosti;
+                    txbSprema.Text = v.FizickaSprema;
+                    txbSertifikati.Text = v.BrojSertifikata.ToString();
+                    break;
+                case TehnicarDTO t:
+                    txbSpecijalizacija.Text = t.Specijalizacija;
+                    break;
+                case DispecerDTO d:
+                    txbTipOpreme.Text = d.TipKomunikacioneOpreme;
+                    txbBrSmena.Text = d.BrojSmenaMesecno?.ToString();
+                    break;
+                case VolonterDTO:
+                    break;
+            }
+        }
+
+        private void ClearSelection()
+        {
+            txbMatbr.Clear();
+            txbIme.Clear();
+            txbPrezime.Clear();
+            txbAdresa.Clear();
+            txbEmail.Clear();
+            txbTelefoni.Clear();
+            dateRodjenje.Value = DateTime.Today;
+            dateAngazovanje.Value = DateTime.Today;
+            comboPol.SelectedIndex = -1;
+            comboPozicija.SelectedIndex = -1;
+            comboStanica.SelectedIndex = -1;
+        }
+
+        private void ClearInfoBox(string? pozicija = null)
+        {
+            if (pozicija == "Vatrogasac" || pozicija == null)
+            {
+                txbSprema.Clear();
+                txbSertifikati.Clear();
+                comboObucenost.SelectedIndex = -1;
+            }
+
+            if (pozicija == "Tehnicar" || pozicija == null)
+                txbSpecijalizacija.Clear();
+
+            if (pozicija == "Dispecer" || pozicija == null)
+            {
+                txbTipOpreme.Clear();
+                txbBrSmena.Clear();
             }
         }
     }

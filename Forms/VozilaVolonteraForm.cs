@@ -16,7 +16,7 @@ namespace VatrogasnaSluzba.Forms
 
         public VozilaVolonteraForm() { }
 
-        public VozilaVolonteraForm(VolonterDTO volonter)
+        public VozilaVolonteraForm(VolonterDTO volonter, bool isViewOnly)
         {
             InitializeComponent();
 
@@ -28,15 +28,24 @@ namespace VatrogasnaSluzba.Forms
                 RegBroj = v.RegBroj,
                 Tip = v.Tip,
                 Proizvodjac = v.Proizvodjac,
-                VlasnikJMBG = v.VlasnikJMBG
+                VlasnikJMBG = Volonter.MaticniBroj
             }).ToList();
 
             PopulateGrid();
 
-            this.Text = $"Vozila volontera {Volonter.Ime} {Volonter.Prezime}";
+            this.Text = $"Vozila volontera {Volonter.Ime} {Volonter.Prezime} ({(isViewOnly ? "pregled" : "izmena")})";
 
-            // onemogući unos do klika na dugme Novo/Izmeni
+            // onemogucavamo unos jer smo u default modu
             ManageControls(false);
+
+            // onemogucavamo i bilo kakve izmene ako je forma otvorena u modu za pregled
+            if (isViewOnly)
+            {
+                btnNovo.Enabled = false ;
+                btnIzmeni.Enabled = false ;
+                btnObrisi.Enabled = false ;
+                btnPotvrdi.Enabled = false ;
+            }
         }
 
         private void PopulateGrid()
@@ -80,6 +89,7 @@ namespace VatrogasnaSluzba.Forms
             btnOcisti.Enabled = allowInput;
             btnUpisi.Enabled = allowInput;
 
+            btnPotvrdi.Enabled = !allowInput;
             btnNovo.Enabled = !allowInput;
             btnIzmeni.Enabled = !allowInput;
             btnObrisi.Enabled = !allowInput;
@@ -97,7 +107,7 @@ namespace VatrogasnaSluzba.Forms
 
             var result = MessageBox.Show(
                 $"Da li ste sigurni da želite da obrišete vozilo {vozilo.RegBroj}?",
-                "Potvrda brisanja",
+                "Brisanje",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
             );
@@ -107,7 +117,6 @@ namespace VatrogasnaSluzba.Forms
                 VozilaTempList.Remove(vozilo);
                 PopulateGrid();
                 ClearSelection();
-                MessageBox.Show("Vozilo obrisano iz liste.", "Uspeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
