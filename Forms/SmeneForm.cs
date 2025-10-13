@@ -124,7 +124,7 @@ namespace VatrogasnaSluzba.Forms
             // FILTER: dodaj "(sve)" na početak
             var listFilter = new BindingList<DTO.StanicaSimpleDTO>(new System.Collections.Generic.List<DTO.StanicaSimpleDTO>
             {
-                new DTO.StanicaSimpleDTO { IdStanice = 0, Naziv = "(sve stanice)" }
+               new DTO.StanicaSimpleDTO { IdStanice = 0, Naziv = "(sve stanice)" }
             });
             foreach (var s in stanice) listFilter.Add(s);
 
@@ -170,7 +170,7 @@ namespace VatrogasnaSluzba.Forms
             dtpDatum.Value = dto.Datum;
             dtpStart.Value = dto.VremePocetka;
             dtpEnd.Value = dto.VremeKraja ?? dto.VremePocetka;
-            
+
 
             if (dto.Stanica != null)
                 cbStanica.SelectedValue = dto.Stanica.IdStanice;
@@ -187,7 +187,7 @@ namespace VatrogasnaSluzba.Forms
             dtpStart.Value = DateTime.Today.AddHours(7);
             dtpEnd.Value = DateTime.Today.AddHours(15);
             cbStanica.SelectedIndex = -1;
-            
+
         }
 
         private void SaveCurrent()
@@ -207,7 +207,7 @@ namespace VatrogasnaSluzba.Forms
                     VremePocetka = dtpStart.Value,
                     VremeKraja = dtpEnd.Value,
                     Stanica = stanica,
-                    
+
                     // BrVatrogasaca, BrDispecera, BrojIntervencija – popunjavaš po potrebi
                 };
 
@@ -223,6 +223,21 @@ namespace VatrogasnaSluzba.Forms
             {
                 MessageBox.Show("Greška pri čuvanju: " + ex.Message);
             }
+        }
+
+        private void btnOtkazi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOtkazi_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

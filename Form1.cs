@@ -34,5 +34,11 @@ namespace VatrogasnaSluzba.Forms
             OpremaForm forma = new OpremaForm();
             forma.ShowDialog();
         }
+
+        private void btnStanice_Click(object sender, EventArgs e)
+        {
+            VatrogasnaStanicaForm forma = new VatrogasnaStanicaForm();
+            forma.ShowDialog();
+        }
     }
 }

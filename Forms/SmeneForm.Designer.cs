@@ -22,7 +22,6 @@
         private System.Windows.Forms.DateTimePicker dtpOd;
         private System.Windows.Forms.Label lblDo;
         private System.Windows.Forms.DateTimePicker dtpDo;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnRefresh;
 
         private System.Windows.Forms.SplitContainer splitMain;
@@ -35,49 +34,6 @@
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.Button btnObrisi;
 
-        // Desno
-        private System.Windows.Forms.TabControl tabDetails;
-        private System.Windows.Forms.TabPage tabDetalji;
-        private System.Windows.Forms.TabPage tabEkipa;
-        private System.Windows.Forms.TabPage tabInterv;
-
-        // Detalji
-        private System.Windows.Forms.TableLayoutPanel tlpDetalji;
-        private System.Windows.Forms.Label lblDatum;
-        private System.Windows.Forms.DateTimePicker dtpDatum;
-        private System.Windows.Forms.Label lblStart;
-        private System.Windows.Forms.DateTimePicker dtpStart;
-        private System.Windows.Forms.Label lblEnd;
-        private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Label lblStanica;
-        private System.Windows.Forms.ComboBox cbStanica;
-        private System.Windows.Forms.FlowLayoutPanel flpDetaljiBtns;
-        private System.Windows.Forms.Button btnOtkazi;
-        private System.Windows.Forms.Button btnSnimi;
-
-        // Ekipa
-        private System.Windows.Forms.GroupBox gbVatrogasci;
-        private System.Windows.Forms.TableLayoutPanel tlpVatrog;
-        private System.Windows.Forms.ListBox lbVatrogasciAvail;
-        private System.Windows.Forms.FlowLayoutPanel flpVtgArrows;
-        private System.Windows.Forms.Button btnVtgAdd;
-        private System.Windows.Forms.Button btnVtgRemove;
-        private System.Windows.Forms.ListBox lbVatrogasciIn;
-
-        private System.Windows.Forms.GroupBox gbDispeceri;
-        private System.Windows.Forms.TableLayoutPanel tlpDisp;
-        private System.Windows.Forms.ListBox lbDispAvail;
-        private System.Windows.Forms.FlowLayoutPanel flpDispArrows;
-        private System.Windows.Forms.Button btnDispAdd;
-        private System.Windows.Forms.Button btnDispRemove;
-        private System.Windows.Forms.ListBox lbDispIn;
-
-        // Intervencije
-        private System.Windows.Forms.DataGridView dgvIntervencije;
-        private System.Windows.Forms.FlowLayoutPanel flpIntervBtns;
-        private System.Windows.Forms.Button btnIntervAdd;
-        private System.Windows.Forms.Button btnIntervRemove;
-
         /// <summary>Required method for Designer support.</summary>
         private void InitializeComponent()
         {
@@ -88,7 +44,6 @@
             dtpOd = new DateTimePicker();
             lblDo = new Label();
             dtpDo = new DateTimePicker();
-            txtSearch = new TextBox();
             btnRefresh = new Button();
             splitMain = new SplitContainer();
             gbLista = new GroupBox();
@@ -107,18 +62,18 @@
             btnObrisi = new Button();
             tabDetails = new TabControl();
             tabDetalji = new TabPage();
+            dtpDatum = new DateTimePicker();
+            lblDatum = new Label();
+            tlpDetalji = new TableLayoutPanel();
             flpDetaljiBtns = new FlowLayoutPanel();
             btnSnimi = new Button();
             btnOtkazi = new Button();
-            tlpDetalji = new TableLayoutPanel();
-            lblDatum = new Label();
-            dtpDatum = new DateTimePicker();
-            lblStart = new Label();
             dtpStart = new DateTimePicker();
-            lblEnd = new Label();
-            dtpEnd = new DateTimePicker();
-            lblStanica = new Label();
+            lblStart = new Label();
             cbStanica = new ComboBox();
+            lblStanica = new Label();
+            dtpEnd = new DateTimePicker();
+            lblEnd = new Label();
             tabEkipa = new TabPage();
             gbDispeceri = new GroupBox();
             tlpDisp = new TableLayoutPanel();
@@ -150,7 +105,6 @@
             tabDetails.SuspendLayout();
             tabDetalji.SuspendLayout();
             flpDetaljiBtns.SuspendLayout();
-            tlpDetalji.SuspendLayout();
             tabEkipa.SuspendLayout();
             gbDispeceri.SuspendLayout();
             tlpDisp.SuspendLayout();
@@ -171,84 +125,82 @@
             panelFilter.Controls.Add(dtpOd);
             panelFilter.Controls.Add(lblDo);
             panelFilter.Controls.Add(dtpDo);
-            panelFilter.Controls.Add(txtSearch);
             panelFilter.Controls.Add(btnRefresh);
             panelFilter.Dock = DockStyle.Top;
             panelFilter.Location = new Point(0, 0);
+            panelFilter.Margin = new Padding(3, 2, 3, 2);
             panelFilter.Name = "panelFilter";
-            panelFilter.Size = new Size(1257, 60);
+            panelFilter.Size = new Size(1593, 45);
             panelFilter.TabIndex = 1;
             // 
             // lblStanicaF
             // 
             lblStanicaF.AutoSize = true;
-            lblStanicaF.Location = new Point(12, 18);
+            lblStanicaF.Location = new Point(10, 14);
             lblStanicaF.Name = "lblStanicaF";
-            lblStanicaF.Size = new Size(60, 20);
+            lblStanicaF.Size = new Size(48, 15);
             lblStanicaF.TabIndex = 0;
             lblStanicaF.Text = "Stanica:";
             // 
             // cbStanicaFilter
             // 
             cbStanicaFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStanicaFilter.Location = new Point(75, 14);
+            cbStanicaFilter.Location = new Point(66, 10);
+            cbStanicaFilter.Margin = new Padding(3, 2, 3, 2);
             cbStanicaFilter.Name = "cbStanicaFilter";
-            cbStanicaFilter.Size = new Size(220, 28);
+            cbStanicaFilter.Size = new Size(193, 23);
             cbStanicaFilter.TabIndex = 1;
             // 
             // lblOd
             // 
             lblOd.AutoSize = true;
-            lblOd.Location = new Point(305, 18);
+            lblOd.Location = new Point(267, 14);
             lblOd.Name = "lblOd";
-            lblOd.Size = new Size(32, 20);
+            lblOd.Size = new Size(26, 15);
             lblOd.TabIndex = 2;
             lblOd.Text = "Od:";
             // 
             // dtpOd
             // 
             dtpOd.Format = DateTimePickerFormat.Short;
-            dtpOd.Location = new Point(335, 14);
+            dtpOd.Location = new Point(293, 10);
+            dtpOd.Margin = new Padding(3, 2, 3, 2);
             dtpOd.Name = "dtpOd";
-            dtpOd.Size = new Size(129, 27);
+            dtpOd.Size = new Size(113, 23);
             dtpOd.TabIndex = 3;
             // 
             // lblDo
             // 
             lblDo.AutoSize = true;
-            lblDo.Location = new Point(470, 18);
+            lblDo.Location = new Point(411, 14);
             lblDo.Name = "lblDo";
-            lblDo.Size = new Size(32, 20);
+            lblDo.Size = new Size(25, 15);
             lblDo.TabIndex = 4;
             lblDo.Text = "Do:";
             // 
             // dtpDo
             // 
             dtpDo.Format = DateTimePickerFormat.Short;
-            dtpDo.Location = new Point(508, 15);
+            dtpDo.Location = new Point(444, 11);
+            dtpDo.Margin = new Padding(3, 2, 3, 2);
             dtpDo.Name = "dtpDo";
-            dtpDo.Size = new Size(159, 27);
+            dtpDo.Size = new Size(140, 23);
             dtpDo.TabIndex = 5;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(702, 16);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(129, 27);
-            txtSearch.TabIndex = 6;
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(859, 15);
+            btnRefresh.Location = new Point(636, 5);
+            btnRefresh.Margin = new Padding(3, 2, 3, 2);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(80, 26);
+            btnRefresh.Size = new Size(150, 31);
             btnRefresh.TabIndex = 7;
             btnRefresh.Text = "Osveži";
             // 
             // splitMain
             // 
             splitMain.Dock = DockStyle.Fill;
-            splitMain.Location = new Point(0, 60);
+            splitMain.Location = new Point(0, 45);
+            splitMain.Margin = new Padding(3, 2, 3, 2);
             splitMain.Name = "splitMain";
             // 
             // splitMain.Panel1
@@ -258,8 +210,8 @@
             // splitMain.Panel2
             // 
             splitMain.Panel2.Controls.Add(tabDetails);
-            splitMain.Size = new Size(1257, 517);
-            splitMain.SplitterDistance = 1012;
+            splitMain.Size = new Size(1593, 678);
+            splitMain.SplitterDistance = 1280;
             splitMain.TabIndex = 0;
             // 
             // gbLista
@@ -268,8 +220,10 @@
             gbLista.Controls.Add(flpListaBtns);
             gbLista.Dock = DockStyle.Fill;
             gbLista.Location = new Point(0, 0);
+            gbLista.Margin = new Padding(3, 2, 3, 2);
             gbLista.Name = "gbLista";
-            gbLista.Size = new Size(1012, 517);
+            gbLista.Padding = new Padding(3, 2, 3, 2);
+            gbLista.Size = new Size(1280, 678);
             gbLista.TabIndex = 0;
             gbLista.TabStop = false;
             gbLista.Text = "Lista smena";
@@ -281,13 +235,14 @@
             dgvSmene.ColumnHeadersHeight = 29;
             dgvSmene.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
             dgvSmene.Dock = DockStyle.Fill;
-            dgvSmene.Location = new Point(3, 23);
+            dgvSmene.Location = new Point(3, 18);
+            dgvSmene.Margin = new Padding(3, 2, 3, 2);
             dgvSmene.MultiSelect = false;
             dgvSmene.Name = "dgvSmene";
             dgvSmene.ReadOnly = true;
             dgvSmene.RowHeadersWidth = 51;
             dgvSmene.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSmene.Size = new Size(1006, 446);
+            dgvSmene.Size = new Size(1274, 624);
             dgvSmene.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -353,35 +308,36 @@
             flpListaBtns.Controls.Add(btnObrisi);
             flpListaBtns.Dock = DockStyle.Bottom;
             flpListaBtns.FlowDirection = FlowDirection.RightToLeft;
-            flpListaBtns.Location = new Point(3, 469);
+            flpListaBtns.Location = new Point(3, 642);
+            flpListaBtns.Margin = new Padding(3, 2, 3, 2);
             flpListaBtns.Name = "flpListaBtns";
-            flpListaBtns.Size = new Size(1006, 45);
+            flpListaBtns.Size = new Size(1274, 34);
             flpListaBtns.TabIndex = 1;
             // 
             // btnNova
             // 
-            btnNova.Location = new Point(890, 8);
-            btnNova.Margin = new Padding(6, 8, 6, 8);
+            btnNova.Location = new Point(1173, 6);
+            btnNova.Margin = new Padding(5, 6, 5, 6);
             btnNova.Name = "btnNova";
-            btnNova.Size = new Size(110, 29);
+            btnNova.Size = new Size(96, 22);
             btnNova.TabIndex = 0;
             btnNova.Text = "Nova smena";
             // 
             // btnIzmeni
             // 
-            btnIzmeni.Location = new Point(788, 8);
-            btnIzmeni.Margin = new Padding(6, 8, 6, 8);
+            btnIzmeni.Location = new Point(1084, 6);
+            btnIzmeni.Margin = new Padding(5, 6, 5, 6);
             btnIzmeni.Name = "btnIzmeni";
-            btnIzmeni.Size = new Size(90, 29);
+            btnIzmeni.Size = new Size(79, 22);
             btnIzmeni.TabIndex = 1;
             btnIzmeni.Text = "Izmeni";
             // 
             // btnObrisi
             // 
-            btnObrisi.Location = new Point(686, 8);
-            btnObrisi.Margin = new Padding(6, 8, 6, 8);
+            btnObrisi.Location = new Point(995, 6);
+            btnObrisi.Margin = new Padding(5, 6, 5, 6);
             btnObrisi.Name = "btnObrisi";
-            btnObrisi.Size = new Size(90, 29);
+            btnObrisi.Size = new Size(79, 22);
             btnObrisi.TabIndex = 2;
             btnObrisi.Text = "Obriši";
             // 
@@ -392,49 +348,47 @@
             tabDetails.Controls.Add(tabInterv);
             tabDetails.Dock = DockStyle.Fill;
             tabDetails.Location = new Point(0, 0);
+            tabDetails.Margin = new Padding(3, 2, 3, 2);
             tabDetails.Name = "tabDetails";
             tabDetails.SelectedIndex = 0;
-            tabDetails.Size = new Size(241, 517);
+            tabDetails.Size = new Size(309, 678);
             tabDetails.TabIndex = 0;
             // 
             // tabDetalji
             // 
-            tabDetalji.Controls.Add(flpDetaljiBtns);
+            tabDetalji.Controls.Add(dtpDatum);
+            tabDetalji.Controls.Add(lblDatum);
             tabDetalji.Controls.Add(tlpDetalji);
-            tabDetalji.Location = new Point(4, 29);
+            tabDetalji.Controls.Add(flpDetaljiBtns);
+            tabDetalji.Controls.Add(dtpStart);
+            tabDetalji.Controls.Add(lblStart);
+            tabDetalji.Controls.Add(cbStanica);
+            tabDetalji.Controls.Add(lblStanica);
+            tabDetalji.Controls.Add(dtpEnd);
+            tabDetalji.Controls.Add(lblEnd);
+            tabDetalji.Location = new Point(4, 24);
+            tabDetalji.Margin = new Padding(3, 2, 3, 2);
             tabDetalji.Name = "tabDetalji";
-            tabDetalji.Size = new Size(233, 484);
+            tabDetalji.Size = new Size(301, 650);
             tabDetalji.TabIndex = 0;
             tabDetalji.Text = "Detalji";
             // 
-            // flpDetaljiBtns
+            // dtpDatum
             // 
-            flpDetaljiBtns.Controls.Add(btnSnimi);
-            flpDetaljiBtns.Controls.Add(btnOtkazi);
-            flpDetaljiBtns.Dock = DockStyle.Top;
-            flpDetaljiBtns.FlowDirection = FlowDirection.RightToLeft;
-            flpDetaljiBtns.Location = new Point(0, 80);
-            flpDetaljiBtns.Name = "flpDetaljiBtns";
-            flpDetaljiBtns.Size = new Size(233, 192);
-            flpDetaljiBtns.TabIndex = 0;
+            dtpDatum.Format = DateTimePickerFormat.Short;
+            dtpDatum.Location = new Point(97, 17);
+            dtpDatum.Margin = new Padding(3, 2, 3, 2);
+            dtpDatum.Name = "dtpDatum";
+            dtpDatum.Size = new Size(103, 23);
+            dtpDatum.TabIndex = 1;
             // 
-            // btnSnimi
+            // lblDatum
             // 
-            btnSnimi.Location = new Point(137, 8);
-            btnSnimi.Margin = new Padding(6, 8, 6, 8);
-            btnSnimi.Name = "btnSnimi";
-            btnSnimi.Size = new Size(90, 36);
-            btnSnimi.TabIndex = 0;
-            btnSnimi.Text = "Sačuvaj";
-            // 
-            // btnOtkazi
-            // 
-            btnOtkazi.Location = new Point(35, 8);
-            btnOtkazi.Margin = new Padding(6, 8, 6, 8);
-            btnOtkazi.Name = "btnOtkazi";
-            btnOtkazi.Size = new Size(90, 33);
-            btnOtkazi.TabIndex = 1;
-            btnOtkazi.Text = "Otkaži";
+            lblDatum.Location = new Point(3, 17);
+            lblDatum.Name = "lblDatum";
+            lblDatum.Size = new Size(88, 15);
+            lblDatum.TabIndex = 0;
+            lblDatum.Text = "Datum:";
             // 
             // tlpDetalji
             // 
@@ -443,100 +397,112 @@
             tlpDetalji.ColumnCount = 2;
             tlpDetalji.ColumnStyles.Add(new ColumnStyle());
             tlpDetalji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpDetalji.Controls.Add(lblDatum, 0, 0);
-            tlpDetalji.Controls.Add(dtpDatum, 1, 0);
-            tlpDetalji.Controls.Add(lblStart, 0, 1);
-            tlpDetalji.Controls.Add(dtpStart, 1, 1);
-            tlpDetalji.Controls.Add(lblEnd, 0, 2);
-            tlpDetalji.Controls.Add(dtpEnd, 1, 2);
-            tlpDetalji.Controls.Add(lblStanica, 0, 3);
-            tlpDetalji.Controls.Add(cbStanica, 1, 3);
             tlpDetalji.Dock = DockStyle.Top;
             tlpDetalji.Location = new Point(0, 0);
+            tlpDetalji.Margin = new Padding(3, 2, 3, 2);
             tlpDetalji.Name = "tlpDetalji";
-            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDetalji.Size = new Size(233, 80);
+            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tlpDetalji.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tlpDetalji.Size = new Size(301, 0);
             tlpDetalji.TabIndex = 1;
             // 
-            // lblDatum
+            // flpDetaljiBtns
             // 
-            lblDatum.Location = new Point(3, 0);
-            lblDatum.Name = "lblDatum";
-            lblDatum.Size = new Size(100, 20);
-            lblDatum.TabIndex = 0;
-            lblDatum.Text = "Datum:";
+            flpDetaljiBtns.Controls.Add(btnSnimi);
+            flpDetaljiBtns.Controls.Add(btnOtkazi);
+            flpDetaljiBtns.FlowDirection = FlowDirection.RightToLeft;
+            flpDetaljiBtns.Location = new Point(0, 178);
+            flpDetaljiBtns.Margin = new Padding(3, 2, 3, 2);
+            flpDetaljiBtns.Name = "flpDetaljiBtns";
+            flpDetaljiBtns.Size = new Size(301, 102);
+            flpDetaljiBtns.TabIndex = 0;
             // 
-            // dtpDatum
+            // btnSnimi
             // 
-            dtpDatum.Format = DateTimePickerFormat.Short;
-            dtpDatum.Location = new Point(109, 3);
-            dtpDatum.Name = "dtpDatum";
-            dtpDatum.Size = new Size(120, 27);
-            dtpDatum.TabIndex = 1;
+            btnSnimi.Location = new Point(5, 6);
+            btnSnimi.Margin = new Padding(5, 6, 5, 6);
+            btnSnimi.Name = "btnSnimi";
+            btnSnimi.Size = new Size(291, 27);
+            btnSnimi.TabIndex = 0;
+            btnSnimi.Text = "Sačuvaj";
             // 
-            // lblStart
+            // btnOtkazi
             // 
-            lblStart.Location = new Point(3, 20);
-            lblStart.Name = "lblStart";
-            lblStart.Size = new Size(100, 20);
-            lblStart.TabIndex = 2;
-            lblStart.Text = "Početak:";
+            btnOtkazi.Location = new Point(5, 45);
+            btnOtkazi.Margin = new Padding(5, 6, 5, 6);
+            btnOtkazi.Name = "btnOtkazi";
+            btnOtkazi.Size = new Size(291, 25);
+            btnOtkazi.TabIndex = 1;
+            btnOtkazi.Text = "Otkaži";
+            btnOtkazi.Click += btnOtkazi_Click_1;
             // 
             // dtpStart
             // 
             dtpStart.Format = DateTimePickerFormat.Time;
-            dtpStart.Location = new Point(109, 23);
+            dtpStart.Location = new Point(97, 47);
+            dtpStart.Margin = new Padding(3, 2, 3, 2);
             dtpStart.Name = "dtpStart";
             dtpStart.ShowUpDown = true;
-            dtpStart.Size = new Size(120, 27);
+            dtpStart.Size = new Size(103, 23);
             dtpStart.TabIndex = 3;
             // 
-            // lblEnd
+            // lblStart
             // 
-            lblEnd.Location = new Point(3, 40);
-            lblEnd.Name = "lblEnd";
-            lblEnd.Size = new Size(100, 20);
-            lblEnd.TabIndex = 4;
-            lblEnd.Text = "Kraj:";
-            // 
-            // dtpEnd
-            // 
-            dtpEnd.Format = DateTimePickerFormat.Time;
-            dtpEnd.Location = new Point(109, 43);
-            dtpEnd.Name = "dtpEnd";
-            dtpEnd.ShowUpDown = true;
-            dtpEnd.Size = new Size(120, 27);
-            dtpEnd.TabIndex = 5;
-            // 
-            // lblStanica
-            // 
-            lblStanica.Location = new Point(3, 60);
-            lblStanica.Name = "lblStanica";
-            lblStanica.Size = new Size(100, 20);
-            lblStanica.TabIndex = 6;
-            lblStanica.Text = "Stanica:";
+            lblStart.Location = new Point(3, 47);
+            lblStart.Name = "lblStart";
+            lblStart.Size = new Size(88, 15);
+            lblStart.TabIndex = 2;
+            lblStart.Text = "Početak:";
             // 
             // cbStanica
             // 
             cbStanica.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStanica.Location = new Point(109, 63);
+            cbStanica.Location = new Point(97, 101);
+            cbStanica.Margin = new Padding(3, 2, 3, 2);
             cbStanica.Name = "cbStanica";
-            cbStanica.Size = new Size(120, 28);
+            cbStanica.Size = new Size(103, 23);
             cbStanica.TabIndex = 7;
+            // 
+            // lblStanica
+            // 
+            lblStanica.Location = new Point(3, 109);
+            lblStanica.Name = "lblStanica";
+            lblStanica.Size = new Size(88, 15);
+            lblStanica.TabIndex = 6;
+            lblStanica.Text = "Stanica:";
+            // 
+            // dtpEnd
+            // 
+            dtpEnd.Format = DateTimePickerFormat.Time;
+            dtpEnd.Location = new Point(97, 74);
+            dtpEnd.Margin = new Padding(3, 2, 3, 2);
+            dtpEnd.Name = "dtpEnd";
+            dtpEnd.ShowUpDown = true;
+            dtpEnd.Size = new Size(103, 23);
+            dtpEnd.TabIndex = 5;
+            dtpEnd.ValueChanged += dtpEnd_ValueChanged;
+            // 
+            // lblEnd
+            // 
+            lblEnd.Location = new Point(3, 74);
+            lblEnd.Name = "lblEnd";
+            lblEnd.Size = new Size(88, 15);
+            lblEnd.TabIndex = 4;
+            lblEnd.Text = "Kraj:";
             // 
             // tabEkipa
             // 
             tabEkipa.AutoScroll = true;
             tabEkipa.Controls.Add(gbDispeceri);
             tabEkipa.Controls.Add(gbVatrogasci);
-            tabEkipa.Location = new Point(4, 29);
+            tabEkipa.Location = new Point(4, 24);
+            tabEkipa.Margin = new Padding(3, 2, 3, 2);
             tabEkipa.Name = "tabEkipa";
-            tabEkipa.Padding = new Padding(8);
-            tabEkipa.Size = new Size(233, 484);
+            tabEkipa.Padding = new Padding(7, 6, 7, 6);
+            tabEkipa.Size = new Size(301, 414);
             tabEkipa.TabIndex = 1;
             tabEkipa.Text = "Ekipa";
             // 
@@ -544,9 +510,11 @@
             // 
             gbDispeceri.Controls.Add(tlpDisp);
             gbDispeceri.Dock = DockStyle.Top;
-            gbDispeceri.Location = new Point(8, 228);
+            gbDispeceri.Location = new Point(7, 171);
+            gbDispeceri.Margin = new Padding(3, 2, 3, 2);
             gbDispeceri.Name = "gbDispeceri";
-            gbDispeceri.Size = new Size(217, 220);
+            gbDispeceri.Padding = new Padding(3, 2, 3, 2);
+            gbDispeceri.Size = new Size(287, 165);
             gbDispeceri.TabIndex = 0;
             gbDispeceri.TabStop = false;
             gbDispeceri.Text = "Dispečeri";
@@ -555,24 +523,27 @@
             // 
             tlpDisp.ColumnCount = 3;
             tlpDisp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
-            tlpDisp.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            tlpDisp.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             tlpDisp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tlpDisp.Controls.Add(lbDispAvail, 0, 0);
             tlpDisp.Controls.Add(flpDispArrows, 1, 0);
             tlpDisp.Controls.Add(lbDispIn, 2, 0);
             tlpDisp.Dock = DockStyle.Fill;
-            tlpDisp.Location = new Point(3, 23);
+            tlpDisp.Location = new Point(3, 18);
+            tlpDisp.Margin = new Padding(3, 2, 3, 2);
             tlpDisp.Name = "tlpDisp";
-            tlpDisp.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpDisp.Size = new Size(211, 194);
+            tlpDisp.RowStyles.Add(new RowStyle(SizeType.Absolute, 148F));
+            tlpDisp.Size = new Size(281, 145);
             tlpDisp.TabIndex = 0;
             // 
             // lbDispAvail
             // 
             lbDispAvail.Dock = DockStyle.Fill;
-            lbDispAvail.Location = new Point(3, 3);
+            lbDispAvail.ItemHeight = 15;
+            lbDispAvail.Location = new Point(3, 2);
+            lbDispAvail.Margin = new Padding(3, 2, 3, 2);
             lbDispAvail.Name = "lbDispAvail";
-            lbDispAvail.Size = new Size(69, 188);
+            lbDispAvail.Size = new Size(108, 144);
             lbDispAvail.TabIndex = 0;
             // 
             // flpDispArrows
@@ -581,44 +552,49 @@
             flpDispArrows.Controls.Add(btnDispRemove);
             flpDispArrows.Dock = DockStyle.Fill;
             flpDispArrows.FlowDirection = FlowDirection.TopDown;
-            flpDispArrows.Location = new Point(78, 3);
+            flpDispArrows.Location = new Point(117, 2);
+            flpDispArrows.Margin = new Padding(3, 2, 3, 2);
             flpDispArrows.Name = "flpDispArrows";
-            flpDispArrows.Size = new Size(54, 188);
+            flpDispArrows.Size = new Size(46, 144);
             flpDispArrows.TabIndex = 1;
             // 
             // btnDispAdd
             // 
-            btnDispAdd.Location = new Point(10, 40);
-            btnDispAdd.Margin = new Padding(10, 40, 10, 6);
+            btnDispAdd.Location = new Point(9, 30);
+            btnDispAdd.Margin = new Padding(9, 30, 9, 4);
             btnDispAdd.Name = "btnDispAdd";
-            btnDispAdd.Size = new Size(40, 28);
+            btnDispAdd.Size = new Size(35, 21);
             btnDispAdd.TabIndex = 0;
             btnDispAdd.Text = "→";
             // 
             // btnDispRemove
             // 
-            btnDispRemove.Location = new Point(10, 80);
-            btnDispRemove.Margin = new Padding(10, 6, 10, 6);
+            btnDispRemove.Location = new Point(9, 59);
+            btnDispRemove.Margin = new Padding(9, 4, 9, 4);
             btnDispRemove.Name = "btnDispRemove";
-            btnDispRemove.Size = new Size(40, 28);
+            btnDispRemove.Size = new Size(35, 21);
             btnDispRemove.TabIndex = 1;
             btnDispRemove.Text = "←";
             // 
             // lbDispIn
             // 
             lbDispIn.Dock = DockStyle.Fill;
-            lbDispIn.Location = new Point(138, 3);
+            lbDispIn.ItemHeight = 15;
+            lbDispIn.Location = new Point(169, 2);
+            lbDispIn.Margin = new Padding(3, 2, 3, 2);
             lbDispIn.Name = "lbDispIn";
-            lbDispIn.Size = new Size(70, 188);
+            lbDispIn.Size = new Size(109, 144);
             lbDispIn.TabIndex = 2;
             // 
             // gbVatrogasci
             // 
             gbVatrogasci.Controls.Add(tlpVatrog);
             gbVatrogasci.Dock = DockStyle.Top;
-            gbVatrogasci.Location = new Point(8, 8);
+            gbVatrogasci.Location = new Point(7, 6);
+            gbVatrogasci.Margin = new Padding(3, 2, 3, 2);
             gbVatrogasci.Name = "gbVatrogasci";
-            gbVatrogasci.Size = new Size(217, 220);
+            gbVatrogasci.Padding = new Padding(3, 2, 3, 2);
+            gbVatrogasci.Size = new Size(287, 165);
             gbVatrogasci.TabIndex = 1;
             gbVatrogasci.TabStop = false;
             gbVatrogasci.Text = "Dežurni vatrogasci";
@@ -627,24 +603,27 @@
             // 
             tlpVatrog.ColumnCount = 3;
             tlpVatrog.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
-            tlpVatrog.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            tlpVatrog.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
             tlpVatrog.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45F));
             tlpVatrog.Controls.Add(lbVatrogasciAvail, 0, 0);
             tlpVatrog.Controls.Add(flpVtgArrows, 1, 0);
             tlpVatrog.Controls.Add(lbVatrogasciIn, 2, 0);
             tlpVatrog.Dock = DockStyle.Fill;
-            tlpVatrog.Location = new Point(3, 23);
+            tlpVatrog.Location = new Point(3, 18);
+            tlpVatrog.Margin = new Padding(3, 2, 3, 2);
             tlpVatrog.Name = "tlpVatrog";
-            tlpVatrog.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tlpVatrog.Size = new Size(211, 194);
+            tlpVatrog.RowStyles.Add(new RowStyle(SizeType.Absolute, 148F));
+            tlpVatrog.Size = new Size(281, 145);
             tlpVatrog.TabIndex = 0;
             // 
             // lbVatrogasciAvail
             // 
             lbVatrogasciAvail.Dock = DockStyle.Fill;
-            lbVatrogasciAvail.Location = new Point(3, 3);
+            lbVatrogasciAvail.ItemHeight = 15;
+            lbVatrogasciAvail.Location = new Point(3, 2);
+            lbVatrogasciAvail.Margin = new Padding(3, 2, 3, 2);
             lbVatrogasciAvail.Name = "lbVatrogasciAvail";
-            lbVatrogasciAvail.Size = new Size(69, 188);
+            lbVatrogasciAvail.Size = new Size(108, 144);
             lbVatrogasciAvail.TabIndex = 0;
             // 
             // flpVtgArrows
@@ -653,44 +632,48 @@
             flpVtgArrows.Controls.Add(btnVtgRemove);
             flpVtgArrows.Dock = DockStyle.Fill;
             flpVtgArrows.FlowDirection = FlowDirection.TopDown;
-            flpVtgArrows.Location = new Point(78, 3);
+            flpVtgArrows.Location = new Point(117, 2);
+            flpVtgArrows.Margin = new Padding(3, 2, 3, 2);
             flpVtgArrows.Name = "flpVtgArrows";
-            flpVtgArrows.Size = new Size(54, 188);
+            flpVtgArrows.Size = new Size(46, 144);
             flpVtgArrows.TabIndex = 1;
             // 
             // btnVtgAdd
             // 
-            btnVtgAdd.Location = new Point(10, 40);
-            btnVtgAdd.Margin = new Padding(10, 40, 10, 6);
+            btnVtgAdd.Location = new Point(9, 30);
+            btnVtgAdd.Margin = new Padding(9, 30, 9, 4);
             btnVtgAdd.Name = "btnVtgAdd";
-            btnVtgAdd.Size = new Size(40, 28);
+            btnVtgAdd.Size = new Size(35, 21);
             btnVtgAdd.TabIndex = 0;
             btnVtgAdd.Text = "→";
             // 
             // btnVtgRemove
             // 
-            btnVtgRemove.Location = new Point(10, 80);
-            btnVtgRemove.Margin = new Padding(10, 6, 10, 6);
+            btnVtgRemove.Location = new Point(9, 59);
+            btnVtgRemove.Margin = new Padding(9, 4, 9, 4);
             btnVtgRemove.Name = "btnVtgRemove";
-            btnVtgRemove.Size = new Size(40, 28);
+            btnVtgRemove.Size = new Size(35, 21);
             btnVtgRemove.TabIndex = 1;
             btnVtgRemove.Text = "←";
             // 
             // lbVatrogasciIn
             // 
             lbVatrogasciIn.Dock = DockStyle.Fill;
-            lbVatrogasciIn.Location = new Point(138, 3);
+            lbVatrogasciIn.ItemHeight = 15;
+            lbVatrogasciIn.Location = new Point(169, 2);
+            lbVatrogasciIn.Margin = new Padding(3, 2, 3, 2);
             lbVatrogasciIn.Name = "lbVatrogasciIn";
-            lbVatrogasciIn.Size = new Size(70, 188);
+            lbVatrogasciIn.Size = new Size(109, 144);
             lbVatrogasciIn.TabIndex = 2;
             // 
             // tabInterv
             // 
             tabInterv.Controls.Add(dgvIntervencije);
             tabInterv.Controls.Add(flpIntervBtns);
-            tabInterv.Location = new Point(4, 29);
+            tabInterv.Location = new Point(4, 24);
+            tabInterv.Margin = new Padding(3, 2, 3, 2);
             tabInterv.Name = "tabInterv";
-            tabInterv.Size = new Size(233, 484);
+            tabInterv.Size = new Size(301, 414);
             tabInterv.TabIndex = 2;
             tabInterv.Text = "Intervencije";
             // 
@@ -701,12 +684,13 @@
             dgvIntervencije.ColumnHeadersHeight = 29;
             dgvIntervencije.Dock = DockStyle.Fill;
             dgvIntervencije.Location = new Point(0, 0);
+            dgvIntervencije.Margin = new Padding(3, 2, 3, 2);
             dgvIntervencije.MultiSelect = false;
             dgvIntervencije.Name = "dgvIntervencije";
             dgvIntervencije.ReadOnly = true;
             dgvIntervencije.RowHeadersWidth = 51;
             dgvIntervencije.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvIntervencije.Size = new Size(233, 439);
+            dgvIntervencije.Size = new Size(301, 380);
             dgvIntervencije.TabIndex = 0;
             // 
             // flpIntervBtns
@@ -715,36 +699,38 @@
             flpIntervBtns.Controls.Add(btnIntervRemove);
             flpIntervBtns.Dock = DockStyle.Bottom;
             flpIntervBtns.FlowDirection = FlowDirection.RightToLeft;
-            flpIntervBtns.Location = new Point(0, 439);
+            flpIntervBtns.Location = new Point(0, 380);
+            flpIntervBtns.Margin = new Padding(3, 2, 3, 2);
             flpIntervBtns.Name = "flpIntervBtns";
-            flpIntervBtns.Size = new Size(233, 45);
+            flpIntervBtns.Size = new Size(301, 34);
             flpIntervBtns.TabIndex = 1;
             // 
             // btnIntervAdd
             // 
-            btnIntervAdd.Location = new Point(97, 8);
-            btnIntervAdd.Margin = new Padding(6, 8, 6, 8);
+            btnIntervAdd.Location = new Point(182, 6);
+            btnIntervAdd.Margin = new Padding(5, 6, 5, 6);
             btnIntervAdd.Name = "btnIntervAdd";
-            btnIntervAdd.Size = new Size(130, 23);
+            btnIntervAdd.Size = new Size(114, 17);
             btnIntervAdd.TabIndex = 0;
             btnIntervAdd.Text = "Dodaj postojeću";
             // 
             // btnIntervRemove
             // 
-            btnIntervRemove.Location = new Point(137, 47);
-            btnIntervRemove.Margin = new Padding(6, 8, 6, 8);
+            btnIntervRemove.Location = new Point(93, 6);
+            btnIntervRemove.Margin = new Padding(5, 6, 5, 6);
             btnIntervRemove.Name = "btnIntervRemove";
-            btnIntervRemove.Size = new Size(90, 23);
+            btnIntervRemove.Size = new Size(79, 17);
             btnIntervRemove.TabIndex = 1;
             btnIntervRemove.Text = "Ukloni";
             // 
             // SmeneForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1257, 577);
+            ClientSize = new Size(1593, 723);
             Controls.Add(splitMain);
             Controls.Add(panelFilter);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SmeneForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Smene ";
@@ -761,7 +747,6 @@
             tabDetalji.ResumeLayout(false);
             tabDetalji.PerformLayout();
             flpDetaljiBtns.ResumeLayout(false);
-            tlpDetalji.ResumeLayout(false);
             tabEkipa.ResumeLayout(false);
             gbDispeceri.ResumeLayout(false);
             tlpDisp.ResumeLayout(false);
@@ -785,5 +770,39 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private TabControl tabDetails;
+        private TabPage tabDetalji;
+        private DateTimePicker dtpDatum;
+        private Label lblDatum;
+        private TableLayoutPanel tlpDetalji;
+        private FlowLayoutPanel flpDetaljiBtns;
+        private Button btnSnimi;
+        private Button btnOtkazi;
+        private DateTimePicker dtpStart;
+        private Label lblStart;
+        private ComboBox cbStanica;
+        private Label lblStanica;
+        private DateTimePicker dtpEnd;
+        private Label lblEnd;
+        private TabPage tabEkipa;
+        private GroupBox gbDispeceri;
+        private TableLayoutPanel tlpDisp;
+        private ListBox lbDispAvail;
+        private FlowLayoutPanel flpDispArrows;
+        private Button btnDispAdd;
+        private Button btnDispRemove;
+        private ListBox lbDispIn;
+        private GroupBox gbVatrogasci;
+        private TableLayoutPanel tlpVatrog;
+        private ListBox lbVatrogasciAvail;
+        private FlowLayoutPanel flpVtgArrows;
+        private Button btnVtgAdd;
+        private Button btnVtgRemove;
+        private ListBox lbVatrogasciIn;
+        private TabPage tabInterv;
+        private DataGridView dgvIntervencije;
+        private FlowLayoutPanel flpIntervBtns;
+        private Button btnIntervAdd;
+        private Button btnIntervRemove;
     }
 }

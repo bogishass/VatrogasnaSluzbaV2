@@ -29,7 +29,7 @@ namespace VatrogasnaSluzba.DTO
         public string Adresa { get; set; }
         public int? BrojZaposlenih { get; set; }
         public int? BrojVozila { get; set; }
-
+        public StanicaSimpleDTO() { }
         public StanicaSimpleDTO(VatrogasnaStanica s)
         {
             IdStanice = s.IdStanice;
@@ -39,7 +39,6 @@ namespace VatrogasnaSluzba.DTO
             BrojVozila = s.BrojVozila;
         }
     }
-
     public static class StanicaDTOManager
     {
         public static List<StanicaSimpleDTO> GetSveStaniceSimple() // mozda try catch

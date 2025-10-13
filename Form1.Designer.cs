@@ -91,6 +91,7 @@
             btnStanice.TabIndex = 5;
             btnStanice.Text = "Stanice";
             btnStanice.UseVisualStyleBackColor = false;
+            btnStanice.Click += btnStanice_Click;
             // 
             // btnIntervencije
             // 
