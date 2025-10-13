@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnZaposleni = new Button();
             btnVozila = new Button();
             btnOprema = new Button();
@@ -39,7 +40,7 @@
             // 
             // btnZaposleni
             // 
-            btnZaposleni.BackColor = Color.IndianRed;
+            btnZaposleni.BackColor = Color.MidnightBlue;
             btnZaposleni.FlatStyle = FlatStyle.Flat;
             btnZaposleni.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnZaposleni.ForeColor = Color.White;
@@ -53,7 +54,7 @@
             // 
             // btnVozila
             // 
-            btnVozila.BackColor = Color.IndianRed;
+            btnVozila.BackColor = Color.MidnightBlue;
             btnVozila.FlatStyle = FlatStyle.Flat;
             btnVozila.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnVozila.ForeColor = Color.White;
@@ -67,7 +68,7 @@
             // 
             // btnOprema
             // 
-            btnOprema.BackColor = Color.IndianRed;
+            btnOprema.BackColor = Color.MidnightBlue;
             btnOprema.FlatStyle = FlatStyle.Flat;
             btnOprema.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnOprema.ForeColor = Color.White;
@@ -81,7 +82,7 @@
             // 
             // btnStanice
             // 
-            btnStanice.BackColor = Color.IndianRed;
+            btnStanice.BackColor = Color.MidnightBlue;
             btnStanice.FlatStyle = FlatStyle.Flat;
             btnStanice.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnStanice.ForeColor = Color.White;
@@ -95,7 +96,7 @@
             // 
             // btnIntervencije
             // 
-            btnIntervencije.BackColor = Color.IndianRed;
+            btnIntervencije.BackColor = Color.MidnightBlue;
             btnIntervencije.FlatStyle = FlatStyle.Flat;
             btnIntervencije.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnIntervencije.ForeColor = Color.White;
@@ -105,13 +106,14 @@
             btnIntervencije.TabIndex = 7;
             btnIntervencije.Text = "Intervencije";
             btnIntervencije.UseVisualStyleBackColor = false;
+            btnIntervencije.Click += btnIntervencije_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.pozadina;
-            pictureBox1.Location = new Point(153, -153);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(264, 21);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(420, 587);
+            pictureBox1.Size = new Size(201, 219);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;

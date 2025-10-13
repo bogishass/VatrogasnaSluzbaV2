@@ -30,50 +30,31 @@
         {
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            VrstaIntervencije = new DataGridViewTextBoxColumn();
-            AdresaIntervencije = new DataGridViewTextBoxColumn();
-            DatumPocetka = new DataGridViewTextBoxColumn();
-            DatumKraja = new DataGridViewTextBoxColumn();
-            OpisSituacije = new DataGridViewTextBoxColumn();
-            BrojVatrogasaca = new DataGridViewTextBoxColumn();
-            VremeDolaska = new DataGridViewTextBoxColumn();
-            DatumPromene = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
-            Smene = new DataGridViewTextBoxColumn();
-            Zaposleni = new DataGridViewTextBoxColumn();
-            Vozila = new DataGridViewTextBoxColumn();
-            Volonteri = new DataGridViewTextBoxColumn();
-            VozilaVolontera = new DataGridViewTextBoxColumn();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            buttonDodajIntervenciju = new Button();
+            buttonObrisiIntervenciju = new Button();
+            buttonIzmeniIntervenciju = new Button();
             groupBox1 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            dateTimePicker1 = new DateTimePicker();
-            label2 = new Label();
-            label7 = new Label();
-            txbEmail = new TextBox();
-            txbMatbr = new TextBox();
             label3 = new Label();
-            label5 = new Label();
-            txbAdresa = new TextBox();
-            datumRodjenja = new DateTimePicker();
-            txbIme = new TextBox();
-            label4 = new Label();
+            txbVrstaInterakcije = new TextBox();
             label6 = new Label();
-            txbPrezime = new TextBox();
+            txbAdresaIntervencije = new TextBox();
+            label4 = new Label();
+            dateTimePickerDatumPocetka = new DateTimePicker();
+            label5 = new Label();
+            dateTimePickerDatumKraj = new DateTimePicker();
             label8 = new Label();
-            label10 = new Label();
-            txbTelefoni = new TextBox();
+            txbOpisSituacije = new TextBox();
+            label7 = new Label();
+            txbBrojVatrogasaca = new TextBox();
             label9 = new Label();
-            dateTimePicker2 = new DateTimePicker();
             label11 = new Label();
-            dateTimePicker3 = new DateTimePicker();
-            textBox1 = new TextBox();
+            dateTimePickerVremeDolaska = new DateTimePicker();
+            dateTimePickerVremePromena = new DateTimePicker();
             label12 = new Label();
-            label13 = new Label();
-            textBox2 = new TextBox();
+            txbStatus = new TextBox();
+            buttonSacuvaj = new Button();
+            buttonOtkazi = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -90,115 +71,40 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, VrstaIntervencije, AdresaIntervencije, DatumPocetka, DatumKraja, OpisSituacije, BrojVatrogasaca, VremeDolaska, DatumPromene, Status, Smene, Zaposleni, Vozila, Volonteri, VozilaVolontera });
             dataGridView1.Location = new Point(12, 39);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1550, 251);
+            dataGridView1.Size = new Size(1213, 251);
             dataGridView1.TabIndex = 1;
             // 
-            // ID
+            // buttonDodajIntervenciju
             // 
-            ID.HeaderText = "ID";
-            ID.Name = "ID";
+            buttonDodajIntervenciju.Location = new Point(777, 306);
+            buttonDodajIntervenciju.Name = "buttonDodajIntervenciju";
+            buttonDodajIntervenciju.Size = new Size(146, 31);
+            buttonDodajIntervenciju.TabIndex = 2;
+            buttonDodajIntervenciju.Text = "Dodaj intervenciju";
+            buttonDodajIntervenciju.UseVisualStyleBackColor = true;
             // 
-            // VrstaIntervencije
+            // buttonObrisiIntervenciju
             // 
-            VrstaIntervencije.HeaderText = "VrstaIntervencije";
-            VrstaIntervencije.Name = "VrstaIntervencije";
+            buttonObrisiIntervenciju.Location = new Point(929, 306);
+            buttonObrisiIntervenciju.Name = "buttonObrisiIntervenciju";
+            buttonObrisiIntervenciju.Size = new Size(146, 31);
+            buttonObrisiIntervenciju.TabIndex = 3;
+            buttonObrisiIntervenciju.Text = "Obrisi intervenciju";
+            buttonObrisiIntervenciju.UseVisualStyleBackColor = true;
             // 
-            // AdresaIntervencije
+            // buttonIzmeniIntervenciju
             // 
-            AdresaIntervencije.HeaderText = "AdresaIntervencije";
-            AdresaIntervencije.Name = "AdresaIntervencije";
-            // 
-            // DatumPocetka
-            // 
-            DatumPocetka.HeaderText = "DatumPocetka";
-            DatumPocetka.Name = "DatumPocetka";
-            // 
-            // DatumKraja
-            // 
-            DatumKraja.HeaderText = "DatumKraja";
-            DatumKraja.Name = "DatumKraja";
-            // 
-            // OpisSituacije
-            // 
-            OpisSituacije.HeaderText = "OpisSituacije";
-            OpisSituacije.Name = "OpisSituacije";
-            // 
-            // BrojVatrogasaca
-            // 
-            BrojVatrogasaca.HeaderText = "BrojVatrogasaca";
-            BrojVatrogasaca.Name = "BrojVatrogasaca";
-            // 
-            // VremeDolaska
-            // 
-            VremeDolaska.HeaderText = "VremeDolaska";
-            VremeDolaska.Name = "VremeDolaska";
-            // 
-            // DatumPromene
-            // 
-            DatumPromene.HeaderText = "DatumPromene";
-            DatumPromene.Name = "DatumPromene";
-            // 
-            // Status
-            // 
-            Status.HeaderText = "Status";
-            Status.Name = "Status";
-            // 
-            // Smene
-            // 
-            Smene.HeaderText = "Smene";
-            Smene.Name = "Smene";
-            // 
-            // Zaposleni
-            // 
-            Zaposleni.HeaderText = "Zaposleni";
-            Zaposleni.Name = "Zaposleni";
-            // 
-            // Vozila
-            // 
-            Vozila.HeaderText = "Vozila";
-            Vozila.Name = "Vozila";
-            // 
-            // Volonteri
-            // 
-            Volonteri.HeaderText = "Volonteri";
-            Volonteri.Name = "Volonteri";
-            // 
-            // VozilaVolontera
-            // 
-            VozilaVolontera.HeaderText = "VozilaVolontera";
-            VozilaVolontera.Name = "VozilaVolontera";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(777, 306);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 31);
-            button1.TabIndex = 2;
-            button1.Text = "Dodaj intervenciju";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(929, 306);
-            button2.Name = "button2";
-            button2.Size = new Size(146, 31);
-            button2.TabIndex = 3;
-            button2.Text = "Obrisi intervenciju";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(1081, 306);
-            button3.Name = "button3";
-            button3.Size = new Size(146, 31);
-            button3.TabIndex = 4;
-            button3.Text = "Izmeni intervenciju";
-            button3.UseVisualStyleBackColor = true;
+            buttonIzmeniIntervenciju.Location = new Point(1081, 306);
+            buttonIzmeniIntervenciju.Name = "buttonIzmeniIntervenciju";
+            buttonIzmeniIntervenciju.Size = new Size(146, 31);
+            buttonIzmeniIntervenciju.TabIndex = 4;
+            buttonIzmeniIntervenciju.Text = "Izmeni intervenciju";
+            buttonIzmeniIntervenciju.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -215,32 +121,26 @@
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 182F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 22F));
-            tableLayoutPanel1.Controls.Add(dateTimePicker3, 3, 1);
-            tableLayoutPanel1.Controls.Add(dateTimePicker1, 1, 3);
-            tableLayoutPanel1.Controls.Add(label2, 0, 0);
-            tableLayoutPanel1.Controls.Add(label7, 0, 6);
-            tableLayoutPanel1.Controls.Add(txbEmail, 1, 6);
-            tableLayoutPanel1.Controls.Add(txbMatbr, 1, 0);
-            tableLayoutPanel1.Controls.Add(label3, 0, 1);
-            tableLayoutPanel1.Controls.Add(label5, 0, 4);
-            tableLayoutPanel1.Controls.Add(txbAdresa, 1, 5);
-            tableLayoutPanel1.Controls.Add(datumRodjenja, 1, 4);
-            tableLayoutPanel1.Controls.Add(txbIme, 1, 1);
-            tableLayoutPanel1.Controls.Add(label4, 0, 3);
-            tableLayoutPanel1.Controls.Add(label6, 0, 2);
-            tableLayoutPanel1.Controls.Add(txbPrezime, 1, 2);
-            tableLayoutPanel1.Controls.Add(label8, 0, 5);
-            tableLayoutPanel1.Controls.Add(label10, 0, 7);
-            tableLayoutPanel1.Controls.Add(txbTelefoni, 1, 7);
-            tableLayoutPanel1.Controls.Add(dateTimePicker2, 3, 0);
-            tableLayoutPanel1.Controls.Add(textBox1, 3, 2);
-            tableLayoutPanel1.Controls.Add(label11, 2, 1);
-            tableLayoutPanel1.Controls.Add(label12, 2, 2);
-            tableLayoutPanel1.Controls.Add(label9, 2, 0);
-            tableLayoutPanel1.Controls.Add(label13, 2, 3);
-            tableLayoutPanel1.Controls.Add(textBox2, 3, 3);
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 116F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 88F));
+            tableLayoutPanel1.Controls.Add(label3, 0, 0);
+            tableLayoutPanel1.Controls.Add(txbVrstaInterakcije, 1, 0);
+            tableLayoutPanel1.Controls.Add(label6, 0, 1);
+            tableLayoutPanel1.Controls.Add(txbAdresaIntervencije, 1, 1);
+            tableLayoutPanel1.Controls.Add(label4, 0, 2);
+            tableLayoutPanel1.Controls.Add(dateTimePickerDatumPocetka, 1, 2);
+            tableLayoutPanel1.Controls.Add(label5, 0, 3);
+            tableLayoutPanel1.Controls.Add(dateTimePickerDatumKraj, 1, 3);
+            tableLayoutPanel1.Controls.Add(label8, 0, 4);
+            tableLayoutPanel1.Controls.Add(txbOpisSituacije, 1, 4);
+            tableLayoutPanel1.Controls.Add(label12, 2, 3);
+            tableLayoutPanel1.Controls.Add(txbStatus, 3, 3);
+            tableLayoutPanel1.Controls.Add(txbBrojVatrogasaca, 3, 0);
+            tableLayoutPanel1.Controls.Add(label7, 2, 0);
+            tableLayoutPanel1.Controls.Add(label9, 2, 1);
+            tableLayoutPanel1.Controls.Add(label11, 2, 2);
+            tableLayoutPanel1.Controls.Add(dateTimePickerVremeDolaska, 3, 1);
+            tableLayoutPanel1.Controls.Add(dateTimePickerVremePromena, 3, 2);
             tableLayoutPanel1.Location = new Point(6, 22);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 8;
@@ -256,232 +156,199 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(659, 277);
             tableLayoutPanel1.TabIndex = 10;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.CustomFormat = "";
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(113, 105);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(155, 23);
-            dateTimePicker1.TabIndex = 20;
-            dateTimePicker1.Value = new DateTime(2025, 8, 18, 0, 0, 0, 0);
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Left;
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(18, 15);
-            label2.TabIndex = 8;
-            label2.Text = "ID";
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.Left;
-            label7.AutoSize = true;
-            label7.Location = new Point(3, 213);
-            label7.Name = "label7";
-            label7.Size = new Size(91, 15);
-            label7.TabIndex = 14;
-            label7.Text = "BrojVatrogasaca";
-            // 
-            // txbEmail
-            // 
-            txbEmail.Location = new Point(113, 207);
-            txbEmail.Name = "txbEmail";
-            txbEmail.Size = new Size(155, 23);
-            txbEmail.TabIndex = 4;
-            // 
-            // txbMatbr
-            // 
-            txbMatbr.Location = new Point(113, 3);
-            txbMatbr.Name = "txbMatbr";
-            txbMatbr.Size = new Size(155, 23);
-            txbMatbr.TabIndex = 0;
-            txbMatbr.TextChanged += txbMatbr_TextChanged;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(3, 43);
+            label3.Location = new Point(3, 9);
             label3.Name = "label3";
             label3.Size = new Size(87, 15);
             label3.TabIndex = 9;
-            label3.Text = "VrstaInterkacije";
+            label3.Text = "VrstaInterakcije";
             // 
-            // label5
+            // txbVrstaInterakcije
             // 
-            label5.Anchor = AnchorStyles.Left;
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 145);
-            label5.Name = "label5";
-            label5.Size = new Size(63, 15);
-            label5.TabIndex = 12;
-            label5.Text = "DatumKraj";
-            // 
-            // txbAdresa
-            // 
-            txbAdresa.Location = new Point(113, 173);
-            txbAdresa.Name = "txbAdresa";
-            txbAdresa.Size = new Size(155, 23);
-            txbAdresa.TabIndex = 3;
-            // 
-            // datumRodjenja
-            // 
-            datumRodjenja.CustomFormat = "";
-            datumRodjenja.Format = DateTimePickerFormat.Short;
-            datumRodjenja.Location = new Point(113, 139);
-            datumRodjenja.Name = "datumRodjenja";
-            datumRodjenja.Size = new Size(155, 23);
-            datumRodjenja.TabIndex = 5;
-            datumRodjenja.Value = new DateTime(2025, 8, 18, 0, 0, 0, 0);
-            // 
-            // txbIme
-            // 
-            txbIme.Location = new Point(113, 37);
-            txbIme.Name = "txbIme";
-            txbIme.Size = new Size(155, 23);
-            txbIme.TabIndex = 1;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 111);
-            label4.Name = "label4";
-            label4.Size = new Size(85, 15);
-            label4.TabIndex = 11;
-            label4.Text = "DatumPocetka";
+            txbVrstaInterakcije.Location = new Point(113, 3);
+            txbVrstaInterakcije.Name = "txbVrstaInterakcije";
+            txbVrstaInterakcije.Size = new Size(155, 23);
+            txbVrstaInterakcije.TabIndex = 1;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 77);
+            label6.Location = new Point(3, 43);
             label6.Name = "label6";
             label6.Size = new Size(104, 15);
             label6.TabIndex = 10;
             label6.Text = "AdresaIntervencije";
             // 
-            // txbPrezime
+            // txbAdresaIntervencije
             // 
-            txbPrezime.Location = new Point(113, 71);
-            txbPrezime.Name = "txbPrezime";
-            txbPrezime.Size = new Size(155, 23);
-            txbPrezime.TabIndex = 2;
+            txbAdresaIntervencije.Location = new Point(113, 37);
+            txbAdresaIntervencije.Name = "txbAdresaIntervencije";
+            txbAdresaIntervencije.Size = new Size(155, 23);
+            txbAdresaIntervencije.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 77);
+            label4.Name = "label4";
+            label4.Size = new Size(85, 15);
+            label4.TabIndex = 11;
+            label4.Text = "DatumPocetka";
+            // 
+            // dateTimePickerDatumPocetka
+            // 
+            dateTimePickerDatumPocetka.CustomFormat = "";
+            dateTimePickerDatumPocetka.Format = DateTimePickerFormat.Short;
+            dateTimePickerDatumPocetka.Location = new Point(113, 71);
+            dateTimePickerDatumPocetka.Name = "dateTimePickerDatumPocetka";
+            dateTimePickerDatumPocetka.Size = new Size(155, 23);
+            dateTimePickerDatumPocetka.TabIndex = 20;
+            dateTimePickerDatumPocetka.Value = new DateTime(2025, 8, 18, 0, 0, 0, 0);
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Left;
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 111);
+            label5.Name = "label5";
+            label5.Size = new Size(63, 15);
+            label5.TabIndex = 12;
+            label5.Text = "DatumKraj";
+            // 
+            // dateTimePickerDatumKraj
+            // 
+            dateTimePickerDatumKraj.CustomFormat = "";
+            dateTimePickerDatumKraj.Format = DateTimePickerFormat.Short;
+            dateTimePickerDatumKraj.Location = new Point(113, 105);
+            dateTimePickerDatumKraj.Name = "dateTimePickerDatumKraj";
+            dateTimePickerDatumKraj.Size = new Size(155, 23);
+            dateTimePickerDatumKraj.TabIndex = 5;
+            dateTimePickerDatumKraj.Value = new DateTime(2025, 8, 18, 0, 0, 0, 0);
             // 
             // label8
             // 
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
-            label8.Location = new Point(3, 179);
+            label8.Location = new Point(3, 145);
             label8.Name = "label8";
             label8.Size = new Size(75, 15);
             label8.TabIndex = 13;
             label8.Text = "OpisSituacije";
             // 
-            // label10
+            // txbOpisSituacije
             // 
-            label10.Anchor = AnchorStyles.Left;
-            label10.AutoSize = true;
-            label10.Location = new Point(3, 250);
-            label10.Name = "label10";
-            label10.Size = new Size(91, 15);
-            label10.TabIndex = 18;
-            label10.Text = "BrojVatrogasaca";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
+            txbOpisSituacije.Location = new Point(113, 139);
+            txbOpisSituacije.Name = "txbOpisSituacije";
+            txbOpisSituacije.Size = new Size(155, 23);
+            txbOpisSituacije.TabIndex = 3;
             // 
-            // txbTelefoni
+            // label7
             // 
-            txbTelefoni.Location = new Point(113, 241);
-            txbTelefoni.Name = "txbTelefoni";
-            txbTelefoni.PlaceholderText = "60 1234, 60 5678...";
-            txbTelefoni.Size = new Size(155, 23);
-            txbTelefoni.TabIndex = 19;
+            label7.Anchor = AnchorStyles.Left;
+            label7.AutoSize = true;
+            label7.Location = new Point(274, 9);
+            label7.Name = "label7";
+            label7.Size = new Size(91, 15);
+            label7.TabIndex = 14;
+            label7.Text = "BrojVatrogasaca";
+            // 
+            // txbBrojVatrogasaca
+            // 
+            txbBrojVatrogasaca.Location = new Point(390, 3);
+            txbBrojVatrogasaca.Name = "txbBrojVatrogasaca";
+            txbBrojVatrogasaca.Size = new Size(155, 23);
+            txbBrojVatrogasaca.TabIndex = 4;
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.Left;
             label9.AutoSize = true;
-            label9.Location = new Point(274, 0);
+            label9.Location = new Point(274, 43);
             label9.Name = "label9";
             label9.Size = new Size(82, 15);
             label9.TabIndex = 22;
             label9.Text = "VremeDolaska";
-            label9.Click += label9_Click;
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(456, 3);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 23);
-            dateTimePicker2.TabIndex = 23;
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Left;
             label11.AutoSize = true;
-            label11.Location = new Point(274, 34);
+            label11.Location = new Point(274, 77);
             label11.Name = "label11";
             label11.Size = new Size(89, 15);
             label11.TabIndex = 24;
             label11.Text = "VremePromena";
             // 
-            // dateTimePicker3
+            // dateTimePickerVremeDolaska
             // 
-            dateTimePicker3.Location = new Point(456, 37);
-            dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(200, 23);
-            dateTimePicker3.TabIndex = 25;
+            dateTimePickerVremeDolaska.Location = new Point(390, 37);
+            dateTimePickerVremeDolaska.Name = "dateTimePickerVremeDolaska";
+            dateTimePickerVremeDolaska.Size = new Size(200, 23);
+            dateTimePickerVremeDolaska.TabIndex = 23;
             // 
-            // textBox1
+            // dateTimePickerVremePromena
             // 
-            textBox1.Location = new Point(456, 71);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 26;
+            dateTimePickerVremePromena.Location = new Point(390, 71);
+            dateTimePickerVremePromena.Name = "dateTimePickerVremePromena";
+            dateTimePickerVremePromena.Size = new Size(200, 23);
+            dateTimePickerVremePromena.TabIndex = 25;
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Left;
             label12.AutoSize = true;
-            label12.Location = new Point(274, 68);
+            label12.Location = new Point(274, 111);
             label12.Name = "label12";
             label12.Size = new Size(39, 15);
             label12.TabIndex = 27;
             label12.Text = "Status";
             // 
-            // label13
+            // txbStatus
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(274, 102);
-            label13.Name = "label13";
-            label13.Size = new Size(43, 15);
-            label13.TabIndex = 28;
-            label13.Text = "Smena";
+            txbStatus.Location = new Point(390, 105);
+            txbStatus.Name = "txbStatus";
+            txbStatus.Size = new Size(100, 23);
+            txbStatus.TabIndex = 26;
             // 
-            // textBox2
+            // buttonSacuvaj
             // 
-            textBox2.Location = new Point(456, 105);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 29;
+            buttonSacuvaj.Location = new Point(1025, 591);
+            buttonSacuvaj.Name = "buttonSacuvaj";
+            buttonSacuvaj.Size = new Size(98, 23);
+            buttonSacuvaj.TabIndex = 6;
+            buttonSacuvaj.Text = "Sacuvaj";
+            buttonSacuvaj.UseVisualStyleBackColor = true;
             // 
-            // Intervencija
+            // buttonOtkazi
+            // 
+            buttonOtkazi.Location = new Point(1129, 591);
+            buttonOtkazi.Name = "buttonOtkazi";
+            buttonOtkazi.Size = new Size(98, 23);
+            buttonOtkazi.TabIndex = 7;
+            buttonOtkazi.Text = "Otkazi";
+            buttonOtkazi.UseVisualStyleBackColor = true;
+            // 
+            // IntervencijaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1568, 626);
+            ClientSize = new Size(1237, 626);
+            Controls.Add(buttonOtkazi);
+            Controls.Add(buttonSacuvaj);
             Controls.Add(groupBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(buttonIzmeniIntervenciju);
+            Controls.Add(buttonObrisiIntervenciju);
+            Controls.Add(buttonDodajIntervenciju);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
-            Name = "Intervencija";
+            Name = "IntervencijaForm";
             Text = "Intervencija";
-            Load += Intervencija_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -494,49 +361,30 @@
 
         private Label label1;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn VrstaIntervencije;
-        private DataGridViewTextBoxColumn AdresaIntervencije;
-        private DataGridViewTextBoxColumn DatumPocetka;
-        private DataGridViewTextBoxColumn DatumKraja;
-        private DataGridViewTextBoxColumn OpisSituacije;
-        private DataGridViewTextBoxColumn BrojVatrogasaca;
-        private DataGridViewTextBoxColumn VremeDolaska;
-        private DataGridViewTextBoxColumn DatumPromene;
-        private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn Smene;
-        private DataGridViewTextBoxColumn Zaposleni;
-        private DataGridViewTextBoxColumn Vozila;
-        private DataGridViewTextBoxColumn Volonteri;
-        private DataGridViewTextBoxColumn VozilaVolontera;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button buttonDodajIntervenciju;
+        private Button buttonObrisiIntervenciju;
+        private Button buttonIzmeniIntervenciju;
         private GroupBox groupBox1;
         private TableLayoutPanel tableLayoutPanel1;
-        private DateTimePicker dateTimePicker1;
-        private Label label2;
+        private DateTimePicker dateTimePickerDatumPocetka;
         private Label label7;
-        private TextBox txbEmail;
-        private TextBox txbMatbr;
+        private TextBox txbBrojVatrogasaca;
         private Label label3;
         private Label label5;
-        private TextBox txbAdresa;
-        private DateTimePicker datumRodjenja;
-        private TextBox txbIme;
+        private TextBox txbOpisSituacije;
+        private DateTimePicker dateTimePickerDatumKraj;
+        private TextBox txbVrstaInterakcije;
         private Label label4;
         private Label label6;
-        private TextBox txbPrezime;
+        private TextBox txbAdresaIntervencije;
         private Label label8;
-        private Label label10;
-        private TextBox txbTelefoni;
         private Label label9;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePickerVremeDolaska;
         private Label label11;
-        private DateTimePicker dateTimePicker3;
-        private TextBox textBox1;
+        private DateTimePicker dateTimePickerVremePromena;
+        private TextBox txbStatus;
         private Label label12;
-        private Label label13;
-        private TextBox textBox2;
+        private Button buttonSacuvaj;
+        private Button buttonOtkazi;
     }
 }

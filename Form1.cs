@@ -40,5 +40,12 @@ namespace VatrogasnaSluzba.Forms
             VatrogasnaStanicaForm forma = new VatrogasnaStanicaForm();
             forma.ShowDialog();
         }
+
+        private void btnIntervencije_Click(object sender, EventArgs e)
+        {
+            IntervencijaForm forma = new IntervencijaForm();
+            forma.ShowDialog();
+        }
     }
+    
 }
