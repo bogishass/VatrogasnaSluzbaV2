@@ -1,6 +1,6 @@
 ﻿namespace VatrogasnaSluzba.Forms
 {
-    partial class VatrogasnaStanica
+    partial class VatrogasnaStanicaForm
     {
         /// <summary>
         /// Required designer variable.

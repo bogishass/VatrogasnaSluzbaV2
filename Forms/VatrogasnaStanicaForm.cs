@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VatrogasnaSluzba.Forms
 {
-    public partial class VatrogasnaStanica : Form
+    public partial class VatrogasnaStanicaForm : Form
     {
-        public VatrogasnaStanica()
+        public VatrogasnaStanicaForm()
         {
             InitializeComponent();
         }
