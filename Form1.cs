@@ -38,6 +38,7 @@ namespace VatrogasnaSluzba.Forms
         private void btnStanice_Click(object sender, EventArgs e)
         {
             VatrogasnaStanicaForm forma = new VatrogasnaStanicaForm();
+            forma.ShowDialog();
         }
         
         private void btnSmene_Click(object sender, EventArgs e)

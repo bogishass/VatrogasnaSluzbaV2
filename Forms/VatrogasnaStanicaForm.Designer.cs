@@ -18,270 +18,361 @@ namespace VatrogasnaSluzba.Forms
 
         private void InitializeComponent()
         {
-            this.groupBox1 = new GroupBox();
-            this.btnOtkazi = new Button();
-            this.btnSacuvaj = new Button();
-            this.button3 = new Button();
-            this.button2 = new Button();
-            this.button1 = new Button();
-            this.dataGridView1 = new DataGridView();
-            this.ID_Stanice = new DataGridViewTextBoxColumn();
-            this.Adresa = new DataGridViewTextBoxColumn();
-            this.BrojZaposlenih = new DataGridViewTextBoxColumn();
-            this.BrojVozila = new DataGridViewTextBoxColumn();
-            this.DostupnaInfrastruktura = new DataGridViewTextBoxColumn();
-            this.PovrsinaObjekta = new DataGridViewTextBoxColumn();
-            this.Komandir = new DataGridViewTextBoxColumn();
-            this.groupBox2 = new GroupBox();
-            this.tableLayoutPanel1 = new TableLayoutPanel();
-            this.label1 = new Label();
-            this.txbID_Stanice = new TextBox();
-            this.label2 = new Label();
-            this.tbxAdresa = new TextBox();
-            this.label3 = new Label();
-            this.txbBrojZaposlenih = new TextBox();
-            this.label5 = new Label();
-            this.tbxBrojVozila = new TextBox();
-            this.label4 = new Label();
-            this.comboDostupnaInfrastruktura = new ComboBox();
-            this.label6 = new Label();
-            this.txbPovrsinaObjekta = new TextBox();
-            this.label7 = new Label();
-            this.txbKomandir = new TextBox();
-            this.Smena = new Label();
-            this.btnSmene = new Button();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new GroupBox();
+            btnOtkazi = new Button();
+            btnSacuvaj = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            dataGridView1 = new DataGridView();
+            ID_Stanice = new DataGridViewTextBoxColumn();
+            Adresa = new DataGridViewTextBoxColumn();
+            BrojZaposlenih = new DataGridViewTextBoxColumn();
+            BrojVozila = new DataGridViewTextBoxColumn();
+            DostupnaInfrastruktura = new DataGridViewTextBoxColumn();
+            PovrsinaObjekta = new DataGridViewTextBoxColumn();
+            Komandir = new DataGridViewTextBoxColumn();
+            groupBox2 = new GroupBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            label1 = new Label();
+            txbID_Stanice = new TextBox();
+            label2 = new Label();
+            tbxAdresa = new TextBox();
+            label3 = new Label();
+            txbBrojZaposlenih = new TextBox();
+            label5 = new Label();
+            tbxBrojVozila = new TextBox();
+            label4 = new Label();
+            comboDostupnaInfrastruktura = new ComboBox();
+            label6 = new Label();
+            txbPovrsinaObjekta = new TextBox();
+            label7 = new Label();
+            txbKomandir = new TextBox();
+            Smena = new Label();
+            btnSmene = new Button();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            groupBox2.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnOtkazi);
-            this.groupBox1.Controls.Add(this.btnSacuvaj);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new Size(883, 450);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "VatrogasnaStanica";
+            groupBox1.Controls.Add(btnOtkazi);
+            groupBox1.Controls.Add(btnSacuvaj);
+            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(dataGridView1);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(842, 450);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "VatrogasnaStanica";
             // 
             // btnOtkazi
             // 
-            this.btnOtkazi.Location = new Point(755, 344);
-            this.btnOtkazi.Name = "btnOtkazi";
-            this.btnOtkazi.Size = new Size(122, 39);
-            this.btnOtkazi.TabIndex = 25;
-            this.btnOtkazi.Text = "Otkazi";
-            this.btnOtkazi.UseVisualStyleBackColor = true;
+            btnOtkazi.Location = new Point(715, 344);
+            btnOtkazi.Name = "btnOtkazi";
+            btnOtkazi.Size = new Size(122, 39);
+            btnOtkazi.TabIndex = 25;
+            btnOtkazi.Text = "Otkazi";
+            btnOtkazi.UseVisualStyleBackColor = true;
             // 
             // btnSacuvaj
             // 
-            this.btnSacuvaj.Location = new Point(755, 299);
-            this.btnSacuvaj.Name = "btnSacuvaj";
-            this.btnSacuvaj.Size = new Size(122, 39);
-            this.btnSacuvaj.TabIndex = 24;
-            this.btnSacuvaj.Text = "Sacuvaj";
-            this.btnSacuvaj.UseVisualStyleBackColor = true;
+            btnSacuvaj.Location = new Point(715, 299);
+            btnSacuvaj.Name = "btnSacuvaj";
+            btnSacuvaj.Size = new Size(122, 39);
+            btnSacuvaj.TabIndex = 24;
+            btnSacuvaj.Text = "Sacuvaj";
+            btnSacuvaj.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new Point(755, 196);
-            this.button3.Name = "button3";
-            this.button3.Size = new Size(122, 81);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Izmeni Stanicu";
-            this.button3.UseVisualStyleBackColor = true;
+            button3.Location = new Point(715, 196);
+            button3.Name = "button3";
+            button3.Size = new Size(122, 81);
+            button3.TabIndex = 3;
+            button3.Text = "Izmeni Stanicu";
+            button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new Point(755, 109);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(122, 81);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Obrisi Stanicu";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += button2_Click;
+            button2.Location = new Point(715, 109);
+            button2.Name = "button2";
+            button2.Size = new Size(122, 81);
+            button2.TabIndex = 2;
+            button2.Text = "Obrisi Stanicu";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
-            this.button1.Location = new Point(755, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(122, 81);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Dodaj Stanicu";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += button1_Click;
+            button1.Location = new Point(715, 22);
+            button1.Name = "button1";
+            button1.Size = new Size(122, 81);
+            button1.TabIndex = 1;
+            button1.Text = "Dodaj Stanicu";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new DataGridViewColumn[] {
-            this.ID_Stanice,
-            this.Adresa,
-            this.BrojZaposlenih,
-            this.BrojVozila,
-            this.DostupnaInfrastruktura,
-            this.PovrsinaObjekta,
-            this.Komandir});
-            this.dataGridView1.Location = new Point(6, 22);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new Size(743, 416);
-            this.dataGridView1.TabIndex = 0;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID_Stanice, Adresa, BrojZaposlenih, BrojVozila, DostupnaInfrastruktura, PovrsinaObjekta, Komandir });
+            dataGridView1.Location = new Point(6, 22);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(703, 416);
+            dataGridView1.TabIndex = 0;
             // 
-            // columns
+            // ID_Stanice
             // 
-            this.ID_Stanice.HeaderText = "ID_Stanice";
-            this.ID_Stanice.Name = "ID_Stanice";
-            this.ID_Stanice.ReadOnly = true;
-
-            this.Adresa.HeaderText = "Adresa";
-            this.Adresa.Name = "Adresa";
-            this.Adresa.ReadOnly = true;
-
-            this.BrojZaposlenih.HeaderText = "BrojZaposlenih";
-            this.BrojZaposlenih.Name = "BrojZaposlenih";
-            this.BrojZaposlenih.ReadOnly = true;
-
-            this.BrojVozila.HeaderText = "BrojVozila";
-            this.BrojVozila.Name = "BrojVozila";
-            this.BrojVozila.ReadOnly = true;
-
-            this.DostupnaInfrastruktura.HeaderText = "DostupnaInfrastruktura";
-            this.DostupnaInfrastruktura.Name = "DostupnaInfrastruktura";
-            this.DostupnaInfrastruktura.ReadOnly = true;
-
-            this.PovrsinaObjekta.HeaderText = "PovrsinaObjekta";
-            this.PovrsinaObjekta.Name = "PovrsinaObjekta";
-            this.PovrsinaObjekta.ReadOnly = true;
-
-            this.Komandir.HeaderText = "Komandir";
-            this.Komandir.Name = "Komandir";
-            this.Komandir.ReadOnly = true;
+            ID_Stanice.HeaderText = "ID_Stanice";
+            ID_Stanice.Name = "ID_Stanice";
+            ID_Stanice.ReadOnly = true;
+            // 
+            // Adresa
+            // 
+            Adresa.HeaderText = "Adresa";
+            Adresa.Name = "Adresa";
+            Adresa.ReadOnly = true;
+            // 
+            // BrojZaposlenih
+            // 
+            BrojZaposlenih.HeaderText = "BrojZaposlenih";
+            BrojZaposlenih.Name = "BrojZaposlenih";
+            BrojZaposlenih.ReadOnly = true;
+            // 
+            // BrojVozila
+            // 
+            BrojVozila.HeaderText = "BrojVozila";
+            BrojVozila.Name = "BrojVozila";
+            BrojVozila.ReadOnly = true;
+            // 
+            // DostupnaInfrastruktura
+            // 
+            DostupnaInfrastruktura.HeaderText = "DostupnaInfrastruktura";
+            DostupnaInfrastruktura.Name = "DostupnaInfrastruktura";
+            DostupnaInfrastruktura.ReadOnly = true;
+            // 
+            // PovrsinaObjekta
+            // 
+            PovrsinaObjekta.HeaderText = "PovrsinaObjekta";
+            PovrsinaObjekta.Name = "PovrsinaObjekta";
+            PovrsinaObjekta.ReadOnly = true;
+            // 
+            // Komandir
+            // 
+            Komandir.HeaderText = "Komandir";
+            Komandir.Name = "Komandir";
+            Komandir.ReadOnly = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Location = new Point(12, 481);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new Size(883, 293);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Dodaj/Edituj";
+            groupBox2.Controls.Add(tableLayoutPanel1);
+            groupBox2.Location = new Point(12, 481);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(842, 231);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Dodaj/Edituj";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txbID_Stanice, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbxAdresa, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txbBrojZaposlenih, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbxBrojVozila, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.comboDostupnaInfrastruktura, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txbPovrsinaObjekta, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txbKomandir, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Smena, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnSmene, 3, 1);
-            this.tableLayoutPanel1.Location = new Point(6, 32);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 17.0F));
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.4F));
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.8F));
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
-            this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
-            this.tableLayoutPanel1.Size = new Size(871, 197);
-            this.tableLayoutPanel1.TabIndex = 11;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(txbID_Stanice, 1, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Controls.Add(tbxAdresa, 1, 1);
+            tableLayoutPanel1.Controls.Add(label3, 0, 2);
+            tableLayoutPanel1.Controls.Add(txbBrojZaposlenih, 1, 2);
+            tableLayoutPanel1.Controls.Add(label5, 0, 3);
+            tableLayoutPanel1.Controls.Add(tbxBrojVozila, 1, 3);
+            tableLayoutPanel1.Controls.Add(label4, 0, 4);
+            tableLayoutPanel1.Controls.Add(comboDostupnaInfrastruktura, 1, 4);
+            tableLayoutPanel1.Controls.Add(label6, 0, 5);
+            tableLayoutPanel1.Controls.Add(txbPovrsinaObjekta, 1, 5);
+            tableLayoutPanel1.Controls.Add(label7, 2, 0);
+            tableLayoutPanel1.Controls.Add(txbKomandir, 3, 0);
+            tableLayoutPanel1.Controls.Add(Smena, 2, 1);
+            tableLayoutPanel1.Controls.Add(btnSmene, 3, 1);
+            tableLayoutPanel1.Location = new Point(6, 32);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.4F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.8F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.8F));
+            tableLayoutPanel1.Size = new Size(816, 197);
+            tableLayoutPanel1.TabIndex = 11;
             // 
-            // labels/inputs
+            // label1
             // 
-            this.label1.Anchor = AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Text = "ID_Stanice";
-
-            this.txbID_Stanice.MaxLength = 13;
-            this.txbID_Stanice.Size = new Size(211, 23);
-
-            this.label2.Anchor = AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Text = "Adresa";
-
-            this.tbxAdresa.Size = new Size(211, 23);
-
-            this.label3.Anchor = AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Text = "BrojZaposlenih";
-
-            this.txbBrojZaposlenih.Size = new Size(211, 23);
-
-            this.label5.Anchor = AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Text = "Broj vozila";
-
-            this.tbxBrojVozila.Size = new Size(211, 23);
-
-            this.label4.Anchor = AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Text = "Dostupna Infrastruktura";
-
-            this.comboDostupnaInfrastruktura.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboDostupnaInfrastruktura.Size = new Size(211, 23);
-
-            this.label6.AutoSize = true;
-            this.label6.Text = "PovrsinaObjekta";
-
-            this.txbPovrsinaObjekta.Size = new Size(211, 23);
-
-            this.label7.Anchor = AnchorStyles.Left;
-            this.label7.AutoSize = true;
-            this.label7.Text = "Komandir";
-
-            this.txbKomandir.Size = new Size(214, 23);
-
-            this.Smena.Anchor = AnchorStyles.Left;
-            this.Smena.AutoSize = true;
-            this.Smena.Text = "Smene";
-
-            this.btnSmene.Text = "Smene";
-            this.btnSmene.Size = new Size(214, 27);
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(61, 15);
+            label1.TabIndex = 0;
+            label1.Text = "ID_Stanice";
+            // 
+            // txbID_Stanice
+            // 
+            txbID_Stanice.Location = new Point(207, 3);
+            txbID_Stanice.MaxLength = 13;
+            txbID_Stanice.Name = "txbID_Stanice";
+            txbID_Stanice.Size = new Size(198, 23);
+            txbID_Stanice.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 42);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Adresa";
+            // 
+            // tbxAdresa
+            // 
+            tbxAdresa.Location = new Point(207, 36);
+            tbxAdresa.Name = "tbxAdresa";
+            tbxAdresa.Size = new Size(198, 23);
+            tbxAdresa.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Left;
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 74);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 15);
+            label3.TabIndex = 4;
+            label3.Text = "BrojZaposlenih";
+            // 
+            // txbBrojZaposlenih
+            // 
+            txbBrojZaposlenih.Location = new Point(207, 69);
+            txbBrojZaposlenih.Name = "txbBrojZaposlenih";
+            txbBrojZaposlenih.Size = new Size(198, 23);
+            txbBrojZaposlenih.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Left;
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 106);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 15);
+            label5.TabIndex = 6;
+            label5.Text = "Broj vozila";
+            // 
+            // tbxBrojVozila
+            // 
+            tbxBrojVozila.Location = new Point(207, 101);
+            tbxBrojVozila.Name = "tbxBrojVozila";
+            tbxBrojVozila.Size = new Size(198, 23);
+            tbxBrojVozila.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 138);
+            label4.Name = "label4";
+            label4.Size = new Size(132, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Dostupna Infrastruktura";
+            // 
+            // comboDostupnaInfrastruktura
+            // 
+            comboDostupnaInfrastruktura.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboDostupnaInfrastruktura.Location = new Point(207, 132);
+            comboDostupnaInfrastruktura.Name = "comboDostupnaInfrastruktura";
+            comboDostupnaInfrastruktura.Size = new Size(198, 23);
+            comboDostupnaInfrastruktura.TabIndex = 9;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 162);
+            label6.Name = "label6";
+            label6.Size = new Size(93, 15);
+            label6.TabIndex = 10;
+            label6.Text = "PovrsinaObjekta";
+            // 
+            // txbPovrsinaObjekta
+            // 
+            txbPovrsinaObjekta.Location = new Point(207, 165);
+            txbPovrsinaObjekta.Name = "txbPovrsinaObjekta";
+            txbPovrsinaObjekta.Size = new Size(198, 23);
+            txbPovrsinaObjekta.TabIndex = 11;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Left;
+            label7.AutoSize = true;
+            label7.Location = new Point(411, 9);
+            label7.Name = "label7";
+            label7.Size = new Size(59, 15);
+            label7.TabIndex = 12;
+            label7.Text = "Komandir";
+            // 
+            // txbKomandir
+            // 
+            txbKomandir.Location = new Point(615, 3);
+            txbKomandir.Name = "txbKomandir";
+            txbKomandir.Size = new Size(198, 23);
+            txbKomandir.TabIndex = 13;
+            // 
+            // Smena
+            // 
+            Smena.Anchor = AnchorStyles.Left;
+            Smena.AutoSize = true;
+            Smena.Location = new Point(411, 42);
+            Smena.Name = "Smena";
+            Smena.Size = new Size(43, 15);
+            Smena.TabIndex = 14;
+            Smena.Text = "Smene";
+            // 
+            // btnSmene
+            // 
+            btnSmene.Location = new Point(615, 36);
+            btnSmene.Name = "btnSmene";
+            btnSmene.Size = new Size(198, 27);
+            btnSmene.TabIndex = 15;
+            btnSmene.Text = "Smene";
             // 
             // VatrogasnaStanicaForm
             // 
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(912, 724);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "VatrogasnaStanicaForm";
-            this.Text = "VatrogasnaStanica";
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(860, 724);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Name = "VatrogasnaStanicaForm";
+            Text = "VatrogasnaStanica";
+            groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            groupBox2.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
