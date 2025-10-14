@@ -131,7 +131,6 @@
             btnNovi.TabIndex = 0;
             btnNovi.Text = "Novi zaposleni";
             btnNovi.UseVisualStyleBackColor = true;
-            ;
             // 
             // btnObrisi
             // 

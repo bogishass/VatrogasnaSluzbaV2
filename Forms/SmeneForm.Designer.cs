@@ -365,8 +365,8 @@
             tableLayoutPanel1.Controls.Add(cbStanica, 1, 3);
             tableLayoutPanel1.Controls.Add(lblStart, 0, 1);
             tableLayoutPanel1.Controls.Add(dtpDatum, 1, 0);
-            tableLayoutPanel1.Controls.Add(dtpStart, 1, 2);
-            tableLayoutPanel1.Controls.Add(dtpEnd, 1, 1);
+            tableLayoutPanel1.Controls.Add(dtpStart, 1, 1);
+            tableLayoutPanel1.Controls.Add(dtpEnd, 1, 2);
             tableLayoutPanel1.Controls.Add(lblDatum, 0, 0);
             tableLayoutPanel1.Controls.Add(lblEnd, 0, 2);
             tableLayoutPanel1.Location = new Point(6, 17);
