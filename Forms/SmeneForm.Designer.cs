@@ -180,7 +180,8 @@
             // 
             // lblEnd
             // 
-            lblEnd.Location = new Point(3, 70);
+            lblEnd.Anchor = AnchorStyles.Left;
+            lblEnd.Location = new Point(3, 80);
             lblEnd.Name = "lblEnd";
             lblEnd.Size = new Size(66, 15);
             lblEnd.TabIndex = 4;
@@ -208,7 +209,7 @@
             // dtpStart
             // 
             dtpStart.Format = DateTimePickerFormat.Time;
-            dtpStart.Location = new Point(117, 72);
+            dtpStart.Location = new Point(117, 37);
             dtpStart.Margin = new Padding(3, 2, 3, 2);
             dtpStart.Name = "dtpStart";
             dtpStart.ShowUpDown = true;
@@ -217,7 +218,8 @@
             // 
             // lblStanica
             // 
-            lblStanica.Location = new Point(3, 105);
+            lblStanica.Anchor = AnchorStyles.Left;
+            lblStanica.Location = new Point(3, 115);
             lblStanica.Name = "lblStanica";
             lblStanica.Size = new Size(66, 15);
             lblStanica.TabIndex = 6;
@@ -227,7 +229,7 @@
             // dtpEnd
             // 
             dtpEnd.Format = DateTimePickerFormat.Time;
-            dtpEnd.Location = new Point(117, 37);
+            dtpEnd.Location = new Point(117, 72);
             dtpEnd.Margin = new Padding(3, 2, 3, 2);
             dtpEnd.Name = "dtpEnd";
             dtpEnd.ShowUpDown = true;
@@ -236,8 +238,9 @@
             // 
             // lblStart
             // 
+            lblStart.Anchor = AnchorStyles.Left;
             lblStart.BackColor = Color.Transparent;
-            lblStart.Location = new Point(3, 35);
+            lblStart.Location = new Point(3, 45);
             lblStart.Name = "lblStart";
             lblStart.Size = new Size(66, 15);
             lblStart.TabIndex = 2;
@@ -246,8 +249,9 @@
             // 
             // lblDatum
             // 
+            lblDatum.Anchor = AnchorStyles.Left;
             lblDatum.BackColor = Color.Transparent;
-            lblDatum.Location = new Point(3, 0);
+            lblDatum.Location = new Point(3, 10);
             lblDatum.Name = "lblDatum";
             lblDatum.Size = new Size(66, 15);
             lblDatum.TabIndex = 0;

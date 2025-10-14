@@ -133,7 +133,7 @@ namespace VatrogasnaSluzba.Forms
             }
             else if (mode == FormMode.Editing)
             {
-                txbMatbr.Enabled = false;
+                txbMatbr.Enabled = false; // Ne moze da se menja uopste ako je false?
             }
         }
 

@@ -45,14 +45,14 @@
             dateTimePickerDatumKraj = new DateTimePicker();
             label8 = new Label();
             txbOpisSituacije = new TextBox();
-            label7 = new Label();
+            label12 = new Label();
+            txbStatus = new TextBox();
             txbBrojVatrogasaca = new TextBox();
+            label7 = new Label();
             label9 = new Label();
             label11 = new Label();
             dateTimePickerVremeDolaska = new DateTimePicker();
             dateTimePickerVremePromena = new DateTimePicker();
-            label12 = new Label();
-            txbStatus = new TextBox();
             buttonSacuvaj = new Button();
             buttonOtkazi = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -67,7 +67,7 @@
             label1.Name = "label1";
             label1.Size = new Size(68, 15);
             label1.TabIndex = 0;
-            label1.Text = "Intervencija";
+            label1.Text = "Intervencije";
             // 
             // dataGridView1
             // 
@@ -76,32 +76,32 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 39);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1213, 251);
+            dataGridView1.Size = new Size(727, 251);
             dataGridView1.TabIndex = 1;
             // 
             // buttonDodajIntervenciju
             // 
-            buttonDodajIntervenciju.Location = new Point(777, 306);
+            buttonDodajIntervenciju.Location = new Point(641, 306);
             buttonDodajIntervenciju.Name = "buttonDodajIntervenciju";
-            buttonDodajIntervenciju.Size = new Size(146, 31);
+            buttonDodajIntervenciju.Size = new Size(98, 45);
             buttonDodajIntervenciju.TabIndex = 2;
             buttonDodajIntervenciju.Text = "Dodaj intervenciju";
             buttonDodajIntervenciju.UseVisualStyleBackColor = true;
             // 
             // buttonObrisiIntervenciju
             // 
-            buttonObrisiIntervenciju.Location = new Point(929, 306);
+            buttonObrisiIntervenciju.Location = new Point(641, 357);
             buttonObrisiIntervenciju.Name = "buttonObrisiIntervenciju";
-            buttonObrisiIntervenciju.Size = new Size(146, 31);
+            buttonObrisiIntervenciju.Size = new Size(98, 46);
             buttonObrisiIntervenciju.TabIndex = 3;
             buttonObrisiIntervenciju.Text = "Obrisi intervenciju";
             buttonObrisiIntervenciju.UseVisualStyleBackColor = true;
             // 
             // buttonIzmeniIntervenciju
             // 
-            buttonIzmeniIntervenciju.Location = new Point(1081, 306);
+            buttonIzmeniIntervenciju.Location = new Point(641, 410);
             buttonIzmeniIntervenciju.Name = "buttonIzmeniIntervenciju";
-            buttonIzmeniIntervenciju.Size = new Size(146, 31);
+            buttonIzmeniIntervenciju.Size = new Size(98, 46);
             buttonIzmeniIntervenciju.TabIndex = 4;
             buttonIzmeniIntervenciju.Text = "Izmeni intervenciju";
             buttonIzmeniIntervenciju.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Location = new Point(12, 306);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(759, 308);
+            groupBox1.Size = new Size(617, 207);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Dodaj intervenciju";
@@ -121,8 +121,8 @@
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 116F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 88F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 124F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel1.Controls.Add(label3, 0, 0);
             tableLayoutPanel1.Controls.Add(txbVrstaInterakcije, 1, 0);
             tableLayoutPanel1.Controls.Add(label6, 0, 1);
@@ -143,18 +143,15 @@
             tableLayoutPanel1.Controls.Add(dateTimePickerVremePromena, 3, 2);
             tableLayoutPanel1.Location = new Point(6, 22);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 8;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.499999F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            tableLayoutPanel1.RowCount = 5;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.9999981F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.0000019F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.0000019F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20.0000019F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.9999981F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(659, 277);
+            tableLayoutPanel1.Size = new Size(601, 173);
             tableLayoutPanel1.TabIndex = 10;
             // 
             // label3
@@ -235,7 +232,7 @@
             // 
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
-            label8.Location = new Point(3, 145);
+            label8.Location = new Point(3, 147);
             label8.Name = "label8";
             label8.Size = new Size(75, 15);
             label8.TabIndex = 13;
@@ -248,6 +245,30 @@
             txbOpisSituacije.Size = new Size(155, 23);
             txbOpisSituacije.TabIndex = 3;
             // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Left;
+            label12.AutoSize = true;
+            label12.Location = new Point(274, 111);
+            label12.Name = "label12";
+            label12.Size = new Size(39, 15);
+            label12.TabIndex = 27;
+            label12.Text = "Status";
+            // 
+            // txbStatus
+            // 
+            txbStatus.Location = new Point(398, 105);
+            txbStatus.Name = "txbStatus";
+            txbStatus.Size = new Size(100, 23);
+            txbStatus.TabIndex = 26;
+            // 
+            // txbBrojVatrogasaca
+            // 
+            txbBrojVatrogasaca.Location = new Point(398, 3);
+            txbBrojVatrogasaca.Name = "txbBrojVatrogasaca";
+            txbBrojVatrogasaca.Size = new Size(155, 23);
+            txbBrojVatrogasaca.TabIndex = 4;
+            // 
             // label7
             // 
             label7.Anchor = AnchorStyles.Left;
@@ -257,13 +278,6 @@
             label7.Size = new Size(91, 15);
             label7.TabIndex = 14;
             label7.Text = "BrojVatrogasaca";
-            // 
-            // txbBrojVatrogasaca
-            // 
-            txbBrojVatrogasaca.Location = new Point(390, 3);
-            txbBrojVatrogasaca.Name = "txbBrojVatrogasaca";
-            txbBrojVatrogasaca.Size = new Size(155, 23);
-            txbBrojVatrogasaca.TabIndex = 4;
             // 
             // label9
             // 
@@ -287,38 +301,21 @@
             // 
             // dateTimePickerVremeDolaska
             // 
-            dateTimePickerVremeDolaska.Location = new Point(390, 37);
+            dateTimePickerVremeDolaska.Location = new Point(398, 37);
             dateTimePickerVremeDolaska.Name = "dateTimePickerVremeDolaska";
             dateTimePickerVremeDolaska.Size = new Size(200, 23);
             dateTimePickerVremeDolaska.TabIndex = 23;
             // 
             // dateTimePickerVremePromena
             // 
-            dateTimePickerVremePromena.Location = new Point(390, 71);
+            dateTimePickerVremePromena.Location = new Point(398, 71);
             dateTimePickerVremePromena.Name = "dateTimePickerVremePromena";
             dateTimePickerVremePromena.Size = new Size(200, 23);
             dateTimePickerVremePromena.TabIndex = 25;
             // 
-            // label12
-            // 
-            label12.Anchor = AnchorStyles.Left;
-            label12.AutoSize = true;
-            label12.Location = new Point(274, 111);
-            label12.Name = "label12";
-            label12.Size = new Size(39, 15);
-            label12.TabIndex = 27;
-            label12.Text = "Status";
-            // 
-            // txbStatus
-            // 
-            txbStatus.Location = new Point(390, 105);
-            txbStatus.Name = "txbStatus";
-            txbStatus.Size = new Size(100, 23);
-            txbStatus.TabIndex = 26;
-            // 
             // buttonSacuvaj
             // 
-            buttonSacuvaj.Location = new Point(1025, 591);
+            buttonSacuvaj.Location = new Point(641, 462);
             buttonSacuvaj.Name = "buttonSacuvaj";
             buttonSacuvaj.Size = new Size(98, 23);
             buttonSacuvaj.TabIndex = 6;
@@ -327,7 +324,7 @@
             // 
             // buttonOtkazi
             // 
-            buttonOtkazi.Location = new Point(1129, 591);
+            buttonOtkazi.Location = new Point(641, 490);
             buttonOtkazi.Name = "buttonOtkazi";
             buttonOtkazi.Size = new Size(98, 23);
             buttonOtkazi.TabIndex = 7;
@@ -338,15 +335,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1237, 626);
+            ClientSize = new Size(750, 524);
             Controls.Add(buttonOtkazi);
-            Controls.Add(buttonSacuvaj);
             Controls.Add(groupBox1);
             Controls.Add(buttonIzmeniIntervenciju);
             Controls.Add(buttonObrisiIntervenciju);
             Controls.Add(buttonDodajIntervenciju);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Controls.Add(buttonSacuvaj);
             Name = "IntervencijaForm";
             Text = "Intervencija";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

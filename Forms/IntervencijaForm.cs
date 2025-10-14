@@ -33,7 +33,6 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.DataSource = _model;
 
-            // << NOVO: reaguj na promenu selekcije >>
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
 
             PrepareNullableDtp(dateTimePickerDatumPocetka);

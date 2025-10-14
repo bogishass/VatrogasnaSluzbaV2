@@ -309,8 +309,9 @@ namespace VatrogasnaSluzba.Forms
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(3, 162);
+            label6.Location = new Point(3, 172);
             label6.Name = "label6";
             label6.Size = new Size(93, 15);
             label6.TabIndex = 10;
