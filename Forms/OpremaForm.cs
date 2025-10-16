@@ -12,7 +12,7 @@ namespace VatrogasnaSluzba.Forms
         private bool _editMode = false;
         private int _editingId = 0;
 
-        // Fiksna specifikacija tipova i podtipova opreme
+        // Tipovi i podtipovi
         private readonly Dictionary<string, List<string>> _katalog =
             new(StringComparer.OrdinalIgnoreCase)
             {
@@ -26,7 +26,6 @@ namespace VatrogasnaSluzba.Forms
         {
             InitializeComponent();
 
-            // DataGrid → DTO mapiranje (bez "Intervencija")
             dataGridView1.AutoGenerateColumns = false;
             INVBroj.DataPropertyName = "InventarskiBroj";
             Naziv.DataPropertyName = "Naziv";
@@ -36,14 +35,10 @@ namespace VatrogasnaSluzba.Forms
             Status.DataPropertyName = "Status";
             DatumNabavke.DataPropertyName = "DatumNabavke";
 
-            dataGridView1.ReadOnly = true;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.MultiSelect = false;
             DatumNabavke.DefaultCellStyle.Format = "dd.MM.yyyy";
             DatumNabavke.DefaultCellStyle.NullValue = "";
 
-            comboTip.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPodTip.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboStatus.Items.AddRange(new[] { "Ispravno", "Oštećeno", "Rashodovano" });
 
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             btnDodajOpremu.Click += btnDodajOpremu_Click;
@@ -60,7 +55,6 @@ namespace VatrogasnaSluzba.Forms
             PopulatePodtip();
         }
 
-        // ===== GRID =====
         private void LoadGrid()
         {
             dataGridView1.DataSource = null;
@@ -75,15 +69,14 @@ namespace VatrogasnaSluzba.Forms
             FillForm(full);
         }
 
-        // ===== FORM <-> DTO =====
         private OpremaDTO ReadForm() => new()
         {
             InventarskiBroj = int.TryParse(txbInvBroj.Text, out var v) ? v : 0,
-            Naziv = txbNaziv.Text?.Trim(),
-            Tip = comboTip.Text?.Trim(),
-            Podtip = comboBoxPodTip.Text?.Trim(),
-            LokacijaOpreme = textBoxLokacijaOpreme.Text?.Trim(),
-            Status = txbAdresa.Text?.Trim(),
+            Naziv = txbNaziv.Text?.Trim() ?? "",
+            Tip = comboTip.Text?.Trim() ?? "",
+            Podtip = comboPodTip.Text?.Trim() ?? "",
+            LokacijaOpreme = txbLokacija.Text?.Trim() ?? "",
+            Status = comboStatus.SelectedItem?.ToString() ?? "",
             DatumNabavke = dateTimePickerDatumNabavke.Value.Date
         };
 
@@ -96,12 +89,12 @@ namespace VatrogasnaSluzba.Forms
 
             SelectComboValue(comboTip, dto.Tip);
             PopulatePodtip();
-            SelectComboValue(comboBoxPodTip, dto.Podtip);
+            SelectComboValue(comboPodTip, dto.Podtip);
 
-            textBoxLokacijaOpreme.Text = dto.LokacijaOpreme;
-            txbAdresa.Text = dto.Status;
-            if (dto.DatumNabavke.HasValue)
-                dateTimePickerDatumNabavke.Value = dto.DatumNabavke.Value;
+            txbLokacija.Text = dto.LokacijaOpreme;
+            comboStatus.SelectedItem = dto.Status;
+
+            dateTimePickerDatumNabavke.Value = dto.DatumNabavke ?? DateTime.MinValue;
         }
 
         private void ClearForm()
@@ -109,9 +102,8 @@ namespace VatrogasnaSluzba.Forms
             txbInvBroj.Clear();
             txbNaziv.Clear();
             comboTip.SelectedIndex = -1;
-            comboBoxPodTip.SelectedIndex = -1;
-            textBoxLokacijaOpreme.Clear();
-            txbAdresa.Clear();
+            comboPodTip.SelectedIndex = -1;
+            txbLokacija.Clear();
             dateTimePickerDatumNabavke.Value = DateTime.Today;
         }
 
@@ -122,7 +114,6 @@ namespace VatrogasnaSluzba.Forms
             cb.SelectedIndex = i;
         }
 
-        // ===== DODAJ =====
         private void btnDodajOpremu_Click(object? sender, EventArgs e)
         {
             if (_editMode) return;
@@ -136,8 +127,6 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
-
-        // ===== BRISANJE =====
         private void button2_Click(object sender, EventArgs e)
         {
             if (_editMode) return;
@@ -149,8 +138,6 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
-
-        // ===== EDIT REŽIM (Sačuvaj/Otkaži) =====
         private void btnEditujOpremu_Click(object? sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow?.DataBoundItem is not OpremaListDTO row) return;
@@ -168,7 +155,6 @@ namespace VatrogasnaSluzba.Forms
             btnUkloniOpremu.Enabled = false;
             btnEditujOpremu.Enabled = false;
         }
-
         private void btnSacuvaj_Click(object? sender, EventArgs e)
         {
             if (!_editMode) return;
@@ -214,7 +200,6 @@ namespace VatrogasnaSluzba.Forms
             btnOtkazi.Visible = visible;
         }
 
-        // ===== COMBO punjenje (fiksne vrednosti) =====
         private void LoadTipovi()
         {
             comboTip.BeginUpdate();
@@ -227,17 +212,12 @@ namespace VatrogasnaSluzba.Forms
             var tip = comboTip.Text;
             var pods = _katalog.TryGetValue(tip, out var lst) ? lst : new List<string>();
 
-            comboBoxPodTip.BeginUpdate();
-            comboBoxPodTip.DataSource = pods;
-            comboBoxPodTip.EndUpdate();
+            comboPodTip.BeginUpdate();
+            comboPodTip.DataSource = pods;
+            comboPodTip.EndUpdate();
 
-            if (comboBoxPodTip.Items.Count > 0 && comboBoxPodTip.SelectedIndex < 0)
-                comboBoxPodTip.SelectedIndex = 0;
+            if (comboPodTip.Items.Count > 0 && comboPodTip.SelectedIndex < 0)
+                comboPodTip.SelectedIndex = 0;
         }
-
-        // Prazni handleri iz dizajnera
-        private void label6_Click(object sender, EventArgs e) { }
-        private void label7_Click(object sender, EventArgs e) { }
-        private void label8_Click(object sender, EventArgs e) { }
     }
 }

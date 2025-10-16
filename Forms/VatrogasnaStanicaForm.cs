@@ -35,11 +35,7 @@ namespace VatrogasnaSluzba.Forms
             btnOtkazi.Click += btnOtkazi_Click;
 
             // Smene dugme -> otvori SmeneForm
-            btnSmene.Click += (_, __) =>
-            {
-                using var f = new SmeneForm();
-                f.ShowDialog(this);
-            };
+            btnSmene.Click += btnSmene_Click;
 
             // napuni combo za infrastrukturu (jedan izbor)
             comboDostupnaInfrastruktura.Items.Clear();
@@ -52,7 +48,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void LoadGrid()
         {
-            var list = VatrogasnaStanicaDTOManager.GetSveStaniceList();
+            var list = StanicaDTOManager.GetSveStaniceList();
             dataGridView1.Rows.Clear();
 
             foreach (var s in list)
@@ -63,19 +59,16 @@ namespace VatrogasnaSluzba.Forms
                 r.Cells["Adresa"].Value = s.Adresa;
                 r.Cells["BrojZaposlenih"].Value = s.BrojZaposlenih;
                 r.Cells["BrojVozila"].Value = s.BrojVozila;
-                r.Cells["DostupnaInfrastruktura"].Value = s.Infrastruktura;
-                r.Cells["PovrsinaObjekta"].Value = s.PovrsinaObjekta;
-                r.Cells["Komandir"].Value = s.KomandirMbr;
             }
         }
 
-        private VatrogasnaStanicaDTO ReadForm()
+        private StanicaDTO ReadForm()
         {
             var infra = new List<string>();
             if (comboDostupnaInfrastruktura.SelectedItem is string one)
                 infra.Add(one);
 
-            return new VatrogasnaStanicaDTO
+            return new StanicaDTO
             {
                 IdStanice = _editingId,
                 Adresa = tbxAdresa.Text?.Trim(),
@@ -87,7 +80,7 @@ namespace VatrogasnaSluzba.Forms
             };
         }
 
-        private void FillForm(VatrogasnaStanicaDTO? s)
+        private void FillForm(StanicaDTO? s)
         {
             txbID_Stanice.Text = s?.IdStanice.ToString() ?? "";
             tbxAdresa.Text = s?.Adresa ?? "";
@@ -149,8 +142,21 @@ namespace VatrogasnaSluzba.Forms
             if (idObj == null) { ClearForm(); return; }
 
             var id = Convert.ToInt32(idObj);
-            var dto = VatrogasnaStanicaDTOManager.GetStanica(id);
+            var dto = StanicaDTOManager.GetStanica(id);
             FillForm(dto);
+        }
+
+        // Smene za pojedinacnu stanicu
+        private void btnSmene_Click(object? sender, EventArgs e)
+        {
+            var idObj = dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value;
+            if (idObj == null) { MessageBox.Show("Izaberite stanicu za evidenciju smena!"); }
+
+            var id = Convert.ToInt32(idObj);
+            var stanica = StanicaDTOManager.GetStanica(id);
+
+            using var f = new SmeneForm(stanica);
+            f.ShowDialog(this);
         }
 
         // Dodaj
@@ -159,7 +165,7 @@ namespace VatrogasnaSluzba.Forms
             if (_editMode) return;
 
             var dto = ReadForm();
-            if (VatrogasnaStanicaDTOManager.AddStanica(dto))
+            if (StanicaDTOManager.AddStanica(dto))
             {
                 LoadGrid();
                 ClearForm();
@@ -173,7 +179,7 @@ namespace VatrogasnaSluzba.Forms
             if (dataGridView1.SelectedRows.Count == 0) return;
 
             var id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value);
-            if (VatrogasnaStanicaDTOManager.DeleteStanica(id))
+            if (StanicaDTOManager.DeleteStanica(id))
             {
                 LoadGrid();
                 ClearForm();
@@ -196,7 +202,7 @@ namespace VatrogasnaSluzba.Forms
             if (!_editMode) return;
 
             var dto = ReadForm();
-            if (VatrogasnaStanicaDTOManager.UpdateStanica(dto))
+            if (StanicaDTOManager.UpdateStanica(dto))
             {
                 ExitEditMode();
                 LoadGrid();
@@ -213,7 +219,7 @@ namespace VatrogasnaSluzba.Forms
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 var id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value);
-                FillForm(VatrogasnaStanicaDTOManager.GetStanica(id));
+                FillForm(StanicaDTOManager.GetStanica(id));
             }
             else
             {

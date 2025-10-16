@@ -1,18 +1,26 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using VatrogasnaSluzba.DTO;
 using DTO = VatrogasnaSluzba.DTO;
 
 namespace VatrogasnaSluzba.Forms
 {
     public partial class SmeneForm : Form
     {
-        private DTO.SmenaDTO? _current;
+        private SmenaDTO? _current;
         private FormMode CurrentMode = FormMode.Default;
+        private StanicaSimpleDTO singleStanica;
 
-        public SmeneForm()
+        public SmeneForm(StanicaDTO stanica = null)
         {
             InitializeComponent();
+
+            if (stanica != null)
+            {
+                singleStanica = new StanicaSimpleDTO(stanica);
+            }
+
             InitUi();
             LoadStanice();
             ApplyFilter();
@@ -66,23 +74,29 @@ namespace VatrogasnaSluzba.Forms
         // ---------- podaci ----------
         private void LoadStanice()
         {
-            var stanice = DTO.StanicaDTOManager.GetSveStaniceSimple();
+            List<StanicaSimpleDTO> stanice;
+            var listFilter = new BindingList<StanicaSimpleDTO>(new System.Collections.Generic.List<StanicaSimpleDTO>());
 
-            // FILTER
-            var listFilter = new BindingList<DTO.StanicaSimpleDTO>(new System.Collections.Generic.List<DTO.StanicaSimpleDTO>
+            if (singleStanica != null)
             {
-                new DTO.StanicaSimpleDTO { IdStanice = 0, Naziv = "(sve stanice)" }
-            });
+                stanice = new List<StanicaSimpleDTO>() { singleStanica };
+            }
+            else
+            {
+                stanice = StanicaDTOManager.GetSveStaniceSimple();
+                listFilter.Add(new StanicaSimpleDTO { IdStanice = 0, Naziv = "(sve stanice)" });
+            }
+
             foreach (var s in stanice) listFilter.Add(s);
 
             cbStanicaFilter.DataSource = listFilter;
-            cbStanicaFilter.DisplayMember = nameof(DTO.StanicaSimpleDTO.Naziv);
-            cbStanicaFilter.ValueMember = nameof(DTO.StanicaSimpleDTO.IdStanice);
+            cbStanicaFilter.DisplayMember = nameof(StanicaSimpleDTO.Naziv);
+            cbStanicaFilter.ValueMember = nameof(StanicaSimpleDTO.IdStanice);
 
             // DESNI PANEL
-            cbStanica.DataSource = new BindingList<DTO.StanicaSimpleDTO>(stanice);
-            cbStanica.DisplayMember = nameof(DTO.StanicaSimpleDTO.Naziv);
-            cbStanica.ValueMember = nameof(DTO.StanicaSimpleDTO.IdStanice);
+            cbStanica.DataSource = new BindingList<StanicaSimpleDTO>(stanice);
+            cbStanica.DisplayMember = nameof(StanicaSimpleDTO.Naziv);
+            cbStanica.ValueMember = nameof(StanicaSimpleDTO.IdStanice);
             cbStanica.SelectedIndex = -1;
         }
 
@@ -95,9 +109,9 @@ namespace VatrogasnaSluzba.Forms
             var od = dtpOd.Value.Date;
             var @do = dtpDo.Value.Date;
 
-            var list = DTO.SmenaDTOManager.GetByFilter(idStanice, od, @do);
+            var list = SmenaDTOManager.GetByFilter(idStanice, od, @do);
 
-            dgvSmene.DataSource = new BindingList<DTO.SmenaDTO>(list);
+            dgvSmene.DataSource = new BindingList<SmenaDTO>(list);
 
             if (dgvSmene.Columns.Contains("Stanica"))
                 dgvSmene.Columns["Stanica"].Visible = false;
@@ -115,7 +129,7 @@ namespace VatrogasnaSluzba.Forms
         {
             if (CurrentMode != FormMode.Default) return;
 
-            var dto = dgvSmene.CurrentRow?.DataBoundItem as DTO.SmenaDTO;
+            var dto = dgvSmene.CurrentRow?.DataBoundItem as SmenaDTO;
             if (dto == null)
             {
                 _current = null;
@@ -182,13 +196,13 @@ namespace VatrogasnaSluzba.Forms
         private void StartNew()
         {
             ClearDetails();
-            _current = new DTO.SmenaDTO();
+            _current = new SmenaDTO();
             SetMode(FormMode.Creating);
         }
 
         private void StartEdit()
         {
-            if (dgvSmene.CurrentRow?.DataBoundItem is not DTO.SmenaDTO dto)
+            if (dgvSmene.CurrentRow?.DataBoundItem is not SmenaDTO dto)
             {
                 MessageBox.Show("Izaberi smenu za izmenu.");
                 return;
@@ -200,7 +214,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void DeleteSelected()
         {
-            if (dgvSmene.CurrentRow?.DataBoundItem is not DTO.SmenaDTO dto)
+            if (dgvSmene.CurrentRow?.DataBoundItem is not SmenaDTO dto)
             {
                 MessageBox.Show("Izaberi smenu za brisanje.");
                 return;
@@ -210,7 +224,7 @@ namespace VatrogasnaSluzba.Forms
                                 "Potvrda", MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                DTO.SmenaDTOManager.Delete(dto.IdSmene);
+                SmenaDTOManager.Delete(dto.IdSmene);
                 ApplyFilter();
             }
         }
@@ -219,15 +233,15 @@ namespace VatrogasnaSluzba.Forms
         {
             try
             {
-                if (cbStanica.SelectedItem is not DTO.StanicaSimpleDTO stanica)
+                if (cbStanica.SelectedItem is not StanicaSimpleDTO stanica)
                 {
                     MessageBox.Show("Izaberite stanicu.");
                     return;
                 }
 
-                var current = dgvSmene.CurrentRow?.DataBoundItem as DTO.SmenaDTO;
+                var current = dgvSmene.CurrentRow?.DataBoundItem as SmenaDTO;
 
-                var dto = new DTO.SmenaDTO
+                var dto = new SmenaDTO
                 {
                     IdSmene = (CurrentMode == FormMode.Editing) ? (_current?.IdSmene ?? 0) : 0,
                     Datum = dtpDatum.Value.Date,
@@ -239,12 +253,12 @@ namespace VatrogasnaSluzba.Forms
 
                 if (dto.IdSmene == 0)
                 {
-                    dto.IdSmene = DTO.SmenaDTOManager.Add(dto);
+                    dto.IdSmene = SmenaDTOManager.Add(dto);
                     MessageBox.Show("Smena uspešno dodata.");
                 }
                 else
                 {
-                    DTO.SmenaDTOManager.Update(dto);
+                    SmenaDTOManager.Update(dto);
                     MessageBox.Show("Podaci uspešno izmenjeni.");
                 }
 

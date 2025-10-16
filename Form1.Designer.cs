@@ -129,8 +129,9 @@
             btnSmene.Name = "btnSmene";
             btnSmene.Size = new Size(145, 38);
             btnSmene.TabIndex = 9;
-            btnSmene.Text = "Smene direkt";
+            btnSmene.Text = "Smene test";
             btnSmene.UseVisualStyleBackColor = false;
+            btnSmene.Visible = false;
             btnSmene.Click += btnSmene_Click;
             // 
             // Form1

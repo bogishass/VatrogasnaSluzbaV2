@@ -115,7 +115,7 @@
             btnIzmeni.Name = "btnIzmeni";
             btnIzmeni.Size = new Size(124, 23);
             btnIzmeni.TabIndex = 2;
-            btnIzmeni.Text = "Izmeni zaposlenog";
+            btnIzmeni.Text = "Izmeni zaposlenog...";
             btnIzmeni.UseVisualStyleBackColor = true;
             btnIzmeni.Click += btnIzmeni_Click;
             // 
@@ -125,8 +125,9 @@
             btnNovi.Name = "btnNovi";
             btnNovi.Size = new Size(124, 23);
             btnNovi.TabIndex = 0;
-            btnNovi.Text = "Novi zaposleni";
+            btnNovi.Text = "Novi zaposleni...";
             btnNovi.UseVisualStyleBackColor = true;
+            btnNovi.Click += btnNovi_Click;
             // 
             // btnObrisi
             // 
@@ -134,7 +135,7 @@
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(120, 23);
             btnObrisi.TabIndex = 1;
-            btnObrisi.Text = "Obrisi zaposlenog";
+            btnObrisi.Text = "Obriši zaposlenog";
             btnObrisi.UseVisualStyleBackColor = true;
             btnObrisi.Click += btnObrisi_Click;
             // 
@@ -397,9 +398,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(3, 88);
             label5.Name = "label5";
-            label5.Size = new Size(89, 15);
+            label5.Size = new Size(86, 15);
             label5.TabIndex = 12;
-            label5.Text = "Datum rodjenja";
+            label5.Text = "Datum rođenja";
             // 
             // label4
             // 
@@ -490,7 +491,7 @@
             label8.Name = "label8";
             label8.Size = new Size(112, 15);
             label8.TabIndex = 15;
-            label8.Text = "Datum angazovanja";
+            label8.Text = "Datum angažovanja";
             // 
             // label9
             // 
@@ -556,7 +557,7 @@
             label11.Name = "label11";
             label11.Size = new Size(94, 15);
             label11.TabIndex = 8;
-            label11.Text = "Nivo obucenosti";
+            label11.Text = "Nivo obučenosti";
             // 
             // label12
             // 
@@ -566,7 +567,7 @@
             label12.Name = "label12";
             label12.Size = new Size(84, 15);
             label12.TabIndex = 9;
-            label12.Text = "Fizicka sprema";
+            label12.Text = "Fizička sprema";
             // 
             // txbSprema
             // 
@@ -636,6 +637,7 @@
             // 
             // gbInfoTehnicar
             // 
+            gbInfoTehnicar.BackColor = SystemColors.GradientActiveCaption;
             gbInfoTehnicar.Controls.Add(tableLayoutPanel3);
             gbInfoTehnicar.Location = new Point(12, 642);
             gbInfoTehnicar.Name = "gbInfoTehnicar";
@@ -709,6 +711,7 @@
             // 
             // gbInfoDispecer
             // 
+            gbInfoDispecer.BackColor = SystemColors.GradientActiveCaption;
             gbInfoDispecer.Controls.Add(tableLayoutPanel4);
             gbInfoDispecer.Location = new Point(12, 792);
             gbInfoDispecer.Name = "gbInfoDispecer";
@@ -780,6 +783,7 @@
             // 
             // gbInfoVolonter
             // 
+            gbInfoVolonter.BackColor = SystemColors.GradientActiveCaption;
             gbInfoVolonter.Controls.Add(tableLayoutPanel5);
             gbInfoVolonter.Location = new Point(12, 729);
             gbInfoVolonter.Name = "gbInfoVolonter";
@@ -874,7 +878,7 @@
             MaximizeBox = false;
             Name = "ZaposleniForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Zaposleni";
+            Text = "Vatrogasna služba - Zaposleni";
             tabControl.ResumeLayout(false);
             Vatrogasac.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridVatrogasci).EndInit();

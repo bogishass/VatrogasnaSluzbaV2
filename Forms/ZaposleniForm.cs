@@ -364,7 +364,7 @@ namespace VatrogasnaSluzba.Forms
             if (lice is TehnicarDTO t)
             {
                 t.Specijalizacija = txbSpecijalizacija.Text;
-                t.Alati = (baseLice as TehnicarDTO).Alati ?? new List<string>();
+                t.Alati = (baseLice as TehnicarDTO)?.Alati ?? new List<string>();
             }
 
             if (lice is DispecerDTO d)
@@ -375,7 +375,7 @@ namespace VatrogasnaSluzba.Forms
 
             if (lice is VolonterDTO vol)
             {
-                vol.Vozila = (baseLice as VolonterDTO).Vozila ?? new List<VoziloVolonteraSimpleDTO>();
+                vol.Vozila = (baseLice as VolonterDTO)?.Vozila ?? new List<VoziloVolonteraSimpleDTO>();
             }
 
             return lice;

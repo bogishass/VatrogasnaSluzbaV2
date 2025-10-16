@@ -120,7 +120,7 @@
             // cbStanicaFilter
             // 
             cbStanicaFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbStanicaFilter.Location = new Point(60, 10);
+            cbStanicaFilter.Location = new Point(58, 10);
             cbStanicaFilter.Margin = new Padding(3, 2, 3, 2);
             cbStanicaFilter.Name = "cbStanicaFilter";
             cbStanicaFilter.Size = new Size(118, 23);
@@ -129,7 +129,7 @@
             // lblOd
             // 
             lblOd.AutoSize = true;
-            lblOd.Location = new Point(185, 14);
+            lblOd.Location = new Point(182, 14);
             lblOd.Name = "lblOd";
             lblOd.Size = new Size(26, 15);
             lblOd.TabIndex = 2;
@@ -138,16 +138,16 @@
             // dtpOd
             // 
             dtpOd.Format = DateTimePickerFormat.Short;
-            dtpOd.Location = new Point(213, 11);
+            dtpOd.Location = new Point(210, 10);
             dtpOd.Margin = new Padding(3, 2, 3, 2);
             dtpOd.Name = "dtpOd";
-            dtpOd.Size = new Size(113, 23);
+            dtpOd.Size = new Size(118, 23);
             dtpOd.TabIndex = 3;
             // 
             // lblDo
             // 
             lblDo.AutoSize = true;
-            lblDo.Location = new Point(332, 14);
+            lblDo.Location = new Point(336, 14);
             lblDo.Name = "lblDo";
             lblDo.Size = new Size(25, 15);
             lblDo.TabIndex = 4;
@@ -156,7 +156,7 @@
             // dtpDo
             // 
             dtpDo.Format = DateTimePickerFormat.Short;
-            dtpDo.Location = new Point(358, 10);
+            dtpDo.Location = new Point(362, 10);
             dtpDo.Margin = new Padding(3, 2, 3, 2);
             dtpDo.Name = "dtpDo";
             dtpDo.Size = new Size(113, 23);
@@ -276,7 +276,7 @@
             gbLista.Size = new Size(661, 415);
             gbLista.TabIndex = 0;
             gbLista.TabStop = false;
-            gbLista.Text = "Lista smena";
+            gbLista.Text = "Evidencija smena";
             // 
             // dgvSmene
             // 
@@ -412,7 +412,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "SmeneForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Smene ";
+            Text = "Vatrogasna služba - Smene";
             panelFilter.ResumeLayout(false);
             panelFilter.PerformLayout();
             gbLista.ResumeLayout(false);

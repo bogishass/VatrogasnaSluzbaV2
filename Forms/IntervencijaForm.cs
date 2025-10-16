@@ -263,5 +263,10 @@ namespace VatrogasnaSluzba.Forms
         {
 
         }
+
+        private void IntervencijaForm_Load_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }
