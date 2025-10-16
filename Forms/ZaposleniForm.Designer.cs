@@ -181,6 +181,7 @@
             dataGridVatrogasci.AllowUserToDeleteRows = false;
             dataGridVatrogasci.AllowUserToResizeRows = false;
             dataGridVatrogasci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridVatrogasci.BackgroundColor = SystemColors.ButtonFace;
             dataGridVatrogasci.BorderStyle = BorderStyle.Fixed3D;
             dataGridVatrogasci.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridVatrogasci.Location = new Point(0, 0);
@@ -210,6 +211,7 @@
             dataGridTehnicari.AllowUserToDeleteRows = false;
             dataGridTehnicari.AllowUserToResizeRows = false;
             dataGridTehnicari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridTehnicari.BackgroundColor = SystemColors.ButtonFace;
             dataGridTehnicari.BorderStyle = BorderStyle.Fixed3D;
             dataGridTehnicari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridTehnicari.Location = new Point(0, 0);
@@ -239,6 +241,7 @@
             dataGridDispeceri.AllowUserToDeleteRows = false;
             dataGridDispeceri.AllowUserToResizeRows = false;
             dataGridDispeceri.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridDispeceri.BackgroundColor = SystemColors.ButtonFace;
             dataGridDispeceri.BorderStyle = BorderStyle.Fixed3D;
             dataGridDispeceri.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridDispeceri.Location = new Point(0, 0);
@@ -268,6 +271,7 @@
             dataGridVolonteri.AllowUserToDeleteRows = false;
             dataGridVolonteri.AllowUserToResizeRows = false;
             dataGridVolonteri.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridVolonteri.BackgroundColor = SystemColors.ButtonFace;
             dataGridVolonteri.BorderStyle = BorderStyle.Fixed3D;
             dataGridVolonteri.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridVolonteri.Location = new Point(0, 0);
@@ -603,6 +607,7 @@
             // 
             // gbInfoVatrogasac
             // 
+            gbInfoVatrogasac.BackColor = SystemColors.GradientActiveCaption;
             gbInfoVatrogasac.Controls.Add(tableLayoutPanel2);
             gbInfoVatrogasac.Location = new Point(12, 492);
             gbInfoVatrogasac.Name = "gbInfoVatrogasac";
@@ -614,6 +619,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.BackColor = SystemColors.GradientActiveCaption;
             groupBox4.Controls.Add(tableLayoutPanel1);
             groupBox4.Location = new Point(12, 292);
             groupBox4.Name = "groupBox4";
@@ -625,6 +631,7 @@
             // label14
             // 
             label14.AutoSize = true;
+            label14.ForeColor = Color.Transparent;
             label14.Location = new Point(16, 266);
             label14.Name = "label14";
             label14.Size = new Size(36, 15);
@@ -851,6 +858,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(670, 625);
             Controls.Add(btnOtkazi);
             Controls.Add(btnSacuvaj);

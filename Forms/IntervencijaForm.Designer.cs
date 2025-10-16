@@ -73,6 +73,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 39);
             dataGridView1.Name = "dataGridView1";
@@ -108,6 +109,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Location = new Point(12, 306);
             groupBox1.Name = "groupBox1";
@@ -335,6 +337,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(750, 524);
             Controls.Add(buttonOtkazi);
             Controls.Add(groupBox1);

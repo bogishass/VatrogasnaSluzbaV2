@@ -61,6 +61,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(listView1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
@@ -118,6 +119,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.GradientActiveCaption;
             groupBox2.Controls.Add(button1);
             groupBox2.Controls.Add(btnOtkazi);
             groupBox2.Controls.Add(btnIzmeniVozilo);
@@ -179,6 +181,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // groupBox3
             // 
+            groupBox3.BackColor = SystemColors.GradientActiveCaption;
             groupBox3.Controls.Add(tableLayoutPanel1);
             groupBox3.Location = new Point(12, 314);
             groupBox3.Name = "groupBox3";
@@ -369,6 +372,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(841, 658);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);

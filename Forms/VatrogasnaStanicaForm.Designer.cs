@@ -58,6 +58,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(btnOtkazi);
             groupBox1.Controls.Add(btnSacuvaj);
             groupBox1.Controls.Add(button3);
@@ -122,6 +123,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID_Stanice, Adresa, BrojZaposlenih, BrojVozila, DostupnaInfrastruktura, PovrsinaObjekta, Komandir });
             dataGridView1.Location = new Point(6, 22);
@@ -177,6 +179,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.GradientActiveCaption;
             groupBox2.Controls.Add(tableLayoutPanel1);
             groupBox2.Location = new Point(12, 481);
             groupBox2.Name = "groupBox2";
@@ -363,6 +366,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(860, 724);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);

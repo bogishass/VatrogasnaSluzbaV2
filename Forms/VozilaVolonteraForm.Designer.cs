@@ -53,6 +53,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(btnNovo);
             groupBox1.Controls.Add(dataGridVozila);
             groupBox1.Controls.Add(btnObrisi);
@@ -80,6 +81,7 @@
             dataGridVozila.AllowUserToDeleteRows = false;
             dataGridVozila.AllowUserToResizeRows = false;
             dataGridVozila.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridVozila.BackgroundColor = SystemColors.ButtonFace;
             dataGridVozila.BorderStyle = BorderStyle.Fixed3D;
             dataGridVozila.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridVozila.Location = new Point(6, 22);
@@ -125,6 +127,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.GradientActiveCaption;
             groupBox2.Controls.Add(btnUpisi);
             groupBox2.Controls.Add(btnOcisti);
             groupBox2.Controls.Add(tableLayoutPanel1);
@@ -191,7 +194,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 37);
             label2.Name = "label2";
-            label2.Size = new Size(23, 15);
+            label2.Size = new Size(24, 15);
             label2.TabIndex = 9;
             label2.Text = "Tip";
             // 
@@ -247,6 +250,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(714, 327);
             Controls.Add(btnOtkazi);
             Controls.Add(btnPotvrdi);

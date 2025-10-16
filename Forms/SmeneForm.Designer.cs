@@ -93,6 +93,7 @@
             // 
             // panelFilter
             // 
+            panelFilter.BackColor = SystemColors.ActiveCaption;
             panelFilter.Controls.Add(lblStanicaF);
             panelFilter.Controls.Add(cbStanicaFilter);
             panelFilter.Controls.Add(lblOd);
@@ -162,21 +163,25 @@
             // 
             // btnOtkazi
             // 
+            btnOtkazi.BackColor = SystemColors.ButtonFace;
             btnOtkazi.Location = new Point(139, 176);
             btnOtkazi.Margin = new Padding(5, 6, 5, 6);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(123, 27);
             btnOtkazi.TabIndex = 1;
             btnOtkazi.Text = "Otkaži";
+            btnOtkazi.UseVisualStyleBackColor = false;
             // 
             // btnSnimi
             // 
+            btnSnimi.BackColor = SystemColors.ButtonFace;
             btnSnimi.Location = new Point(6, 176);
             btnSnimi.Margin = new Padding(5, 6, 5, 6);
             btnSnimi.Name = "btnSnimi";
             btnSnimi.Size = new Size(123, 27);
             btnSnimi.TabIndex = 0;
             btnSnimi.Text = "Sačuvaj";
+            btnSnimi.UseVisualStyleBackColor = false;
             // 
             // lblEnd
             // 
@@ -260,6 +265,7 @@
             // 
             // gbLista
             // 
+            gbLista.BackColor = SystemColors.GradientActiveCaption;
             gbLista.Controls.Add(dgvSmene);
             gbLista.Controls.Add(flpListaBtns);
             gbLista.Location = new Point(3, 4);
@@ -277,6 +283,7 @@
             dgvSmene.AllowUserToDeleteRows = false;
             dgvSmene.AllowUserToResizeRows = false;
             dgvSmene.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvSmene.BackgroundColor = SystemColors.ButtonFace;
             dgvSmene.ColumnHeadersHeight = 29;
             dgvSmene.Dock = DockStyle.Fill;
             dgvSmene.Location = new Point(3, 18);
@@ -305,30 +312,36 @@
             // 
             // btnObrisi
             // 
+            btnObrisi.BackColor = SystemColors.ButtonFace;
             btnObrisi.Location = new Point(549, 6);
             btnObrisi.Margin = new Padding(5, 6, 5, 6);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(101, 22);
             btnObrisi.TabIndex = 2;
             btnObrisi.Text = "Izbriši";
+            btnObrisi.UseVisualStyleBackColor = false;
             // 
             // btnIzmeni
             // 
+            btnIzmeni.BackColor = SystemColors.ButtonFace;
             btnIzmeni.Location = new Point(438, 6);
             btnIzmeni.Margin = new Padding(5, 6, 5, 6);
             btnIzmeni.Name = "btnIzmeni";
             btnIzmeni.Size = new Size(101, 22);
             btnIzmeni.TabIndex = 1;
             btnIzmeni.Text = "Izmeni smenu";
+            btnIzmeni.UseVisualStyleBackColor = false;
             // 
             // btnNova
             // 
+            btnNova.BackColor = SystemColors.ButtonFace;
             btnNova.Location = new Point(327, 6);
             btnNova.Margin = new Padding(5, 6, 5, 6);
             btnNova.Name = "btnNova";
             btnNova.Size = new Size(101, 22);
             btnNova.TabIndex = 0;
             btnNova.Text = "Nova smena";
+            btnNova.UseVisualStyleBackColor = false;
             // 
             // splitMain
             // 
@@ -352,6 +365,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(tableLayoutPanel1);
             groupBox1.Location = new Point(5, 5);
             groupBox1.Name = "groupBox1";
@@ -388,6 +402,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(943, 469);
             Controls.Add(splitMain);
             Controls.Add(panelFilter);
