@@ -11,13 +11,13 @@ namespace VatrogasnaSluzba.DTO
     // ===== DTO za formu (unos/izmena) =====
     public class VatrogasnaStanicaDTO
     {
-        public int IdStanice { get; set; }                   // 0 => insert (ID je GeneratedBy.Increment)
-        public string? Naziv { get; set; }                   // ako je null, generiše se iz Adrese
+        public int IdStanice { get; set; }                  
+        public string? Naziv { get; set; }                   
         public string? Adresa { get; set; }
         public int? BrojZaposlenih { get; set; }
         public int? BrojVozila { get; set; }
         public double? PovrsinaObjekta { get; set; }
-        public string? KomandirMbr { get; set; }             // JMBG komandira
+        public string? KomandirMbr { get; set; }             
         public List<string> Infrastruktura { get; set; } = new();
     }
 
@@ -47,7 +47,7 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ===== Manager =====
+    
     public static class VatrogasnaStanicaDTOManager
     {
         public static List<VatrogasnaStanicaListDTO> GetSveStaniceList()
@@ -175,7 +175,7 @@ namespace VatrogasnaSluzba.DTO
             }
         }
 
-        // >>> Fix: bulk HQL delete – izbegava NH validaciju nad entitetom
+        
         public static bool DeleteStanica(int id)
         {
             try
@@ -183,8 +183,7 @@ namespace VatrogasnaSluzba.DTO
                 using ISession s = DataLayer.GetSession();
                 using ITransaction tx = s.BeginTransaction();
 
-                // ako ima zavisnosti (npr. SMENA sa FK na stanicu), ovde ih prvo obriši ili raskini
-                // primer: s.CreateQuery("delete from Smena x where x.Stanica.IdStanice = :id").SetParameter("id", id).ExecuteUpdate();
+               
 
                 s.CreateQuery("delete from VatrogasnaStanica v where v.IdStanice = :id")
                  .SetParameter("id", id)

@@ -2,7 +2,7 @@
 {
     partial class SmeneForm
     {
-        /// <summary>Required designer variable.</summary>
+        
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
@@ -53,6 +53,7 @@
         /// <summary>Required method for Designer support.</summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmeneForm));
             panelFilter = new Panel();
             lblStanicaF = new Label();
             cbStanicaFilter = new ComboBox();
@@ -407,6 +408,7 @@
             Controls.Add(splitMain);
             Controls.Add(panelFilter);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "SmeneForm";
             StartPosition = FormStartPosition.CenterScreen;

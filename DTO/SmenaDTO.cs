@@ -57,7 +57,7 @@ namespace VatrogasnaSluzba.DTO
                 VremeKraja = s.VremeKraja,
                 BrojIntervencija = s.BrojIntervencija,
                 Stanica = s.Stanica != null ? new StanicaSimpleDTO(s.Stanica) : null,
-                // BrVatrogasaca/BrDispecera popunjavamo naknadno
+               
             };
         }
 
@@ -85,7 +85,7 @@ namespace VatrogasnaSluzba.DTO
             );
         }
 
-        // -------- FILTER --------
+       
         public static List<SmenaDTO> GetByFilter(int? idStanice, DateTime od, DateTime @do)
         {
             using var s = DataLayer.GetSession();
@@ -115,7 +115,7 @@ namespace VatrogasnaSluzba.DTO
         }
 
 
-        // -------- CREATE --------
+        
         public static int Add(SmenaDTO dto)
         {
             using var s = DataLayer.GetSession();
@@ -141,7 +141,7 @@ namespace VatrogasnaSluzba.DTO
             return e.IdSmene;
         }
 
-        // -------- UPDATE --------
+       
         public static void Update(SmenaDTO dto)
         {
             if (dto.IdSmene <= 0) throw new Exception("Nedostaje ID smene.");
@@ -166,7 +166,7 @@ namespace VatrogasnaSluzba.DTO
             tx.Commit();
         }
 
-        // -------- DELETE --------
+      
         public static void Delete(int idSmene)
         {
             using var s = DataLayer.GetSession();

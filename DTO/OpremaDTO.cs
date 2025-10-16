@@ -1,4 +1,4 @@
-﻿// File: DTO/OpremaDTO.cs
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,7 +86,6 @@ namespace VatrogasnaSluzba.DTO
                     Intervencije = new List<Intervencija>()
                 };
 
-                // po potrebi kreiraj veze (nije obavezno za tvoj UI)
                 if (dto.IntervencijeIds?.Count > 0)
                     foreach (var id in dto.IntervencijeIds.Distinct())
                         e.Intervencije.Add(s.Load<Intervencija>(id));
@@ -123,8 +122,6 @@ namespace VatrogasnaSluzba.DTO
                 e.Status = dto.Status;
                 e.DatumNabavke = dto.DatumNabavke;
 
-                // NE diraj many-to-many u update-u osim ako UI menja veze
-                // e.Intervencije.Clear();  // ← uklonjeno
 
                 s.Update(e);
                 tx.Commit();
@@ -147,7 +144,7 @@ namespace VatrogasnaSluzba.DTO
                 var e = s.Get<Oprema>(inventarskiBroj);
                 if (e == null) throw new Exception("Oprema nije pronađena.");
 
-                s.Delete(e);   // linkovi iz OPREMA_U_INTERVENCIJI će se obrisati FK-om
+                s.Delete(e);   
                 tx.Commit();
                 return true;
             }

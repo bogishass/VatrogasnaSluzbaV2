@@ -7,7 +7,7 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace VatrogasnaSluzba.DTO
 {
-    // DTO klasa
+   
     public class LiceDTO
     {
         public string MaticniBroj { get; set; }
@@ -22,12 +22,12 @@ namespace VatrogasnaSluzba.DTO
         public virtual StanicaSimpleDTO Stanica { get; set; }
 
         public List<string> Telefoni { get; set; } = new();
-        //public List<int> IntervencijeIds { get; set; } = new(); // kasnije
+        
 
-        // default konstr
+        
         public LiceDTO() { }
 
-        // konstruktor za mapiranje
+      
         public LiceDTO(Lice l)
         {
             MaticniBroj = l.MaticniBroj;
@@ -46,7 +46,7 @@ namespace VatrogasnaSluzba.DTO
 
     public class LiceListDTO
     {
-        [DisplayName("Matični broj")] // display name kolona u datagridview, posto ucitavamo podatke kao DataSource
+        [DisplayName("Matični broj")] 
         public string MaticniBroj { get; set; }
 
         [DisplayName("Ime")]
@@ -61,9 +61,9 @@ namespace VatrogasnaSluzba.DTO
         [DisplayName("Datum angažovanja")]
         public DateTime? DatPocetkaAngaz { get; set; }
 
-        public string Pozicija { get; set; } // za razdvajanje kategorija, ne prikazujemo u tabeli
+        public string Pozicija { get; set; } 
 
-        // Entitet Lice u LiceListDTO
+       
         public LiceListDTO(Lice l)
         {
             MaticniBroj = l.MaticniBroj;
@@ -75,10 +75,10 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ======== VATROGASAC ========
+    
     public class VatrogasacDTO : LiceDTO
     {
-        public string NivoObucenosti { get; set; }  // Osnovni / Srednji / Specijalni
+        public string NivoObucenosti { get; set; }  
         public string FizickaSprema { get; set; }
         public int? BrojSertifikata { get; set; }
 
@@ -91,7 +91,7 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ======== TEHNIČAR ========
+    
     public class TehnicarDTO : LiceDTO
     {
         public string Specijalizacija { get; set; }
@@ -105,7 +105,7 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ======== DISPEČER ========
+   
     public class DispecerDTO : LiceDTO
     {
         public string TipKomunikacioneOpreme { get; set; }
@@ -119,11 +119,11 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ======== VOLONTER ========
+    
     public class VolonterDTO : LiceDTO
     {
         public List<VoziloVolonteraSimpleDTO> Vozila { get; set; } = new();
-        //public IList<VoziloVolonteraSimpleDTO> Vozila { get; set; } 
+       
 
         public VolonterDTO() { }
         public VolonterDTO(Volonter v) : base(v)
@@ -132,10 +132,10 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // DTO Manager klasa za sve DTO entiteta Lice
+    
     public static class LiceDTOManager
     {
-        // kreiranje objekta odgovarajuce klase za poziciju lica
+       
         public static LiceDTO Create(Lice l)
         {
             switch (l)
@@ -159,7 +159,7 @@ namespace VatrogasnaSluzba.DTO
                 using ISession s = DataLayer.GetSession();
                 using ITransaction tx = s.BeginTransaction();
 
-                // Provera jmbg duplikata
+               
                 bool exists = s.Query<Lice>()
                                 .Count(x => x.MaticniBroj == liceDto.MaticniBroj) > 0;
                 if (exists)
@@ -168,7 +168,7 @@ namespace VatrogasnaSluzba.DTO
                     return false;
                 }
 
-                // Kreiraj pravi entitet na osnovu tipa DTO
+               
                 Lice newEntity;
 
                 switch (liceDto)
@@ -206,12 +206,12 @@ namespace VatrogasnaSluzba.DTO
                         break;
 
                     default:
-                        // Ako je samo LiceDTO, pravi bazni Lice entitet
+                       
                         newEntity = new Lice();
                         break;
                 }
 
-                // Popuni zajednička polja
+              
                 newEntity.MaticniBroj = liceDto.MaticniBroj;
                 newEntity.Ime = liceDto.Ime;
                 newEntity.Prezime = liceDto.Prezime;
@@ -222,19 +222,18 @@ namespace VatrogasnaSluzba.DTO
                 newEntity.DatPocetkaAngaz = liceDto.DatPocetkaAngaz;
                 newEntity.Pozicija = liceDto.Pozicija;
 
-                // Postavi stanicu
                 if (liceDto.Stanica != null)
                 {
                     newEntity.Stanica = s.Get<VatrogasnaStanica>(liceDto.Stanica.IdStanice);
                 }
 
-                // Telefoni
+               
                 if (liceDto.Telefoni != null && liceDto.Telefoni.Count > 0)
                 {
                     newEntity.Telefoni = new List<string>(liceDto.Telefoni);
                 }
 
-                // Sacuvaj entitet u bazu
+               
                 s.Save(newEntity);
                 tx.Commit();
 
@@ -284,7 +283,7 @@ namespace VatrogasnaSluzba.DTO
                     return false;
                 }
 
-                // zajednicka polja
+                
                 lice.Ime = liceDto.Ime;
                 lice.Prezime = liceDto.Prezime;
                 lice.Pol = liceDto.Pol;
@@ -297,7 +296,7 @@ namespace VatrogasnaSluzba.DTO
                 if (liceDto.Stanica != null)
                     lice.Stanica = s.Get<VatrogasnaStanica>(liceDto.Stanica.IdStanice);
 
-                // ne zamenjujemo listu kao objekat novom, vec je cistimo i ucitavamo nove podatke, jer nhibernate inace nece zna sta da radi
+              
                 lice.Telefoni.Clear();
                 if (liceDto.Telefoni != null)
                 {
@@ -307,7 +306,7 @@ namespace VatrogasnaSluzba.DTO
                     }
                 }
 
-                // specifična polja po tipu
+                
                 switch (lice)
                 {
                     case Vatrogasac v when liceDto is VatrogasacDTO vd:
@@ -325,14 +324,11 @@ namespace VatrogasnaSluzba.DTO
                             foreach (string alat in td.Alati)
                             {
                                 t.Alati.Add(alat);
-                                //MessageBox.Show(alat);
+                               
                             }
-                            //MessageBox.Show("obradjena lista alata iz tehnicardto");
+                           ;
                         }
-                        //else
-                        //{
-                            //MessageBox.Show("td alati null");
-                        //}
+                        
                         break;
 
                     case Dispecer d when liceDto is DispecerDTO dd:
@@ -363,7 +359,7 @@ namespace VatrogasnaSluzba.DTO
                                     Vlasnik = vol
                                 });
                             }
-                            //MessageBox.Show($"{vol.Vozila.Vlasnik.MaticniBroj}, {vol.Vozila.RegBroj}, {vol.Vozila.Tip}, {vol.Vozila.Proizvodjac}");
+                           
                         }
                         break;
                 }
@@ -401,7 +397,7 @@ namespace VatrogasnaSluzba.DTO
             try
             {
                 using ISession session = DataLayer.GetSession();
-                var svaLica = session.Query<Lice>(); // nhibernate vraca odgovarajuce tipove tj podklase
+                var svaLica = session.Query<Lice>(); 
                 return svaLica.Select(l => new LiceListDTO(l)).ToList();
             }
             catch (Exception ex)

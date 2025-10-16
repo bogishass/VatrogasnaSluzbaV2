@@ -2,14 +2,9 @@
 {
     partial class IntervencijaForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+       
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -28,6 +23,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IntervencijaForm));
             label1 = new Label();
             dataGridView1 = new DataGridView();
             buttonDodajIntervenciju = new Button();
@@ -347,6 +343,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(buttonSacuvaj);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "IntervencijaForm";
             Text = "Intervencija";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -1,4 +1,4 @@
-﻿// Forms/VoziloForm.Designer.cs — Podtip je ComboBox (comboPodtip) umesto TextBox; Tip ostaje ComboBox
+﻿
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,6 +18,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoziloForm));
             groupBox1 = new GroupBox();
             listView1 = new ListView();
             columnHeader1 = new ColumnHeader();
@@ -377,6 +378,7 @@ namespace VatrogasnaSluzba.Forms
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VoziloForm";
             Text = "Vozilo";
             groupBox1.ResumeLayout(false);

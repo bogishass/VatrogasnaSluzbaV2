@@ -3,7 +3,7 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.Mapiranja
 {
-    // subclass umesto class map valjda
+    
     public class VatrogasacMap : SubclassMap<Vatrogasac>
     {
         public VatrogasacMap()

@@ -10,11 +10,11 @@ namespace VatrogasnaSluzba.DTO
     public class VoziloDTO
     {
         public string RegBroj { get; set; }
-        public string Tip { get; set; }                // Vatrogasno / Spasilačko / Tehnička podrška
-        public string Podtip { get; set; }             // Cisterna, Platforma, Šumsko, ...
+        public string Tip { get; set; }                
+        public string Podtip { get; set; }            
         public string Proizvodjac { get; set; }
         public int? GodProizvodnje { get; set; }
-        public string Status { get; set; }             // Operativno / Neispravno / U servisu
+        public string Status { get; set; }             
         public int? Kapacitet { get; set; }
         public DateTime? DatIstekaReg { get; set; }
         public List<string> Sertifikati { get; set; } = new();

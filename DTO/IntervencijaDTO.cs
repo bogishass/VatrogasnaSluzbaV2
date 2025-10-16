@@ -8,7 +8,7 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.DTO
 {
-    // ========= INTERVENCIJA DTO =========
+   
     public class IntervencijaDTO
     {
         public int IdIntervencije { get; set; }
@@ -39,7 +39,7 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // Lakši model za DataGridView
+    
     public class IntervencijaListDTO
     {
         [DisplayName("ID")]
@@ -77,7 +77,7 @@ namespace VatrogasnaSluzba.DTO
         }
     }
 
-    // ========= DTO MANAGER =========
+    
     public static class IntervencijaDTOManager
     {
         public static IntervencijaDTO Create(Intervencija i) => new IntervencijaDTO(i);
@@ -89,7 +89,7 @@ namespace VatrogasnaSluzba.DTO
                 using ISession s = DataLayer.GetSession();
                 using ITransaction tx = s.BeginTransaction();
 
-                // Ako koristiš identity/sequence ključeve, ova provera može i da se preskoči
+               
                 bool exists = s.Query<Intervencija>().Any(x => x.IdIntervencije == dto.IdIntervencije);
                 if (dto.IdIntervencije != 0 && exists)
                 {
@@ -99,8 +99,7 @@ namespace VatrogasnaSluzba.DTO
 
                 var entity = new Intervencija
                 {
-                    // Ako je Id DB-generated, NEMOJ setovati IdIntervencije
-                    //IdIntervencije = dto.IdIntervencije,
+                   
                     VrstaIntervencije = dto.VrstaIntervencije,
                     AdresaIntervencije = dto.AdresaIntervencije,
                     DatumPocetka = dto.DatumPocetka,
@@ -115,7 +114,7 @@ namespace VatrogasnaSluzba.DTO
                 s.Save(entity);
                 tx.Commit();
 
-                // Ako DB generiše ID, možemo ga vratiti nazad u dto:
+               
                 if (dto.IdIntervencije == 0)
                     dto.IdIntervencije = entity.IdIntervencije;
 
@@ -142,7 +141,7 @@ namespace VatrogasnaSluzba.DTO
                     return false;
                 }
 
-                // Ažuriranje scalar polja
+               
                 ent.VrstaIntervencije = dto.VrstaIntervencije;
                 ent.AdresaIntervencije = dto.AdresaIntervencije;
                 ent.DatumPocetka = dto.DatumPocetka;
@@ -153,7 +152,7 @@ namespace VatrogasnaSluzba.DTO
                 ent.DatumPromene = dto.DatumPromene;
                 ent.Status = dto.Status;
 
-                // ent je attached jer je vraćen iz iste sesije => nije neophodan s.Update(ent)
+               
                 tx.Commit();
                 return true;
             }

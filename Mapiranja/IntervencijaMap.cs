@@ -8,7 +8,7 @@ namespace VatrogasnaSluzba.Mapiranja
         public IntervencijaMap()
         {
             Table("INTERVENCIJA");
-            Id(x => x.IdIntervencije).Column("ID_intervencije").GeneratedBy.Increment(); // bilo GeneratedBy.Assigned()
+            Id(x => x.IdIntervencije).Column("ID_intervencije").GeneratedBy.Increment(); 
 
             Map(x => x.VrstaIntervencije).Column("Vrsta_intervencije");
             Map(x => x.AdresaIntervencije).Column("Adresa_intervencije");

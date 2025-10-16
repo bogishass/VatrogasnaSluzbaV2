@@ -1,4 +1,4 @@
-﻿// File: Forms/OpremaForm.Designer.cs  (DESIGNER – BEZ kolone "Intervencija")
+﻿
 namespace VatrogasnaSluzba.Forms
 {
     partial class OpremaForm
@@ -15,6 +15,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpremaForm));
             label1 = new Label();
             dataGridView1 = new DataGridView();
             INVBroj = new DataGridViewTextBoxColumn();
@@ -337,6 +338,7 @@ namespace VatrogasnaSluzba.Forms
             Controls.Add(btnDodajOpremu);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "OpremaForm";
             Text = "Oprema";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

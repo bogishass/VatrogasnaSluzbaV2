@@ -2,15 +2,10 @@
 {
     partial class ZaposleniForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -28,6 +23,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZaposleniForm));
             btnIzmeni = new Button();
             btnNovi = new Button();
             btnObrisi = new Button();
@@ -874,6 +870,7 @@
             Controls.Add(groupBox4);
             Controls.Add(tabControl);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "ZaposleniForm";
             StartPosition = FormStartPosition.CenterParent;

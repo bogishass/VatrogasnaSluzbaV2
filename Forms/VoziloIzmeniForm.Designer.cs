@@ -2,14 +2,10 @@
 {
     partial class VoziloIzmeniForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+       
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
+        
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -28,6 +24,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoziloIzmeniForm));
             groupBox1 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
@@ -290,6 +287,7 @@
             ClientSize = new Size(319, 407);
             Controls.Add(btnIzmeni);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VoziloIzmeniForm";
             Text = "VoziloIzmeniForm";
             Load += VoziloIzmeniForm_Load;

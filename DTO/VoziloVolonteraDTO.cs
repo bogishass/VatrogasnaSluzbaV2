@@ -13,7 +13,7 @@ namespace VatrogasnaSluzba.DTO
         public string Proizvodjac { get; set; }
         public string VlasnikJMBG { get; set; }
 
-        //public VolonterDTO Vlasnik { get; set; }  // nije neophodno za sad
+       
 
         public VoziloVolonteraSimpleDTO() { }
         public VoziloVolonteraSimpleDTO(VoziloVolontera v) 
@@ -23,16 +23,12 @@ namespace VatrogasnaSluzba.DTO
             Proizvodjac = v.Proizvodjac;
             VlasnikJMBG = v.Vlasnik.MaticniBroj;
 
-            //Vlasnik = new VolonterDTO(v.Vlasnik); // nije neophodno za sad
+            
         }
     }
 
     public class VoziloVolonteraDTOManager
     {
-        //public static List<VoziloVolonteraSimpleDTO> GetVozilaVolonteraSimple(string jmbg)
-        //{
-        //    VolonterDTO volonter = (VolonterDTO)LiceDTOManager.GetLice(jmbg);
-        //    return volonter.Vozila;
-        //}
+        
     }
 }

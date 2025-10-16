@@ -11,7 +11,7 @@ namespace VatrogasnaSluzba.Mapiranja
         public ServisMap()
         {
             Table("SERVIS");
-            Id(x => x.IdServisa).Column("ID_SERVISA").GeneratedBy.Increment(); // bilo GeneratedBy.Assigned()
+            Id(x => x.IdServisa).Column("ID_SERVISA").GeneratedBy.Increment(); 
 
             Map(x => x.DatumServisa).Column("DATUM_SERVISA");
             Map(x => x.TipServisa).Column("TIP_SERVISA").Not.Nullable();

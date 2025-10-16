@@ -47,7 +47,7 @@ namespace VatrogasnaSluzba.Helpers
         {
             if (!IsValid(tb, msg)) return false;
 
-            if (!Regex.IsMatch(tb.Text, @"^\d{13}$")) // 13 karaktera i samo cifre
+            if (!Regex.IsMatch(tb.Text, @"^\d{13}$")) 
             {
                 MessageBox.Show(msg);
                 return false;

@@ -1,4 +1,4 @@
-﻿// Forms/VatrogasnaStanicaForm.Designer.cs
+﻿
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,6 +18,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VatrogasnaStanicaForm));
             groupBox1 = new GroupBox();
             btnOtkazi = new Button();
             btnSacuvaj = new Button();
@@ -370,6 +371,7 @@ namespace VatrogasnaSluzba.Forms
             ClientSize = new Size(860, 724);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "VatrogasnaStanicaForm";
             Text = "VatrogasnaStanica";
             groupBox1.ResumeLayout(false);
