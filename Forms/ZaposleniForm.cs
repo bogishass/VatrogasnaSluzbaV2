@@ -8,7 +8,6 @@ using VatrogasnaSluzba.Helpers;
 
 namespace VatrogasnaSluzba.Forms
 {
-    public enum FormMode { Default, Creating, Editing }
 
     public partial class ZaposleniForm : Form
     {
@@ -508,6 +507,11 @@ namespace VatrogasnaSluzba.Forms
                 txbTipOpreme.Clear();
                 txbBrSmena.Clear();
             }
+        }
+        public enum FormMode { 
+            Default, 
+            Creating, 
+            Editing 
         }
     }
 }

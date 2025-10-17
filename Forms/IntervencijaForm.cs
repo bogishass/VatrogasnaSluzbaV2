@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NHibernate;
-
 using VatrogasnaSluzba.DTO;
-
 
 namespace VatrogasnaSluzba.Forms
 {
@@ -19,6 +17,16 @@ namespace VatrogasnaSluzba.Forms
         private readonly BindingList<IntervencijaListDTO> _model = new();
         private bool _editMode = false;
         private int _editingId = 0;
+
+        private List<LiceDTO> _izabranaLica = new();
+        private List<VoziloDTO> _izabranaVozila = new();
+        private List<OpremaDTO> _izabranaOprema = new();
+        private List<VoziloVolonteraSimpleDTO> _izabranaVozilaVol = new();
+
+        private List<LiceDTO> _tempLica = new();
+        private List<VoziloDTO> _tempVozila = new();
+        private List<OpremaDTO> _tempOprema = new();
+        private List<VoziloVolonteraSimpleDTO> _tempVozilaVol = new();
 
         public IntervencijaForm()
         {
@@ -33,13 +41,14 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.DataSource = _model;
 
-            // << NOVO: reaguj na promenu selekcije >>
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
 
             PrepareNullableDtp(dateTimePickerDatumPocetka);
             PrepareNullableDtp(dateTimePickerDatumKraj);
             PrepareNullableDtp(dateTimePickerVremeDolaska);
             PrepareNullableDtp(dateTimePickerVremePromena);
+
+            comboStatus.Items.AddRange(new[] { "U toku", "Završena", "Odložena" });
 
             SetEditMode(false);
 
@@ -49,12 +58,13 @@ namespace VatrogasnaSluzba.Forms
             buttonSacuvaj.Click += buttonSacuvaj_Click;
             buttonOtkazi.Click += buttonOtkazi_Click;
 
+            btnResursi.Click += btnResursi_Click;
+
             this.Load += IntervencijaForm_Load;
         }
 
         private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
         {
-            // Dok si u režimu izmene, ne diramo formu (da ne pregazimo izmene)
             if (_editMode) return;
 
             var row = GetSelectedRow();
@@ -64,8 +74,13 @@ namespace VatrogasnaSluzba.Forms
             if (full == null) return;
 
             FillForm(full);
-        }
 
+            // Osveži izabrane liste iz DTO-a
+            _izabranaLica = new List<LiceDTO>(full.Lica);
+            _izabranaVozila = new List<VoziloDTO>(full.Vozila);
+            _izabranaOprema = new List<OpremaDTO>(full.Oprema);
+            _izabranaVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
+        }
 
         private void IntervencijaForm_Load(object sender, EventArgs e) => RefreshData();
 
@@ -116,6 +131,13 @@ namespace VatrogasnaSluzba.Forms
             if (full == null) { MessageBox.Show("Intervencija nije pronađena."); return; }
 
             FillForm(full);
+
+            // Kopiraj liste u privremene dok traje edit
+            _tempLica = new List<LiceDTO>(full.Lica);
+            _tempVozila = new List<VoziloDTO>(full.Vozila);
+            _tempOprema = new List<OpremaDTO>(full.Oprema);
+            _tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
+
             _editingId = row.IdIntervencije;
             SetEditMode(true);
         }
@@ -132,6 +154,12 @@ namespace VatrogasnaSluzba.Forms
 
             if (IntervencijaDTOManager.UpdateIntervencija(dto))
             {
+                // Ako je sačuvano u bazu, privremene liste postaju glavne
+                _izabranaLica = new List<LiceDTO>(_tempLica);
+                _izabranaVozila = new List<VoziloDTO>(_tempVozila);
+                _izabranaOprema = new List<OpremaDTO>(_tempOprema);
+                _izabranaVozilaVol = new List<VoziloVolonteraSimpleDTO>(_tempVozilaVol);
+
                 RefreshData();
                 CancelEdit();
             }
@@ -139,8 +167,6 @@ namespace VatrogasnaSluzba.Forms
 
         // ===== Otkaži izmene =====
         private void buttonOtkazi_Click(object? sender, EventArgs e) => CancelEdit();
-
-
 
         // ===== Pomocne =====
         private IntervencijaListDTO? GetSelectedRow()
@@ -153,12 +179,16 @@ namespace VatrogasnaSluzba.Forms
         {
             _editMode = enabled;
 
+            dataGridView1.Enabled = !enabled;
+
             buttonDodajIntervenciju.Enabled = !enabled;
             buttonObrisiIntervenciju.Enabled = !enabled;
             buttonIzmeniIntervenciju.Enabled = !enabled;
 
             buttonSacuvaj.Visible = enabled;
             buttonOtkazi.Visible = enabled;
+
+            btnResursi.Enabled = enabled;
 
             if (!enabled)
             {
@@ -167,16 +197,22 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        private void CancelEdit() => SetEditMode(false);
+        private void CancelEdit()
+        {
+            _tempLica.Clear();
+            _tempVozila.Clear();
+            _tempOprema.Clear();
+            _tempVozilaVol.Clear();
+            SetEditMode(false);
+        }
 
         private void ClearForm()
         {
-            txbVrstaInterakcije.Clear(); // (naziv sa tvoje forme)
+            txbVrstaInterakcije.Clear();
             txbAdresaIntervencije.Clear();
             txbOpisSituacije.Clear();
-            txbStatus.Clear();
+            comboStatus.SelectedIndex = -1;
             txbBrojVatrogasaca.Clear();
-            //txbSmena.Clear(); // ignorisemo u DTO, ali čistimo polje
 
             ResetNullableDtp(dateTimePickerDatumPocetka);
             ResetNullableDtp(dateTimePickerDatumKraj);
@@ -186,8 +222,8 @@ namespace VatrogasnaSluzba.Forms
 
         private void PrepareNullableDtp(DateTimePicker dtp)
         {
-            dtp.ShowCheckBox = true; // checkbox = “ima vrednost”
-            dtp.Checked = false;     // start kao null
+            dtp.ShowCheckBox = true;
+            dtp.Checked = false;
         }
 
         private void ResetNullableDtp(DateTimePicker dtp) => dtp.Checked = false;
@@ -196,7 +232,6 @@ namespace VatrogasnaSluzba.Forms
 
         private IntervencijaDTO? ReadDtoFromForm()
         {
-            // Osnovna validacija
             if (string.IsNullOrWhiteSpace(txbVrstaInterakcije.Text))
             {
                 MessageBox.Show("Unesi VrstaIntervencije.");
@@ -225,8 +260,11 @@ namespace VatrogasnaSluzba.Forms
                 BrojVatrogasaca = brojVatrogasaca,
                 VremeDolaska = GetNullable(dateTimePickerVremeDolaska),
                 DatumPromene = GetNullable(dateTimePickerVremePromena),
-                Status = string.IsNullOrWhiteSpace(txbStatus.Text) ? null : txbStatus.Text.Trim()
-                // txbSmena se IGNORIŠE (DTO bez referenci)
+                Status = string.IsNullOrWhiteSpace(comboStatus.SelectedItem?.ToString()) ? null : comboStatus.SelectedItem?.ToString().Trim(),
+                Lica = _editMode ? _tempLica : _izabranaLica,
+                Vozila = _editMode ? _tempVozila : _izabranaVozila,
+                Oprema = _editMode ? _tempOprema : _izabranaOprema,
+                VozilaVolontera = _editMode ? _tempVozilaVol : _izabranaVozilaVol
             };
         }
 
@@ -235,9 +273,8 @@ namespace VatrogasnaSluzba.Forms
             txbVrstaInterakcije.Text = dto.VrstaIntervencije;
             txbAdresaIntervencije.Text = dto.AdresaIntervencije;
             txbOpisSituacije.Text = dto.OpisSituacije ?? "";
-            txbStatus.Text = dto.Status ?? "";
+            comboStatus.SelectedItem = dto.Status ?? "";
             txbBrojVatrogasaca.Text = dto.BrojVatrogasaca?.ToString() ?? "";
-            // txbSmena ostaje prazan (nije deo DTO-a)
 
             SetDtp(dateTimePickerDatumPocetka, dto.DatumPocetka);
             SetDtp(dateTimePickerDatumKraj, dto.DatumKraja);
@@ -259,14 +296,36 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        private void IntervencijaForm_Load_1(object sender, EventArgs e)
+        private void btnResursi_Click(object sender, EventArgs e)
         {
+            if (!_editMode || _editingId == 0) return;
 
-        }
+            var row = GetSelectedRow();
+            if (row == null) { MessageBox.Show("Nijedna intervencija nije selektovana."); return; }
 
-        private void IntervencijaForm_Load_2(object sender, EventArgs e)
-        {
+            var dto = IntervencijaDTOManager.GetIntervencija(row.IdIntervencije);
+            if (dto == null) { MessageBox.Show("Intervencija ne postoji."); return; }
 
+            var form = new IntervencijaResursiForm(new IntervencijaDTO
+            {
+                Lica = new List<LiceDTO>(_tempLica),
+                Vozila = new List<VoziloDTO>(_tempVozila),
+                Oprema = new List<OpremaDTO>(_tempOprema),
+                VozilaVolontera = new List<VoziloVolonteraSimpleDTO>(_tempVozilaVol)
+            });
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                _tempLica = new List<LiceDTO>(form.IzabranaLica);
+                _tempVozila = new List<VoziloDTO>(form.IzabranaVozila);
+                _tempOprema = new List<OpremaDTO>(form.IzabranaOprema);
+                _tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(form.IzabranaVozilaVolontera);
+
+                MessageBox.Show(
+                    $"Označeno {_tempLica.Count} lica, {_tempVozila.Count} vozila, {_tempVozilaVol.Count} vozila volontera, {_tempOprema.Count} opreme.",
+                    "Resursi"
+                );
+            }
         }
     }
 }

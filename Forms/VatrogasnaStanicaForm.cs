@@ -1,5 +1,4 @@
-﻿// File: Forms/VatrogasnaStanicaForm.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,7 +8,8 @@ namespace VatrogasnaSluzba.Forms
 {
     public partial class VatrogasnaStanicaForm : Form
     {
-        private bool _editMode = false;
+        public enum FormMode { Default, Creating, Editing }
+        private FormMode CurrentMode = FormMode.Default;
         private int _editingId = 0;
 
         private readonly string[] _infraKatalog = new[]
@@ -28,21 +28,18 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.ReadOnly = true;
 
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
-            button1.Click += button1_Click;     // Dodaj
-            button2.Click += button2_Click;     // Obriši
-            button3.Click += button3_Click;     // Izmeni
+            button1.Click += button1_Click;
+            button2.Click += button2_Click;
+            button3.Click += button3_Click;
             btnSacuvaj.Click += btnSacuvaj_Click;
             btnOtkazi.Click += btnOtkazi_Click;
-
-            // Smene dugme -> otvori SmeneForm
             btnSmene.Click += btnSmene_Click;
 
-            // napuni combo za infrastrukturu (jedan izbor)
             comboDostupnaInfrastruktura.Items.Clear();
             comboDostupnaInfrastruktura.Items.AddRange(_infraKatalog);
             comboDostupnaInfrastruktura.SelectedIndex = -1;
 
-            SetEditButtons(false);
+            SetFormMode(FormMode.Default);
             LoadGrid();
         }
 
@@ -89,7 +86,6 @@ namespace VatrogasnaSluzba.Forms
             txbPovrsinaObjekta.Text = s?.PovrsinaObjekta?.ToString() ?? "";
             txbKomandir.Text = s?.KomandirMbr ?? "";
 
-            // povuci prvi infra string nazad u combo (ako postoji)
             if (s != null && s.Infrastruktura != null && s.Infrastruktura.Count > 0)
                 comboDostupnaInfrastruktura.SelectedItem =
                     _infraKatalog.FirstOrDefault(x => string.Equals(x, s.Infrastruktura[0], StringComparison.OrdinalIgnoreCase));
@@ -108,34 +104,38 @@ namespace VatrogasnaSluzba.Forms
             comboDostupnaInfrastruktura.SelectedIndex = -1;
         }
 
-        private void SetEditButtons(bool editing)
+        private void SetFormMode(FormMode mode)
         {
-            btnSacuvaj.Visible = editing;
-            btnOtkazi.Visible = editing;
-            button1.Enabled = !editing; // Dodaj
-            button2.Enabled = !editing; // Obriši
-            button3.Enabled = !editing; // Izmeni
+            CurrentMode = mode;
+            btnSacuvaj.Visible = mode != FormMode.Default;
+            btnOtkazi.Visible = mode != FormMode.Default;
+            button1.Enabled = mode == FormMode.Default;
+            button2.Enabled = mode == FormMode.Default;
+            button3.Enabled = mode == FormMode.Default;
+            txbID_Stanice.Enabled = mode == FormMode.Creating;
         }
 
         private void EnterEditMode(int id)
         {
-            _editMode = true;
             _editingId = id;
-            SetEditButtons(true);
+            SetFormMode(FormMode.Editing);
         }
 
-        private void ExitEditMode()
+        private void EnterCreateMode()
         {
-            _editMode = false;
             _editingId = 0;
-            SetEditButtons(false);
+            SetFormMode(FormMode.Creating);
         }
 
-        // ====== events ======
+        private void ExitMode()
+        {
+            _editingId = 0;
+            SetFormMode(FormMode.Default);
+        }
 
         private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (CurrentMode != FormMode.Default) return;
             if (dataGridView1.SelectedRows.Count == 0) { ClearForm(); return; }
 
             var idObj = dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value;
@@ -146,7 +146,6 @@ namespace VatrogasnaSluzba.Forms
             FillForm(dto);
         }
 
-        // Smene za pojedinacnu stanicu
         private void btnSmene_Click(object? sender, EventArgs e)
         {
             var idObj = dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value;
@@ -159,23 +158,15 @@ namespace VatrogasnaSluzba.Forms
             f.ShowDialog(this);
         }
 
-        // Dodaj
         private void button1_Click(object? sender, EventArgs e)
         {
-            if (_editMode) return;
-
-            var dto = ReadForm();
-            if (StanicaDTOManager.AddStanica(dto))
-            {
-                LoadGrid();
-                ClearForm();
-            }
+            if (CurrentMode != FormMode.Default) return;
+            EnterCreateMode();
         }
 
-        // Obriši
         private void button2_Click(object? sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (CurrentMode != FormMode.Default) return;
             if (dataGridView1.SelectedRows.Count == 0) return;
 
             var id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value);
@@ -186,35 +177,44 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // Izmeni → uključi edit mod
         private void button3_Click(object? sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (CurrentMode != FormMode.Default) return;
             if (dataGridView1.SelectedRows.Count == 0) return;
 
             var id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID_Stanice"].Value);
             EnterEditMode(id);
         }
 
-        // Sačuvaj (u edit modu)
         private void btnSacuvaj_Click(object? sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (CurrentMode == FormMode.Default) return;
 
             var dto = ReadForm();
-            if (StanicaDTOManager.UpdateStanica(dto))
+            if (CurrentMode == FormMode.Creating)
             {
-                ExitEditMode();
-                LoadGrid();
+                if (StanicaDTOManager.AddStanica(dto))
+                {
+                    ExitMode();
+                    LoadGrid();
+                    ClearForm();
+                }
+            }
+            else if (CurrentMode == FormMode.Editing)
+            {
+                if (StanicaDTOManager.UpdateStanica(dto))
+                {
+                    ExitMode();
+                    LoadGrid();
+                }
             }
         }
 
-        // Otkaži (u edit modu)
         private void btnOtkazi_Click(object? sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (CurrentMode == FormMode.Default) return;
 
-            ExitEditMode();
+            ExitMode();
 
             if (dataGridView1.SelectedRows.Count > 0)
             {

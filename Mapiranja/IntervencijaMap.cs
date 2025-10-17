@@ -44,12 +44,6 @@ namespace VatrogasnaSluzba.Mapiranja
                 .ChildKeyColumn("Inventarski_broj")
                 .Cascade.None();
 
-            HasManyToMany(x => x.Volonteri)
-                .Table("VOLONTERI_U_INTERVENCIJI")
-                .ParentKeyColumn("ID_intervencije")
-                .ChildKeyColumn("Maticni_broj")
-                .Cascade.None();
-
             HasManyToMany(x => x.VozilaVolontera)
                 .Table("VOZILA_VOL_U_INTERVENCIJI")
                 .ParentKeyColumn("ID_intervencije")

@@ -7,7 +7,6 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace VatrogasnaSluzba.DTO
 {
-   
     public class LiceDTO
     {
         public string MaticniBroj { get; set; }
@@ -20,14 +19,8 @@ namespace VatrogasnaSluzba.DTO
         public DateTime? DatPocetkaAngaz { get; set; }
         public string Pozicija { get; set; }
         public virtual StanicaSimpleDTO Stanica { get; set; }
-
         public List<string> Telefoni { get; set; } = new();
-        
-
-        
         public LiceDTO() { }
-
-      
         public LiceDTO(Lice l)
         {
             MaticniBroj = l.MaticniBroj;
@@ -60,10 +53,7 @@ namespace VatrogasnaSluzba.DTO
 
         [DisplayName("Datum angažovanja")]
         public DateTime? DatPocetkaAngaz { get; set; }
-
         public string Pozicija { get; set; } 
-
-       
         public LiceListDTO(Lice l)
         {
             MaticniBroj = l.MaticniBroj;
@@ -81,7 +71,6 @@ namespace VatrogasnaSluzba.DTO
         public string NivoObucenosti { get; set; }  
         public string FizickaSprema { get; set; }
         public int? BrojSertifikata { get; set; }
-
         public VatrogasacDTO() { }
         public VatrogasacDTO(Vatrogasac v) : base(v)
         {
@@ -96,7 +85,6 @@ namespace VatrogasnaSluzba.DTO
     {
         public string Specijalizacija { get; set; }
         public List<string> Alati { get; set; } = new();
-
         public TehnicarDTO() { }
         public TehnicarDTO(Tehnicar t) : base(t)
         {
@@ -110,7 +98,6 @@ namespace VatrogasnaSluzba.DTO
     {
         public string TipKomunikacioneOpreme { get; set; }
         public int? BrojSmenaMesecno { get; set; }
-
         public DispecerDTO() { }
         public DispecerDTO(Dispecer d) : base(d)
         {
@@ -123,8 +110,6 @@ namespace VatrogasnaSluzba.DTO
     public class VolonterDTO : LiceDTO
     {
         public List<VoziloVolonteraSimpleDTO> Vozila { get; set; } = new();
-       
-
         public VolonterDTO() { }
         public VolonterDTO(Volonter v) : base(v)
         {
@@ -135,7 +120,6 @@ namespace VatrogasnaSluzba.DTO
     
     public static class LiceDTOManager
     {
-       
         public static LiceDTO Create(Lice l)
         {
             switch (l)
@@ -158,7 +142,6 @@ namespace VatrogasnaSluzba.DTO
             {
                 using ISession s = DataLayer.GetSession();
                 using ITransaction tx = s.BeginTransaction();
-
                
                 bool exists = s.Query<Lice>()
                                 .Count(x => x.MaticniBroj == liceDto.MaticniBroj) > 0;
@@ -168,7 +151,6 @@ namespace VatrogasnaSluzba.DTO
                     return false;
                 }
 
-               
                 Lice newEntity;
 
                 switch (liceDto)
@@ -211,7 +193,6 @@ namespace VatrogasnaSluzba.DTO
                         break;
                 }
 
-              
                 newEntity.MaticniBroj = liceDto.MaticniBroj;
                 newEntity.Ime = liceDto.Ime;
                 newEntity.Prezime = liceDto.Prezime;
@@ -232,7 +213,6 @@ namespace VatrogasnaSluzba.DTO
                 {
                     newEntity.Telefoni = new List<string>(liceDto.Telefoni);
                 }
-
                
                 s.Save(newEntity);
                 tx.Commit();
@@ -282,7 +262,6 @@ namespace VatrogasnaSluzba.DTO
                     MessageBox.Show("Lice nije pronađeno u bazi.");
                     return false;
                 }
-
                 
                 lice.Ime = liceDto.Ime;
                 lice.Prezime = liceDto.Prezime;
@@ -295,7 +274,6 @@ namespace VatrogasnaSluzba.DTO
 
                 if (liceDto.Stanica != null)
                     lice.Stanica = s.Get<VatrogasnaStanica>(liceDto.Stanica.IdStanice);
-
               
                 lice.Telefoni.Clear();
                 if (liceDto.Telefoni != null)

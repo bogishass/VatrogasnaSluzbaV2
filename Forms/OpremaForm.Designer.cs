@@ -151,7 +151,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // btnSacuvaj
             // 
-            btnSacuvaj.Location = new Point(552, 601);
+            btnSacuvaj.Location = new Point(552, 597);
             btnSacuvaj.Name = "btnSacuvaj";
             btnSacuvaj.Size = new Size(99, 24);
             btnSacuvaj.TabIndex = 5;
@@ -161,7 +161,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // btnOtkazi
             // 
-            btnOtkazi.Location = new Point(657, 601);
+            btnOtkazi.Location = new Point(657, 597);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(99, 24);
             btnOtkazi.TabIndex = 6;
@@ -173,7 +173,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(12, 378);
+            groupBox1.Location = new Point(12, 377);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(384, 235);
             groupBox1.TabIndex = 5;
@@ -346,7 +346,7 @@ namespace VatrogasnaSluzba.Forms
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(766, 631);
+            ClientSize = new Size(766, 628);
             Controls.Add(groupBox1);
             Controls.Add(btnOtkazi);
             Controls.Add(btnSacuvaj);
@@ -357,6 +357,7 @@ namespace VatrogasnaSluzba.Forms
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "OpremaForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Vatrogasna služba - Oprema";

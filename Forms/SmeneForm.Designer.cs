@@ -105,7 +105,7 @@
             panelFilter.Location = new Point(0, 0);
             panelFilter.Margin = new Padding(3, 2, 3, 2);
             panelFilter.Name = "panelFilter";
-            panelFilter.Size = new Size(943, 45);
+            panelFilter.Size = new Size(947, 45);
             panelFilter.TabIndex = 1;
             // 
             // lblStanicaF
@@ -165,7 +165,7 @@
             // btnOtkazi
             // 
             btnOtkazi.BackColor = SystemColors.ButtonFace;
-            btnOtkazi.Location = new Point(139, 176);
+            btnOtkazi.Location = new Point(140, 182);
             btnOtkazi.Margin = new Padding(5, 6, 5, 6);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(123, 27);
@@ -176,7 +176,7 @@
             // btnSnimi
             // 
             btnSnimi.BackColor = SystemColors.ButtonFace;
-            btnSnimi.Location = new Point(6, 176);
+            btnSnimi.Location = new Point(6, 182);
             btnSnimi.Margin = new Padding(5, 6, 5, 6);
             btnSnimi.Name = "btnSnimi";
             btnSnimi.Size = new Size(123, 27);
@@ -269,7 +269,7 @@
             gbLista.BackColor = SystemColors.GradientActiveCaption;
             gbLista.Controls.Add(dgvSmene);
             gbLista.Controls.Add(flpListaBtns);
-            gbLista.Location = new Point(3, 4);
+            gbLista.Location = new Point(10, 8);
             gbLista.Margin = new Padding(3, 2, 3, 2);
             gbLista.Name = "gbLista";
             gbLista.Padding = new Padding(3, 2, 3, 2);
@@ -282,12 +282,12 @@
             // 
             dgvSmene.AllowUserToAddRows = false;
             dgvSmene.AllowUserToDeleteRows = false;
+            dgvSmene.AllowUserToOrderColumns = true;
             dgvSmene.AllowUserToResizeRows = false;
             dgvSmene.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvSmene.BackgroundColor = SystemColors.ButtonFace;
             dgvSmene.ColumnHeadersHeight = 29;
-            dgvSmene.Dock = DockStyle.Fill;
-            dgvSmene.Location = new Point(3, 18);
+            dgvSmene.Location = new Point(6, 20);
             dgvSmene.Margin = new Padding(3, 2, 3, 2);
             dgvSmene.MultiSelect = false;
             dgvSmene.Name = "dgvSmene";
@@ -295,7 +295,7 @@
             dgvSmene.RowHeadersVisible = false;
             dgvSmene.RowHeadersWidth = 51;
             dgvSmene.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSmene.Size = new Size(655, 361);
+            dgvSmene.Size = new Size(649, 350);
             dgvSmene.TabIndex = 0;
             // 
             // flpListaBtns
@@ -360,15 +360,15 @@
             splitMain.Panel2.Controls.Add(groupBox1);
             splitMain.Panel2.Controls.Add(btnOtkazi);
             splitMain.Panel2.Controls.Add(btnSnimi);
-            splitMain.Size = new Size(943, 424);
-            splitMain.SplitterDistance = 667;
+            splitMain.Size = new Size(947, 432);
+            splitMain.SplitterDistance = 669;
             splitMain.TabIndex = 0;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(5, 5);
+            groupBox1.Location = new Point(6, 8);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(257, 165);
             groupBox1.TabIndex = 2;
@@ -404,12 +404,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(943, 469);
+            ClientSize = new Size(947, 477);
             Controls.Add(splitMain);
             Controls.Add(panelFilter);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "SmeneForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Vatrogasna služba - Smene";

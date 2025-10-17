@@ -112,7 +112,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(264, 21);
+            pictureBox1.Location = new Point(261, 21);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(201, 219);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -125,7 +125,7 @@
             btnSmene.FlatStyle = FlatStyle.Flat;
             btnSmene.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnSmene.ForeColor = Color.White;
-            btnSmene.Location = new Point(163, 202);
+            btnSmene.Location = new Point(12, 276);
             btnSmene.Name = "btnSmene";
             btnSmene.Size = new Size(145, 38);
             btnSmene.TabIndex = 9;
@@ -139,7 +139,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(561, 264);
+            ClientSize = new Size(474, 256);
             Controls.Add(btnSmene);
             Controls.Add(btnIntervencije);
             Controls.Add(btnStanice);

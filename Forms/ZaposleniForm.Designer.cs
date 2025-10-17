@@ -176,6 +176,7 @@
             // 
             dataGridVatrogasci.AllowUserToAddRows = false;
             dataGridVatrogasci.AllowUserToDeleteRows = false;
+            dataGridVatrogasci.AllowUserToOrderColumns = true;
             dataGridVatrogasci.AllowUserToResizeRows = false;
             dataGridVatrogasci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridVatrogasci.BackgroundColor = SystemColors.ButtonFace;
@@ -206,6 +207,7 @@
             // 
             dataGridTehnicari.AllowUserToAddRows = false;
             dataGridTehnicari.AllowUserToDeleteRows = false;
+            dataGridTehnicari.AllowUserToOrderColumns = true;
             dataGridTehnicari.AllowUserToResizeRows = false;
             dataGridTehnicari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridTehnicari.BackgroundColor = SystemColors.ButtonFace;
@@ -236,6 +238,7 @@
             // 
             dataGridDispeceri.AllowUserToAddRows = false;
             dataGridDispeceri.AllowUserToDeleteRows = false;
+            dataGridDispeceri.AllowUserToOrderColumns = true;
             dataGridDispeceri.AllowUserToResizeRows = false;
             dataGridDispeceri.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridDispeceri.BackgroundColor = SystemColors.ButtonFace;
@@ -266,6 +269,7 @@
             // 
             dataGridVolonteri.AllowUserToAddRows = false;
             dataGridVolonteri.AllowUserToDeleteRows = false;
+            dataGridVolonteri.AllowUserToOrderColumns = true;
             dataGridVolonteri.AllowUserToResizeRows = false;
             dataGridVolonteri.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridVolonteri.BackgroundColor = SystemColors.ButtonFace;

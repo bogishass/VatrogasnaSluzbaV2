@@ -76,6 +76,7 @@
             // 
             dataGridVozila.AllowUserToAddRows = false;
             dataGridVozila.AllowUserToDeleteRows = false;
+            dataGridVozila.AllowUserToOrderColumns = true;
             dataGridVozila.AllowUserToResizeRows = false;
             dataGridVozila.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridVozila.BackgroundColor = SystemColors.ButtonFace;
@@ -191,7 +192,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 37);
             label2.Name = "label2";
-            label2.Size = new Size(24, 15);
+            label2.Size = new Size(23, 15);
             label2.TabIndex = 9;
             label2.Text = "Tip";
             // 
@@ -223,7 +224,7 @@
             // 
             btnPotvrdi.BackColor = Color.DarkSeaGreen;
             btnPotvrdi.Font = new Font("Segoe UI", 9F);
-            btnPotvrdi.Location = new Point(501, 290);
+            btnPotvrdi.Location = new Point(501, 262);
             btnPotvrdi.Name = "btnPotvrdi";
             btnPotvrdi.Size = new Size(99, 30);
             btnPotvrdi.TabIndex = 11;
@@ -235,7 +236,7 @@
             // 
             btnOtkazi.BackColor = Color.LightCoral;
             btnOtkazi.Font = new Font("Segoe UI", 9F);
-            btnOtkazi.Location = new Point(606, 290);
+            btnOtkazi.Location = new Point(606, 262);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(99, 30);
             btnOtkazi.TabIndex = 10;
@@ -248,7 +249,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(714, 327);
+            ClientSize = new Size(714, 302);
             Controls.Add(btnOtkazi);
             Controls.Add(btnPotvrdi);
             Controls.Add(groupBox2);

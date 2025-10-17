@@ -24,7 +24,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IntervencijaForm));
-            label1 = new Label();
             dataGridView1 = new DataGridView();
             buttonDodajIntervenciju = new Button();
             buttonObrisiIntervenciju = new Button();
@@ -40,7 +39,6 @@
             label5 = new Label();
             dateTimePickerDatumKraj = new DateTimePicker();
             label12 = new Label();
-            txbStatus = new TextBox();
             txbBrojVatrogasaca = new TextBox();
             label7 = new Label();
             label9 = new Label();
@@ -49,66 +47,67 @@
             dateTimePickerVremePromena = new DateTimePicker();
             label8 = new Label();
             txbOpisSituacije = new TextBox();
+            comboStatus = new ComboBox();
+            label2 = new Label();
+            btnResursi = new Button();
             buttonSacuvaj = new Button();
             buttonOtkazi = new Button();
+            groupBox2 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(124, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Evidencija intervencija";
             // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 37);
+            dataGridView1.Location = new Point(9, 22);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(727, 251);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.Size = new Size(608, 247);
             dataGridView1.TabIndex = 1;
             // 
             // buttonDodajIntervenciju
             // 
-            buttonDodajIntervenciju.Location = new Point(641, 304);
+            buttonDodajIntervenciju.Location = new Point(623, 22);
             buttonDodajIntervenciju.Name = "buttonDodajIntervenciju";
-            buttonDodajIntervenciju.Size = new Size(98, 45);
+            buttonDodajIntervenciju.Size = new Size(116, 40);
             buttonDodajIntervenciju.TabIndex = 2;
             buttonDodajIntervenciju.Text = "Dodaj intervenciju";
             buttonDodajIntervenciju.UseVisualStyleBackColor = true;
             // 
             // buttonObrisiIntervenciju
             // 
-            buttonObrisiIntervenciju.Location = new Point(641, 353);
+            buttonObrisiIntervenciju.Location = new Point(623, 114);
             buttonObrisiIntervenciju.Name = "buttonObrisiIntervenciju";
-            buttonObrisiIntervenciju.Size = new Size(98, 46);
+            buttonObrisiIntervenciju.Size = new Size(116, 40);
             buttonObrisiIntervenciju.TabIndex = 3;
             buttonObrisiIntervenciju.Text = "Obriši intervenciju";
             buttonObrisiIntervenciju.UseVisualStyleBackColor = true;
             // 
             // buttonIzmeniIntervenciju
             // 
-            buttonIzmeniIntervenciju.Location = new Point(641, 403);
+            buttonIzmeniIntervenciju.Location = new Point(623, 68);
             buttonIzmeniIntervenciju.Name = "buttonIzmeniIntervenciju";
-            buttonIzmeniIntervenciju.Size = new Size(98, 46);
+            buttonIzmeniIntervenciju.Size = new Size(116, 40);
             buttonIzmeniIntervenciju.TabIndex = 4;
-            buttonIzmeniIntervenciju.Text = "Izmeni intervenciju...";
+            buttonIzmeniIntervenciju.Text = "Izmeni intervenciju";
             buttonIzmeniIntervenciju.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.GradientActiveCaption;
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Location = new Point(12, 304);
+            groupBox1.Location = new Point(12, 305);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(617, 207);
             groupBox1.TabIndex = 5;
@@ -131,7 +130,6 @@
             tableLayoutPanel1.Controls.Add(label5, 0, 3);
             tableLayoutPanel1.Controls.Add(dateTimePickerDatumKraj, 1, 3);
             tableLayoutPanel1.Controls.Add(label12, 2, 3);
-            tableLayoutPanel1.Controls.Add(txbStatus, 3, 3);
             tableLayoutPanel1.Controls.Add(txbBrojVatrogasaca, 3, 0);
             tableLayoutPanel1.Controls.Add(label7, 2, 0);
             tableLayoutPanel1.Controls.Add(label9, 2, 1);
@@ -140,6 +138,9 @@
             tableLayoutPanel1.Controls.Add(dateTimePickerVremePromena, 3, 2);
             tableLayoutPanel1.Controls.Add(label8, 0, 4);
             tableLayoutPanel1.Controls.Add(txbOpisSituacije, 1, 4);
+            tableLayoutPanel1.Controls.Add(comboStatus, 3, 3);
+            tableLayoutPanel1.Controls.Add(label2, 2, 4);
+            tableLayoutPanel1.Controls.Add(btnResursi, 3, 4);
             tableLayoutPanel1.Location = new Point(6, 22);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
@@ -235,13 +236,6 @@
             label12.TabIndex = 27;
             label12.Text = "Status";
             // 
-            // txbStatus
-            // 
-            txbStatus.Location = new Point(423, 105);
-            txbStatus.Name = "txbStatus";
-            txbStatus.Size = new Size(174, 23);
-            txbStatus.TabIndex = 26;
-            // 
             // txbBrojVatrogasaca
             // 
             txbBrojVatrogasaca.Location = new Point(423, 3);
@@ -281,6 +275,7 @@
             // 
             // dateTimePickerVremeDolaska
             // 
+            dateTimePickerVremeDolaska.Format = DateTimePickerFormat.Time;
             dateTimePickerVremeDolaska.Location = new Point(423, 37);
             dateTimePickerVremeDolaska.Name = "dateTimePickerVremeDolaska";
             dateTimePickerVremeDolaska.Size = new Size(174, 23);
@@ -289,6 +284,7 @@
             // 
             // dateTimePickerVremePromena
             // 
+            dateTimePickerVremePromena.Format = DateTimePickerFormat.Short;
             dateTimePickerVremePromena.Location = new Point(423, 71);
             dateTimePickerVremePromena.Name = "dateTimePickerVremePromena";
             dateTimePickerVremePromena.Size = new Size(174, 23);
@@ -311,55 +307,91 @@
             txbOpisSituacije.Size = new Size(174, 23);
             txbOpisSituacije.TabIndex = 3;
             // 
+            // comboStatus
+            // 
+            comboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboStatus.FormattingEnabled = true;
+            comboStatus.Location = new Point(423, 105);
+            comboStatus.Name = "comboStatus";
+            comboStatus.Size = new Size(175, 23);
+            comboStatus.TabIndex = 30;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Left;
+            label2.AutoSize = true;
+            label2.Location = new Point(303, 147);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 15);
+            label2.TabIndex = 32;
+            label2.Text = "Resursi";
+            // 
+            // btnResursi
+            // 
+            btnResursi.Location = new Point(423, 139);
+            btnResursi.Name = "btnResursi";
+            btnResursi.Size = new Size(174, 23);
+            btnResursi.TabIndex = 31;
+            btnResursi.Text = "Upravljanje resursima";
+            btnResursi.UseVisualStyleBackColor = true;
+            // 
             // buttonSacuvaj
             // 
-            buttonSacuvaj.Location = new Point(641, 462);
+            buttonSacuvaj.Location = new Point(636, 450);
             buttonSacuvaj.Name = "buttonSacuvaj";
-            buttonSacuvaj.Size = new Size(98, 23);
+            buttonSacuvaj.Size = new Size(123, 28);
             buttonSacuvaj.TabIndex = 6;
             buttonSacuvaj.Text = "Sačuvaj";
             buttonSacuvaj.UseVisualStyleBackColor = true;
             // 
             // buttonOtkazi
             // 
-            buttonOtkazi.Location = new Point(641, 490);
+            buttonOtkazi.Location = new Point(635, 484);
             buttonOtkazi.Name = "buttonOtkazi";
-            buttonOtkazi.Size = new Size(98, 23);
+            buttonOtkazi.Size = new Size(123, 28);
             buttonOtkazi.TabIndex = 7;
             buttonOtkazi.Text = "Otkaži";
             buttonOtkazi.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.BackColor = SystemColors.GradientActiveCaption;
+            groupBox2.Controls.Add(dataGridView1);
+            groupBox2.Controls.Add(buttonDodajIntervenciju);
+            groupBox2.Controls.Add(buttonIzmeniIntervenciju);
+            groupBox2.Controls.Add(buttonObrisiIntervenciju);
+            groupBox2.Location = new Point(12, 12);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(747, 279);
+            groupBox2.TabIndex = 8;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Evidencija intervencija";
             // 
             // IntervencijaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(750, 524);
+            ClientSize = new Size(770, 523);
+            Controls.Add(groupBox2);
             Controls.Add(buttonOtkazi);
             Controls.Add(groupBox1);
-            Controls.Add(buttonIzmeniIntervenciju);
-            Controls.Add(buttonObrisiIntervenciju);
-            Controls.Add(buttonDodajIntervenciju);
-            Controls.Add(dataGridView1);
-            Controls.Add(label1);
             Controls.Add(buttonSacuvaj);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "IntervencijaForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Vatrogasna služba - Intervencije";
-            Load += IntervencijaForm_Load_2;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private DataGridView dataGridView1;
         private Button buttonDodajIntervenciju;
         private Button buttonObrisiIntervenciju;
@@ -379,12 +411,15 @@
         private Button buttonSacuvaj;
         private Button buttonOtkazi;
         private Label label12;
-        private TextBox txbStatus;
         private TextBox txbBrojVatrogasaca;
         private Label label7;
         private Label label9;
         private Label label11;
         private DateTimePicker dateTimePickerVremeDolaska;
         private DateTimePicker dateTimePickerVremePromena;
+        private ComboBox comboStatus;
+        private Button btnResursi;
+        private Label label2;
+        private GroupBox groupBox2;
     }
 }

@@ -32,8 +32,6 @@ namespace VatrogasnaSluzba.Forms
             BrojVozila = new DataGridViewTextBoxColumn();
             groupBox2 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            label1 = new Label();
-            txbID_Stanice = new TextBox();
             label2 = new Label();
             tbxAdresa = new TextBox();
             label3 = new Label();
@@ -48,6 +46,8 @@ namespace VatrogasnaSluzba.Forms
             txbPovrsinaObjekta = new TextBox();
             label4 = new Label();
             comboDostupnaInfrastruktura = new ComboBox();
+            txbID_Stanice = new TextBox();
+            label1 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox2.SuspendLayout();
@@ -119,6 +119,9 @@ namespace VatrogasnaSluzba.Forms
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID_Stanice, Adresa, BrojZaposlenih, BrojVozila });
@@ -145,13 +148,13 @@ namespace VatrogasnaSluzba.Forms
             // 
             // BrojZaposlenih
             // 
-            BrojZaposlenih.HeaderText = "BrojZaposlenih";
+            BrojZaposlenih.HeaderText = "Broj zaposlenih";
             BrojZaposlenih.Name = "BrojZaposlenih";
             BrojZaposlenih.ReadOnly = true;
             // 
             // BrojVozila
             // 
-            BrojVozila.HeaderText = "BrojVozila";
+            BrojVozila.HeaderText = "Broj vozila";
             BrojVozila.Name = "BrojVozila";
             BrojVozila.ReadOnly = true;
             // 
@@ -198,24 +201,6 @@ namespace VatrogasnaSluzba.Forms
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.Size = new Size(688, 128);
             tableLayoutPanel1.TabIndex = 11;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Left;
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(58, 15);
-            label1.TabIndex = 0;
-            label1.Text = "ID stanice";
-            // 
-            // txbID_Stanice
-            // 
-            txbID_Stanice.Location = new Point(157, 3);
-            txbID_Stanice.MaxLength = 13;
-            txbID_Stanice.Name = "txbID_Stanice";
-            txbID_Stanice.Size = new Size(181, 23);
-            txbID_Stanice.TabIndex = 1;
             // 
             // label2
             // 
@@ -280,11 +265,13 @@ namespace VatrogasnaSluzba.Forms
             // 
             // btnSmene
             // 
+            btnSmene.BackColor = SystemColors.ScrollBar;
             btnSmene.Location = new Point(503, 99);
             btnSmene.Name = "btnSmene";
             btnSmene.Size = new Size(181, 26);
             btnSmene.TabIndex = 15;
             btnSmene.Text = "Smene u ovoj stanici";
+            btnSmene.UseVisualStyleBackColor = false;
             // 
             // label7
             // 
@@ -338,6 +325,24 @@ namespace VatrogasnaSluzba.Forms
             comboDostupnaInfrastruktura.Size = new Size(181, 23);
             comboDostupnaInfrastruktura.TabIndex = 9;
             // 
+            // txbID_Stanice
+            // 
+            txbID_Stanice.Location = new Point(157, 3);
+            txbID_Stanice.MaxLength = 13;
+            txbID_Stanice.Name = "txbID_Stanice";
+            txbID_Stanice.Size = new Size(181, 23);
+            txbID_Stanice.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 15);
+            label1.TabIndex = 0;
+            label1.Text = "ID stanice";
+            // 
             // VatrogasnaStanicaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -348,6 +353,7 @@ namespace VatrogasnaSluzba.Forms
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "VatrogasnaStanicaForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Vatrogasna služba - Stanice";
@@ -371,8 +377,6 @@ namespace VatrogasnaSluzba.Forms
 
         private GroupBox groupBox2;
         private TableLayoutPanel tableLayoutPanel1;
-        private Label label1;
-        private TextBox txbID_Stanice;
         private Label label2;
         private TextBox tbxAdresa;
         private Label label3;
@@ -391,5 +395,7 @@ namespace VatrogasnaSluzba.Forms
         private DataGridViewTextBoxColumn Adresa;
         private DataGridViewTextBoxColumn BrojZaposlenih;
         private DataGridViewTextBoxColumn BrojVozila;
+        private Label label1;
+        private TextBox txbID_Stanice;
     }
 }
