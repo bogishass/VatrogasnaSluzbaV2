@@ -10,8 +10,8 @@ namespace VatrogasnaSluzba.Entiteti
     {
         public virtual int IdServisa {  get; set; }
         public virtual DateTime? DatumServisa { get; set; }
-        public virtual string TipServisa { get; set; }
-        public virtual Tehnicar Tehnicar { get; set; }
-        public virtual Vozilo Vozilo { get; set; }
+        public virtual string TipServisa { get; set; } = string.Empty;
+        public virtual Tehnicar? Tehnicar { get; set; }
+        public virtual Vozilo? Vozilo { get; set; }
     }
 }

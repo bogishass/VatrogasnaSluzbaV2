@@ -1,4 +1,5 @@
 ﻿using System;
+using VatrogasnaSluzba.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -237,5 +238,19 @@ namespace VatrogasnaSluzba.Forms
         {
 
         }
+
+        private void btnPrikaziServise_Click(object sender, EventArgs e)
+        {
+            var grid = dataGridView1; // <-- pravi DataGridView
+            if (grid == null || grid.SelectedRows.Count == 0) return;
+
+            // ako ti je prva kolona registracija:
+            string regBroj = grid.SelectedRows[0].Cells[0].Value?.ToString() ?? "";
+            if (string.IsNullOrWhiteSpace(regBroj)) return;
+
+            using (var frm = new ServisiForm(regBroj))
+                frm.ShowDialog(this);
+        }
+
     }
 }
