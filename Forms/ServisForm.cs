@@ -1,72 +1,244 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using VatrogasnaSluzba.DTO;
 
 namespace VatrogasnaSluzba.Forms
 {
     public partial class ServisiForm : Form
     {
-        private readonly string _regBroj;
+        private enum FormMode { Default, Creating, Editing }
+
+        private readonly string _regBroj; // vozilo za koje radimo servise
+        private readonly BindingList<ServisListDTO> _model = new();
+        private FormMode _mode = FormMode.Default;
+        private int _editingId = 0;
+
+        // Pretpostavljene kontrole u Designer-u:
+        // Label lblNaslov; DataGridView dgvServisi;
+        // DateTimePicker dtpDatum; ComboBox cbTip;
+        // TextBox txtTehnicar;
+        // Button btnNovi, btnIzmeni, btnObrisi, btnSacuvaj, btnOtkazi;
 
         public ServisiForm(string regBroj)
         {
             InitializeComponent();
+
             _regBroj = regBroj;
-            Text = $"Servisi za vozilo: {_regBroj}";
-            Load += ServisiForm_Load;
+            lblNaslov.Text = $"Servisi za vozilo: {_regBroj}";
+
+            InitGrid();
+            InitTipovi();
+            SetMode(FormMode.Default);
+            RefreshData();
+            WireHandlers();
         }
 
-        private void ServisiForm_Load(object? sender, EventArgs e)
+        private void InitGrid()
         {
-            try
+            dgvServisi.AutoGenerateColumns = false;
+            dgvServisi.Columns.Clear();
+
+            var colDatum = new DataGridViewTextBoxColumn
             {
-                using (ISession s = DataLayer.GetSession())
-                {
-                    // Učitaj servise za dato vozilo (po registraciji)
-                    var podaci = s.Query<Servis>()
-                        .Where(x => x.Vozilo.RegBroj == _regBroj)
-                        .OrderByDescending(x => x.DatumServisa)
-                        .Select(x => new
-                        {
-                            Datum = x.DatumServisa,
-                            Tip = x.TipServisa,
-                            Tehničar = x.Tehnicar != null
-                                       ? (x.Tehnicar.Ime + " " + x.Tehnicar.Prezime)
-                                       : "(nepoznat)",
-                            IdServisa = x.IdServisa
-                        })
-                        .ToList();
-
-                    dgvServisi.AutoGenerateColumns = true;
-                    dgvServisi.ReadOnly = true;
-                    dgvServisi.DataSource = podaci;
-
-                    // (opciono) sakrij ID kolonu
-                    if (dgvServisi.Columns.Contains("IdServisa"))
-                        dgvServisi.Columns["IdServisa"].Visible = false;
-                }
-            }
-            catch (Exception ex)
+                DataPropertyName = nameof(ServisListDTO.Datum),
+                HeaderText = "Datum",
+                ReadOnly = true,
+                DefaultCellStyle = { Format = "dd.MM.yyyy" }
+            };
+            var colTip = new DataGridViewTextBoxColumn
             {
-                MessageBox.Show("Greška pri učitavanju servisa: " + ex.Message,
-                                "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DataPropertyName = nameof(ServisListDTO.Tip),
+                HeaderText = "Tip",
+                ReadOnly = true,
+                
+            };
+            var colMbr = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(ServisListDTO.TehnicarMbr),
+                HeaderText = "MBR tehničara",
+                ReadOnly = true,
+                
+            };
+            var colId = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(ServisListDTO.IdServisa),
+                HeaderText = "ID",
+                Visible = false
+            };
+
+            dgvServisi.Columns.AddRange(colDatum, colTip, colMbr, colId);
+            dgvServisi.DataSource = _model;
+            dgvServisi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvServisi.MultiSelect = false;
+            dgvServisi.ReadOnly = true;
+            dgvServisi.AllowUserToAddRows = false;
+            
+        }
+
+        private void InitTipovi()
+        {
+            cbTip.Items.Clear();
+            cbTip.Items.AddRange(new object[]
+            {
+                "Redovni servis",
+                "Mali servis",
+                "Veliki servis",
+                "Kočioni sistem",
+                "Elektronika",
+                "Pneumatici",
+                "Ostalo"
+            });
+            if (cbTip.Items.Count > 0) cbTip.SelectedIndex = 0;
+        }
+
+        private void WireHandlers()
+        {
+            btnNovi.Click += (_, __) => BeginCreate();
+            btnIzmeni.Click += (_, __) => BeginEdit();
+            btnObrisi.Click += (_, __) => DeleteSelected();
+            btnSacuvaj.Click += (_, __) => Save();
+            btnOtkazi.Click += (_, __) => CancelEdit();
+            dgvServisi.SelectionChanged += (_, __) => SyncSelectionToInputs();
+
+            // (opciono) dozvoli samo cifre i max 13 znakova u MBR polju
+            txtTehnicar.KeyPress += (s, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    e.Handled = true;
+            };
+            txtTehnicar.TextChanged += (_, __) =>
+            {
+                // trim na 13 cifara
+                if (txtTehnicar.Text.Length > 13)
+                    txtTehnicar.Text = txtTehnicar.Text.Substring(0, 13);
+                txtTehnicar.SelectionStart = txtTehnicar.Text.Length;
+            };
+        }
+
+        private void SetMode(FormMode mode)
+        {
+            _mode = mode;
+            bool editing = mode != FormMode.Default;
+
+            dtpDatum.Enabled = editing;
+            cbTip.Enabled = editing;
+            txtTehnicar.Enabled = editing;
+
+            btnNovi.Enabled = !editing;
+            btnIzmeni.Enabled = !editing && dgvServisi.SelectedRows.Count == 1;
+            btnObrisi.Enabled = !editing && dgvServisi.SelectedRows.Count == 1;
+
+            btnSacuvaj.Visible = editing;
+            btnOtkazi.Visible = editing;
+        }
+
+        private void RefreshData()
+        {
+            _model.Clear();
+            foreach (var r in ServisDTOManager.GetServisiZaVozilo(_regBroj))
+                _model.Add(r);
+
+            btnIzmeni.Enabled = dgvServisi.SelectedRows.Count == 1;
+            btnObrisi.Enabled = dgvServisi.SelectedRows.Count == 1;
+        }
+
+        // === CRUD UI ===
+
+        private void BeginCreate()
+        {
+            _editingId = 0;
+            dtpDatum.Value = DateTime.Today;
+            if (cbTip.Items.Count > 0) cbTip.SelectedIndex = 0;
+            txtTehnicar.Clear();
+            SetMode(FormMode.Creating);
+            txtTehnicar.Focus();
+        }
+
+        private void BeginEdit()
+        {
+            if (dgvServisi.CurrentRow?.DataBoundItem is not ServisListDTO row) return;
+
+            _editingId = row.IdServisa;
+            dtpDatum.Value = row.Datum?.Date ?? DateTime.Today;
+            cbTip.SelectedItem = cbTip.Items.Cast<object>().FirstOrDefault(x => x.ToString() == row.Tip) ?? cbTip.Items[0];
+            txtTehnicar.Text = row.TehnicarMbr ?? "";
+            SetMode(FormMode.Editing);
+            txtTehnicar.Focus();
+            txtTehnicar.SelectAll();
+        }
+
+        private void DeleteSelected()
+        {
+            if (dgvServisi.CurrentRow?.DataBoundItem is not ServisListDTO row) return;
+
+            if (MessageBox.Show("Obrisati selektovani servis?", "Potvrda",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (ServisDTOManager.DeleteServis(row.IdServisa))
+                    RefreshData();
             }
         }
 
-        private void btnIzmeni_Click(object sender, EventArgs e)
+        private void Save()
         {
+            var tip = cbTip.SelectedItem?.ToString() ?? "";
+            var datum = dtpDatum.Value.Date;
+            var mbr = (txtTehnicar.Text ?? "").Trim();
 
+            if (!IsValidMbr(mbr))
+            {
+                MessageBox.Show("Unesite važeći MBR tehničara (tačno 13 cifara).");
+                txtTehnicar.Focus();
+                txtTehnicar.SelectAll();
+                return;
+            }
+
+            var dto = new ServisDTO
+            {
+                IdServisa = _editingId,
+                RegBrojVozila = _regBroj,
+                Datum = datum,
+                Tip = tip,
+                TehnicarMbr = mbr // ISKLJUČIVO MBR
+            };
+
+            bool ok = _mode == FormMode.Creating
+                ? ServisDTOManager.AddServis(dto)
+                : ServisDTOManager.UpdateServis(dto);
+
+            if (ok)
+            {
+                RefreshData();
+                SetMode(FormMode.Default);
+            }
         }
 
-        private void btnObrisi_Click(object sender, EventArgs e)
+        private void CancelEdit()
         {
-
+            SetMode(FormMode.Default);
+            SyncSelectionToInputs();
         }
+
+        private void SyncSelectionToInputs()
+        {
+            if (_mode != FormMode.Default) return;
+
+            if (dgvServisi.CurrentRow?.DataBoundItem is ServisListDTO row)
+            {
+                dtpDatum.Value = row.Datum?.Date ?? DateTime.Today;
+                cbTip.SelectedItem = cbTip.Items.Cast<object>().FirstOrDefault(x => x.ToString() == row.Tip) ?? cbTip.Items[0];
+                txtTehnicar.Text = row.TehnicarMbr ?? "";
+            }
+
+            btnIzmeni.Enabled = dgvServisi.SelectedRows.Count == 1;
+            btnObrisi.Enabled = dgvServisi.SelectedRows.Count == 1;
+        }
+
+        private static bool IsValidMbr(string mbr)
+            => !string.IsNullOrWhiteSpace(mbr) && Regex.IsMatch(mbr, @"^\d{13}$");
     }
 }

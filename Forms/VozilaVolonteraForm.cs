@@ -22,7 +22,7 @@ namespace VatrogasnaSluzba.Forms
 
             this.Volonter = volonter;
 
-            // pravimo kopiju liste vozila selektovanog volontera, da se promene ne bi reflektovale direktno u parent formi
+            // pravimo kopiju liste vozila selektovanog volontera
             VozilaTempList = Volonter.Vozila.Select(v => new VoziloVolonteraSimpleDTO
             {
                 RegBroj = v.RegBroj,
@@ -35,10 +35,10 @@ namespace VatrogasnaSluzba.Forms
 
             this.Text = $"Vozila volontera {Volonter.Ime} {Volonter.Prezime} ({(isViewOnly ? "pregled" : "izmena")})";
 
-            // onemogucavamo unos jer smo u default modu
+            // ne damo unos jer smo u default modu
             ManageControls(false);
 
-            // onemogucavamo i bilo kakve izmene ako je forma otvorena u modu za pregled
+            // ne damo i bilo kakve izmene ako je forma otvorena u modu za pregled
             if (isViewOnly)
             {
                 btnNovo.Enabled = false ;

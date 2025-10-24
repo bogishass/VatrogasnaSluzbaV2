@@ -25,7 +25,6 @@ namespace VatrogasnaSluzba.Forms
             this.Text = $"Alati tehničara ({viewModeFormat})";
             groupBox1.Text = $"Lista alata tehničara {tehnicar.Ime} {tehnicar.Prezime}";
 
-            // sakrivamo kontrole ako je samo pregled
             if (isViewOnly)
             {
                 btnPotvrdi.Enabled = false;
@@ -34,7 +33,6 @@ namespace VatrogasnaSluzba.Forms
                 txbNaziv.Visible = false;
             }
 
-            // event handleri za dugmice
             btnDodaj.Click += btnDodaj_Click;
             btnUkloni.Click += btnUkloni_Click;
             btnPotvrdi.Click += btnPotvrdi_Click;
@@ -72,7 +70,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-            tehnicar.Alati = tempAlati.ToList(); // prebacujemo izmenjenu listu u DTO iz glavne forme
+            tehnicar.Alati = tempAlati.ToList(); 
 
             this.DialogResult = DialogResult.OK;
             this.Close();

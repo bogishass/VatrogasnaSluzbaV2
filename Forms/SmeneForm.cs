@@ -26,10 +26,8 @@ namespace VatrogasnaSluzba.Forms
             ApplyFilter();
         }
 
-        // ---------- enum ----------
         public enum FormMode { Default, Creating, Editing }
 
-        // ---------- UI init ----------
         private void InitUi()
         {
             // filter panel
@@ -38,7 +36,6 @@ namespace VatrogasnaSluzba.Forms
             dtpOd.Value = DateTime.Today.AddDays(-7);
             dtpDo.Value = DateTime.Today;
 
-            // handleri za filtriranje
             cbStanicaFilter.SelectedIndexChanged += (_, __) => ApplyFilter();
             dtpOd.ValueChanged += (_, __) => ApplyFilter();
             dtpDo.ValueChanged += (_, __) => ApplyFilter();
@@ -65,13 +62,10 @@ namespace VatrogasnaSluzba.Forms
 
             dgvSmene.SelectionChanged += DgvSmene_SelectionChanged;
 
-            // misc
-            //numBrIntervencija.Enabled = false; // broj intervencija ne treba da se menja rucno, on se automatski odredjuje na osnovu intervencija povezanih sa tom stanicom
 
             UpdateUiState();
         }
 
-        // ---------- podaci ----------
         private void LoadStanice()
         {
             List<StanicaSimpleDTO> stanice;
@@ -93,7 +87,6 @@ namespace VatrogasnaSluzba.Forms
             cbStanicaFilter.DisplayMember = nameof(StanicaSimpleDTO.Naziv);
             cbStanicaFilter.ValueMember = nameof(StanicaSimpleDTO.IdStanice);
 
-            // DESNI PANEL
             cbStanica.DataSource = new BindingList<StanicaSimpleDTO>(stanice);
             cbStanica.DisplayMember = nameof(StanicaSimpleDTO.Naziv);
             cbStanica.ValueMember = nameof(StanicaSimpleDTO.IdStanice);
@@ -148,7 +141,6 @@ namespace VatrogasnaSluzba.Forms
             else
                 cbStanica.SelectedIndex = -1;
 
-            //numBrIntervencija.Value = dto.BrojIntervencija ?? 0;
 
             UpdateUiState();
         }
@@ -160,10 +152,8 @@ namespace VatrogasnaSluzba.Forms
             dtpStart.Value = DateTime.Today.AddHours(7);
             dtpEnd.Value = DateTime.Today.AddHours(15);
             cbStanica.SelectedIndex = -1;
-            //numBrIntervencija.Value = 0;
         }
 
-        // ---------- Režimi ----------
         private void SetMode(FormMode mode)
         {
             CurrentMode = mode;
@@ -184,7 +174,7 @@ namespace VatrogasnaSluzba.Forms
             dtpEnd.Enabled = editing;
             cbStanica.Enabled = editing;
 
-            // Dugmad
+            // Dugmici
             btnNova.Enabled = !editing;
             btnIzmeni.Enabled = !editing && _current != null;
             btnObrisi.Enabled = !editing && _current != null;
@@ -192,7 +182,6 @@ namespace VatrogasnaSluzba.Forms
             btnOtkazi.Enabled = editing;
         }
 
-        // ---------- Dugmad ----------
         private void StartNew()
         {
             ClearDetails();

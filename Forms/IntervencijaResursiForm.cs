@@ -37,7 +37,6 @@ namespace VatrogasnaSluzba.Forms
             btnOK.Click += btnOK_Click;
             btnOtkazi.Click += btnOtkazi_Click;
 
-            // Inicijalizacija kolona
             PostaviKoloneLica(dgvVatrogasci);
             PostaviKoloneLica(dgvDispeceri);
             PostaviKoloneLica(dgvTehnicari);
@@ -49,7 +48,6 @@ namespace VatrogasnaSluzba.Forms
             UcitajPodatke();
             PostaviMode(FormMode.Default);
 
-            // ucitaj sta je checkirano
             LoadSelections(dgvVatrogasci, vatrogasci.Cast<LiceDTO>().ToList(), intervencija.Lica);
             LoadSelections(dgvDispeceri, dispeceri.Cast<LiceDTO>().ToList(), intervencija.Lica);
             LoadSelections(dgvTehnicari, tehnicari.Cast<LiceDTO>().ToList(), intervencija.Lica);
@@ -139,7 +137,6 @@ namespace VatrogasnaSluzba.Forms
 
         private void UcitajPodatke()
         {
-            // --- LICA ---
             var svaLica = LiceDTOManager.GetSvaLica();
 
             vatrogasci = svaLica.OfType<VatrogasacDTO>()
@@ -162,19 +159,16 @@ namespace VatrogasnaSluzba.Forms
                 .ThenBy(v => v.Prezime)
                 .ToList();
 
-            // --- VOZILA ---
             vozila = VoziloDTOManager.GetSvaVozila()
                 .OrderBy(v => v.Tip)
                 .ThenBy(v => v.RegBroj)
                 .ToList();
 
-            // --- OPREMA ---
             oprema = OpremaDTOManager.GetSvaOprema()
                 .OrderBy(o => o.Naziv)
                 .ThenBy(o => o.InventarskiBroj)
                 .ToList();
 
-            // --- VOZILA VOLONTERA ---
             vozilaVolontera = VoziloVolonteraDTOManager.GetSvaVozilaVolontera()
                 .OrderBy(v => v.Tip)
                 .ThenBy(v => v.RegBroj)

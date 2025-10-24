@@ -75,7 +75,6 @@ namespace VatrogasnaSluzba.Forms
 
             FillForm(full);
 
-            // Osveži izabrane liste iz DTO-a
             _izabranaLica = new List<LiceDTO>(full.Lica);
             _izabranaVozila = new List<VoziloDTO>(full.Vozila);
             _izabranaOprema = new List<OpremaDTO>(full.Oprema);
@@ -91,7 +90,6 @@ namespace VatrogasnaSluzba.Forms
             foreach (var it in data) _model.Add(it);
         }
 
-        // ===== Dodaj =====
         private void buttonDodajIntervenciju_Click(object? sender, EventArgs e)
         {
             var dto = ReadDtoFromForm();
@@ -104,7 +102,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ===== Obriši =====
         private void buttonObrisiIntervenciju_Click(object? sender, EventArgs e)
         {
             var row = GetSelectedRow();
@@ -121,7 +118,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ===== Uđi u režim izmene =====
         private void buttonIzmeniIntervenciju_Click(object? sender, EventArgs e)
         {
             var row = GetSelectedRow();
@@ -132,7 +128,6 @@ namespace VatrogasnaSluzba.Forms
 
             FillForm(full);
 
-            // Kopiraj liste u privremene dok traje edit
             _tempLica = new List<LiceDTO>(full.Lica);
             _tempVozila = new List<VoziloDTO>(full.Vozila);
             _tempOprema = new List<OpremaDTO>(full.Oprema);
@@ -142,7 +137,6 @@ namespace VatrogasnaSluzba.Forms
             SetEditMode(true);
         }
 
-        // ===== Sačuvaj izmene =====
         private void buttonSacuvaj_Click(object? sender, EventArgs e)
         {
             if (!_editMode) return;
@@ -154,7 +148,6 @@ namespace VatrogasnaSluzba.Forms
 
             if (IntervencijaDTOManager.UpdateIntervencija(dto))
             {
-                // Ako je sačuvano u bazu, privremene liste postaju glavne
                 _izabranaLica = new List<LiceDTO>(_tempLica);
                 _izabranaVozila = new List<VoziloDTO>(_tempVozila);
                 _izabranaOprema = new List<OpremaDTO>(_tempOprema);
@@ -165,10 +158,8 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ===== Otkaži izmene =====
         private void buttonOtkazi_Click(object? sender, EventArgs e) => CancelEdit();
 
-        // ===== Pomocne =====
         private IntervencijaListDTO? GetSelectedRow()
         {
             if (dataGridView1.CurrentRow?.DataBoundItem is IntervencijaListDTO it) return it;

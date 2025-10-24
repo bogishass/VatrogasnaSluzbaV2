@@ -46,7 +46,7 @@
             // 
             // btnPotvrdi
             // 
-            btnPotvrdi.BackColor = Color.DarkSeaGreen;
+            btnPotvrdi.BackColor = Color.White;
             btnPotvrdi.Location = new Point(56, 269);
             btnPotvrdi.Name = "btnPotvrdi";
             btnPotvrdi.Size = new Size(85, 31);
@@ -56,7 +56,7 @@
             // 
             // btnOtkazi
             // 
-            btnOtkazi.BackColor = Color.LightCoral;
+            btnOtkazi.BackColor = Color.White;
             btnOtkazi.Location = new Point(147, 269);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(85, 31);

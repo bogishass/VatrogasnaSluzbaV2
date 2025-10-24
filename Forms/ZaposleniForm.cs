@@ -35,7 +35,6 @@ namespace VatrogasnaSluzba.Forms
             PopulateLica();
         }
 
-        // ---------------- UI inicijalizacija ----------------
 
         private void InitUI()
         {
@@ -97,7 +96,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ---------------- Stanja forme ----------------
 
         private void SetMode(FormMode mode)
         {
@@ -112,7 +110,7 @@ namespace VatrogasnaSluzba.Forms
             btnObrisi.Enabled = !active;
             txbPretraga.Enabled = !active;
             tabControl.Enabled = !active;
-            btnSpisakVozila.Enabled = ((currentLice is VolonterDTO || currentLice == null) && mode != FormMode.Creating); // spisak vozila moze da se otvori u FormMode.Default (samo pregled) i FormMode.Editing (dozvoljene izmene)
+            btnSpisakVozila.Enabled = ((currentLice is VolonterDTO || currentLice == null) && mode != FormMode.Creating); 
             btnAlati.Enabled = ((currentLice is TehnicarDTO || currentLice == null) && mode != FormMode.Creating);
 
             foreach (var pair in pozicijeMap.Values)
@@ -136,7 +134,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ---------------- Dugmad ----------------
 
         private void btnNovi_Click(object sender, EventArgs e)
         {
@@ -163,7 +160,6 @@ namespace VatrogasnaSluzba.Forms
             PopulateLica();
         }
 
-        // -------------- Search -----------------
         private void txbPretraga_TextChanged(object sender, EventArgs e)
         {
             if (CurrentMode != FormMode.Default)
@@ -317,7 +313,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-        // ---------------- Helpers ----------------
 
         private LiceDTO CreateLiceDTOFromForm(string pozicija, StanicaSimpleDTO stanica, LiceDTO? baseLice = null)
         {

@@ -14,7 +14,7 @@ namespace VatrogasnaSluzba.Forms
         private string _editingReg = null;
         private BindingList<VoziloDTO> vozila = new();
 
-        // Mapa tip → dozvoljeni podtipovi
+        
         private readonly Dictionary<string, List<string>> _podtipi = new(StringComparer.OrdinalIgnoreCase)
         {
             { "Vatrogasno",       new List<string>{ "Cisterna", "Platforma", "Vozilo za gašenje šuma" } },
@@ -48,11 +48,12 @@ namespace VatrogasnaSluzba.Forms
             btnDodajVozilo.Click += btnDodajVozilo_Click;
             btnObrisiVozilo.Click += btnObrisiVozilo_Click;
             btnIzmeniVozilo.Click += btnIzmeniVozilo_Click;
-            button1.Click += btnSacuvaj_Click;     // Sačuvaj
-            btnOtkazi.Click += btnOtkazi_Click;    // Otkaži
+            button1.Click += btnSacuvaj_Click;     
+            btnOtkazi.Click += btnOtkazi_Click;    
+            btnServis.Click += btnPrikaziServise_Click;
             comboTip.SelectedIndexChanged += (_, __) => LoadPodtip();
 
-            // Sertifikati
+            
             clbSertifikati.Items.AddRange(_katalogSertifikata);
 
             SetEditButtons(false);
@@ -79,7 +80,7 @@ namespace VatrogasnaSluzba.Forms
             vozila = new BindingList<VoziloDTO>(data);
             dataGridView1.DataSource = vozila;
 
-            // Hide unused columns
+            
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.Visible = new[]
@@ -226,8 +227,8 @@ namespace VatrogasnaSluzba.Forms
         }
         private void SetEditButtons(bool editing)
         {
-            button1.Visible = editing;   // Sačuvaj
-            btnOtkazi.Visible = editing; // Otkaži
+            button1.Visible = editing;   
+            btnOtkazi.Visible = editing; 
 
             btnDodajVozilo.Enabled = !editing;
             btnObrisiVozilo.Enabled = !editing;
@@ -241,10 +242,9 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnPrikaziServise_Click(object sender, EventArgs e)
         {
-            var grid = dataGridView1; // <-- pravi DataGridView
+            var grid = dataGridView1; 
             if (grid == null || grid.SelectedRows.Count == 0) return;
 
-            // ako ti je prva kolona registracija:
             string regBroj = grid.SelectedRows[0].Cells[0].Value?.ToString() ?? "";
             if (string.IsNullOrWhiteSpace(regBroj)) return;
 

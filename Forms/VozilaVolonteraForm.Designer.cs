@@ -192,7 +192,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 37);
             label2.Name = "label2";
-            label2.Size = new Size(23, 15);
+            label2.Size = new Size(24, 15);
             label2.TabIndex = 9;
             label2.Text = "Tip";
             // 
@@ -222,7 +222,7 @@
             // 
             // btnPotvrdi
             // 
-            btnPotvrdi.BackColor = Color.DarkSeaGreen;
+            btnPotvrdi.BackColor = Color.White;
             btnPotvrdi.Font = new Font("Segoe UI", 9F);
             btnPotvrdi.Location = new Point(501, 262);
             btnPotvrdi.Name = "btnPotvrdi";
@@ -234,7 +234,7 @@
             // 
             // btnOtkazi
             // 
-            btnOtkazi.BackColor = Color.LightCoral;
+            btnOtkazi.BackColor = Color.White;
             btnOtkazi.Font = new Font("Segoe UI", 9F);
             btnOtkazi.Location = new Point(606, 262);
             btnOtkazi.Name = "btnOtkazi";

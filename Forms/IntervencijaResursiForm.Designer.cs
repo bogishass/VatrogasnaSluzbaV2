@@ -328,7 +328,7 @@
             // 
             // btnOK
             // 
-            btnOK.BackColor = Color.DarkSeaGreen;
+            btnOK.BackColor = Color.White;
             btnOK.Location = new Point(335, 325);
             btnOK.Margin = new Padding(3, 2, 3, 2);
             btnOK.Name = "btnOK";
@@ -339,7 +339,7 @@
             // 
             // btnOtkazi
             // 
-            btnOtkazi.BackColor = Color.LightCoral;
+            btnOtkazi.BackColor = Color.White;
             btnOtkazi.Location = new Point(455, 325);
             btnOtkazi.Margin = new Padding(3, 2, 3, 2);
             btnOtkazi.Name = "btnOtkazi";
