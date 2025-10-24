@@ -21,11 +21,7 @@ namespace VatrogasnaSluzba.DTO
         [DisplayName("Kraj")]
         public DateTime? VremeKraja { get; set; }
         [DisplayName("Br. intervencija")]
-        public int? BrojIntervencija { get; set; }
-        [DisplayName("Br. vatrogasaca")]
-        public int? BrVatrogasaca { get; set; }
-        [DisplayName("Br. dispečera")]
-        public int? BrDispecera { get; set; }
+        
         public StanicaSimpleDTO Stanica { get; set; }
 
         public SmenaDTO() { }
@@ -36,10 +32,7 @@ namespace VatrogasnaSluzba.DTO
             Datum = s.Datum;
             VremePocetka = s.VremePocetka;
             VremeKraja = s.VremeKraja;
-            BrojIntervencija = s.BrojIntervencija;
-
-            BrVatrogasaca = s.Lica?.Count(l => l.Pozicija == "Vatrogasac") ?? 0;
-            BrDispecera = s.Lica?.Count(l => l.Pozicija == "Dispecer") ?? 0;
+            
 
             Stanica = s.Stanica != null ? new StanicaSimpleDTO(s.Stanica) : null;
         }
@@ -55,7 +48,6 @@ namespace VatrogasnaSluzba.DTO
                 Datum = s.Datum,
                 VremePocetka = s.VremePocetka,
                 VremeKraja = s.VremeKraja,
-                BrojIntervencija = s.BrojIntervencija,
                 Stanica = s.Stanica != null ? new StanicaSimpleDTO(s.Stanica) : null,
                
             };
@@ -104,12 +96,7 @@ namespace VatrogasnaSluzba.DTO
 
             var dtos = smene.Select(x => ToDto(x)).ToList();
 
-            foreach (var dto in dtos)
-            {
-                dto.BrVatrogasaca = CountByPozicija(s, dto.IdSmene, "Vatrogasac");
-                dto.BrDispecera = CountByPozicija(s, dto.IdSmene, "Dispecer");
-                dto.BrojIntervencija = CountIntervencije(s, dto.IdSmene);
-            }
+            
 
             return dtos;
         }
@@ -129,7 +116,6 @@ namespace VatrogasnaSluzba.DTO
                 Datum = dto.Datum.Date,
                 VremePocetka = dto.VremePocetka,
                 VremeKraja = dto.VremeKraja,
-                BrojIntervencija = dto.BrojIntervencija,
                 Stanica = s.Get<VatrogasnaStanica>(dto.Stanica.IdStanice)
             };
 
@@ -154,7 +140,7 @@ namespace VatrogasnaSluzba.DTO
             e.Datum = dto.Datum.Date;
             e.VremePocetka = dto.VremePocetka;
             e.VremeKraja = dto.VremeKraja;
-            e.BrojIntervencija = dto.BrojIntervencija;
+            
 
             //MessageBox.Show(dto.BrojIntervencija.ToString());
             //MessageBox.Show(e.BrojIntervencija.ToString());

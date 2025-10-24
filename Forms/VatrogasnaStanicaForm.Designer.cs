@@ -32,6 +32,8 @@ namespace VatrogasnaSluzba.Forms
             BrojVozila = new DataGridViewTextBoxColumn();
             groupBox2 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
+            label1 = new Label();
+            txbID_Stanice = new TextBox();
             label2 = new Label();
             tbxAdresa = new TextBox();
             label3 = new Label();
@@ -46,8 +48,6 @@ namespace VatrogasnaSluzba.Forms
             txbPovrsinaObjekta = new TextBox();
             label4 = new Label();
             comboDostupnaInfrastruktura = new ComboBox();
-            txbID_Stanice = new TextBox();
-            label1 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox2.SuspendLayout();
@@ -65,14 +65,14 @@ namespace VatrogasnaSluzba.Forms
             groupBox1.Controls.Add(dataGridView1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(700, 303);
+            groupBox1.Size = new Size(587, 303);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Lista stanica";
             // 
             // btnOtkazi
             // 
-            btnOtkazi.Location = new Point(578, 265);
+            btnOtkazi.Location = new Point(466, 265);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(116, 28);
             btnOtkazi.TabIndex = 25;
@@ -81,7 +81,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // btnSacuvaj
             // 
-            btnSacuvaj.Location = new Point(578, 231);
+            btnSacuvaj.Location = new Point(466, 231);
             btnSacuvaj.Name = "btnSacuvaj";
             btnSacuvaj.Size = new Size(116, 28);
             btnSacuvaj.TabIndex = 24;
@@ -90,7 +90,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // button3
             // 
-            button3.Location = new Point(578, 104);
+            button3.Location = new Point(466, 104);
             button3.Name = "button3";
             button3.Size = new Size(116, 35);
             button3.TabIndex = 3;
@@ -99,7 +99,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // button2
             // 
-            button2.Location = new Point(578, 63);
+            button2.Location = new Point(466, 63);
             button2.Name = "button2";
             button2.Size = new Size(116, 35);
             button2.TabIndex = 2;
@@ -108,7 +108,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // button1
             // 
-            button1.Location = new Point(578, 22);
+            button1.Location = new Point(466, 22);
             button1.Name = "button1";
             button1.Size = new Size(116, 35);
             button1.TabIndex = 1;
@@ -131,7 +131,7 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(566, 271);
+            dataGridView1.Size = new Size(404, 271);
             dataGridView1.TabIndex = 0;
             // 
             // ID_Stanice
@@ -164,7 +164,7 @@ namespace VatrogasnaSluzba.Forms
             groupBox2.Controls.Add(tableLayoutPanel1);
             groupBox2.Location = new Point(12, 332);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(700, 172);
+            groupBox2.Size = new Size(587, 172);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Informacije o stanici";
@@ -172,10 +172,10 @@ namespace VatrogasnaSluzba.Forms
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.38372F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.32558F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.9651165F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.32558F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.9531431F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.6758842F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.0812721F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 34.4522972F));
             tableLayoutPanel1.Controls.Add(label1, 0, 0);
             tableLayoutPanel1.Controls.Add(txbID_Stanice, 1, 0);
             tableLayoutPanel1.Controls.Add(label2, 0, 1);
@@ -199,8 +199,26 @@ namespace VatrogasnaSluzba.Forms
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.Size = new Size(688, 128);
+            tableLayoutPanel1.Size = new Size(566, 128);
             tableLayoutPanel1.TabIndex = 11;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 15);
+            label1.TabIndex = 0;
+            label1.Text = "ID stanice";
+            // 
+            // txbID_Stanice
+            // 
+            txbID_Stanice.Location = new Point(93, 3);
+            txbID_Stanice.MaxLength = 13;
+            txbID_Stanice.Name = "txbID_Stanice";
+            txbID_Stanice.Size = new Size(167, 23);
+            txbID_Stanice.TabIndex = 1;
             // 
             // label2
             // 
@@ -214,26 +232,26 @@ namespace VatrogasnaSluzba.Forms
             // 
             // tbxAdresa
             // 
-            tbxAdresa.Location = new Point(157, 35);
+            tbxAdresa.Location = new Point(93, 35);
             tbxAdresa.Name = "tbxAdresa";
-            tbxAdresa.Size = new Size(181, 23);
+            tbxAdresa.Size = new Size(167, 23);
             tbxAdresa.TabIndex = 3;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(3, 72);
+            label3.Location = new Point(3, 65);
             label3.Name = "label3";
-            label3.Size = new Size(87, 15);
+            label3.Size = new Size(63, 30);
             label3.TabIndex = 4;
             label3.Text = "Broj zaposlenih";
             // 
             // txbBrojZaposlenih
             // 
-            txbBrojZaposlenih.Location = new Point(157, 67);
+            txbBrojZaposlenih.Location = new Point(93, 67);
             txbBrojZaposlenih.Name = "txbBrojZaposlenih";
-            txbBrojZaposlenih.Size = new Size(181, 23);
+            txbBrojZaposlenih.Size = new Size(167, 23);
             txbBrojZaposlenih.TabIndex = 5;
             // 
             // label5
@@ -248,16 +266,16 @@ namespace VatrogasnaSluzba.Forms
             // 
             // tbxBrojVozila
             // 
-            tbxBrojVozila.Location = new Point(157, 99);
+            tbxBrojVozila.Location = new Point(93, 99);
             tbxBrojVozila.Name = "tbxBrojVozila";
-            tbxBrojVozila.Size = new Size(181, 23);
+            tbxBrojVozila.Size = new Size(167, 23);
             tbxBrojVozila.TabIndex = 7;
             // 
             // Smena
             // 
             Smena.Anchor = AnchorStyles.Left;
             Smena.AutoSize = true;
-            Smena.Location = new Point(345, 104);
+            Smena.Location = new Point(266, 104);
             Smena.Name = "Smena";
             Smena.Size = new Size(98, 15);
             Smena.TabIndex = 14;
@@ -266,7 +284,7 @@ namespace VatrogasnaSluzba.Forms
             // btnSmene
             // 
             btnSmene.BackColor = SystemColors.ScrollBar;
-            btnSmene.Location = new Point(503, 99);
+            btnSmene.Location = new Point(373, 99);
             btnSmene.Name = "btnSmene";
             btnSmene.Size = new Size(181, 26);
             btnSmene.TabIndex = 15;
@@ -277,7 +295,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             label7.Anchor = AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(345, 72);
+            label7.Location = new Point(266, 72);
             label7.Name = "label7";
             label7.Size = new Size(97, 15);
             label7.TabIndex = 12;
@@ -285,7 +303,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // txbKomandir
             // 
-            txbKomandir.Location = new Point(503, 67);
+            txbKomandir.Location = new Point(373, 67);
             txbKomandir.Name = "txbKomandir";
             txbKomandir.Size = new Size(181, 23);
             txbKomandir.TabIndex = 13;
@@ -294,7 +312,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(345, 40);
+            label6.Location = new Point(266, 40);
             label6.Name = "label6";
             label6.Size = new Size(94, 15);
             label6.TabIndex = 10;
@@ -302,7 +320,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // txbPovrsinaObjekta
             // 
-            txbPovrsinaObjekta.Location = new Point(503, 35);
+            txbPovrsinaObjekta.Location = new Point(373, 35);
             txbPovrsinaObjekta.Name = "txbPovrsinaObjekta";
             txbPovrsinaObjekta.Size = new Size(181, 23);
             txbPovrsinaObjekta.TabIndex = 11;
@@ -311,44 +329,26 @@ namespace VatrogasnaSluzba.Forms
             // 
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(345, 8);
+            label4.Location = new Point(266, 1);
             label4.Name = "label4";
-            label4.Size = new Size(132, 15);
+            label4.Size = new Size(78, 30);
             label4.TabIndex = 8;
             label4.Text = "Dostupna infrastruktura";
             // 
             // comboDostupnaInfrastruktura
             // 
             comboDostupnaInfrastruktura.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboDostupnaInfrastruktura.Location = new Point(503, 3);
+            comboDostupnaInfrastruktura.Location = new Point(373, 3);
             comboDostupnaInfrastruktura.Name = "comboDostupnaInfrastruktura";
             comboDostupnaInfrastruktura.Size = new Size(181, 23);
             comboDostupnaInfrastruktura.TabIndex = 9;
-            // 
-            // txbID_Stanice
-            // 
-            txbID_Stanice.Location = new Point(157, 3);
-            txbID_Stanice.MaxLength = 13;
-            txbID_Stanice.Name = "txbID_Stanice";
-            txbID_Stanice.Size = new Size(181, 23);
-            txbID_Stanice.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Left;
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 8);
-            label1.Name = "label1";
-            label1.Size = new Size(58, 15);
-            label1.TabIndex = 0;
-            label1.Text = "ID stanice";
             // 
             // VatrogasnaStanicaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(726, 513);
+            ClientSize = new Size(610, 513);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

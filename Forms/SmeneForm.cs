@@ -247,7 +247,6 @@ namespace VatrogasnaSluzba.Forms
                     Datum = dtpDatum.Value.Date,
                     VremePocetka = dtpStart.Value,
                     VremeKraja = dtpEnd.Value,
-                    BrojIntervencija = current?.BrojIntervencija ?? 0,
                     Stanica = stanica
                 };
 

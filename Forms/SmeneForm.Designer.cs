@@ -105,7 +105,7 @@
             panelFilter.Location = new Point(0, 0);
             panelFilter.Margin = new Padding(3, 2, 3, 2);
             panelFilter.Name = "panelFilter";
-            panelFilter.Size = new Size(947, 45);
+            panelFilter.Size = new Size(714, 45);
             panelFilter.TabIndex = 1;
             // 
             // lblStanicaF
@@ -273,7 +273,7 @@
             gbLista.Margin = new Padding(3, 2, 3, 2);
             gbLista.Name = "gbLista";
             gbLista.Padding = new Padding(3, 2, 3, 2);
-            gbLista.Size = new Size(661, 415);
+            gbLista.Size = new Size(402, 415);
             gbLista.TabIndex = 0;
             gbLista.TabStop = false;
             gbLista.Text = "Evidencija smena";
@@ -295,7 +295,7 @@
             dgvSmene.RowHeadersVisible = false;
             dgvSmene.RowHeadersWidth = 51;
             dgvSmene.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSmene.Size = new Size(649, 350);
+            dgvSmene.Size = new Size(388, 350);
             dgvSmene.TabIndex = 0;
             // 
             // flpListaBtns
@@ -308,13 +308,13 @@
             flpListaBtns.Location = new Point(3, 379);
             flpListaBtns.Margin = new Padding(3, 2, 3, 2);
             flpListaBtns.Name = "flpListaBtns";
-            flpListaBtns.Size = new Size(655, 34);
+            flpListaBtns.Size = new Size(396, 34);
             flpListaBtns.TabIndex = 1;
             // 
             // btnObrisi
             // 
             btnObrisi.BackColor = SystemColors.ButtonFace;
-            btnObrisi.Location = new Point(549, 6);
+            btnObrisi.Location = new Point(290, 6);
             btnObrisi.Margin = new Padding(5, 6, 5, 6);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(101, 22);
@@ -325,7 +325,7 @@
             // btnIzmeni
             // 
             btnIzmeni.BackColor = SystemColors.ButtonFace;
-            btnIzmeni.Location = new Point(438, 6);
+            btnIzmeni.Location = new Point(179, 6);
             btnIzmeni.Margin = new Padding(5, 6, 5, 6);
             btnIzmeni.Name = "btnIzmeni";
             btnIzmeni.Size = new Size(101, 22);
@@ -336,7 +336,7 @@
             // btnNova
             // 
             btnNova.BackColor = SystemColors.ButtonFace;
-            btnNova.Location = new Point(327, 6);
+            btnNova.Location = new Point(68, 6);
             btnNova.Margin = new Padding(5, 6, 5, 6);
             btnNova.Name = "btnNova";
             btnNova.Size = new Size(101, 22);
@@ -360,8 +360,8 @@
             splitMain.Panel2.Controls.Add(groupBox1);
             splitMain.Panel2.Controls.Add(btnOtkazi);
             splitMain.Panel2.Controls.Add(btnSnimi);
-            splitMain.Size = new Size(947, 432);
-            splitMain.SplitterDistance = 669;
+            splitMain.Size = new Size(714, 432);
+            splitMain.SplitterDistance = 440;
             splitMain.TabIndex = 0;
             // 
             // groupBox1
@@ -404,7 +404,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(947, 477);
+            ClientSize = new Size(714, 477);
             Controls.Add(splitMain);
             Controls.Add(panelFilter);
             FormBorderStyle = FormBorderStyle.FixedSingle;
