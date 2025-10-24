@@ -133,8 +133,8 @@ namespace VatrogasnaSluzba.DTO
                 Stanica = s.Get<VatrogasnaStanica>(dto.Stanica.IdStanice)
             };
 
-            MessageBox.Show(dto.BrojIntervencija.ToString());
-            MessageBox.Show(e.BrojIntervencija.ToString());
+            //MessageBox.Show(dto.BrojIntervencija.ToString());
+            //MessageBox.Show(e.BrojIntervencija.ToString());
 
             s.Save(e);
             tx.Commit();
@@ -156,8 +156,8 @@ namespace VatrogasnaSluzba.DTO
             e.VremeKraja = dto.VremeKraja;
             e.BrojIntervencija = dto.BrojIntervencija;
 
-            MessageBox.Show(dto.BrojIntervencija.ToString());
-            MessageBox.Show(e.BrojIntervencija.ToString());
+            //MessageBox.Show(dto.BrojIntervencija.ToString());
+            //MessageBox.Show(e.BrojIntervencija.ToString());
 
             if (dto.Stanica != null)
                 e.Stanica = s.Get<VatrogasnaStanica>(dto.Stanica.IdStanice);
