@@ -18,15 +18,15 @@ namespace VatrogasnaSluzba.Forms
         private bool _editMode = false;
         private int _editingId = 0;
 
-        private List<LiceDTO> _izabranaLica = new();
-        private List<VoziloDTO> _izabranaVozila = new();
-        private List<OpremaDTO> _izabranaOprema = new();
-        private List<VoziloVolonteraSimpleDTO> _izabranaVozilaVol = new();
+        private List<LiceDTO> selectedLica = new();
+        private List<VoziloDTO> selectedVozila = new();
+        private List<OpremaDTO> selectedOprema = new();
+        private List<VoziloVolonteraSimpleDTO> selectedVozilaVol = new();
 
-        private List<LiceDTO> _tempLica = new();
-        private List<VoziloDTO> _tempVozila = new();
-        private List<OpremaDTO> _tempOprema = new();
-        private List<VoziloVolonteraSimpleDTO> _tempVozilaVol = new();
+        private List<LiceDTO> tempLica = new();
+        private List<VoziloDTO> tempVozila = new();
+        private List<OpremaDTO> tempOprema = new();
+        private List<VoziloVolonteraSimpleDTO> tempVozilaVol = new();
 
         public IntervencijaForm()
         {
@@ -75,10 +75,10 @@ namespace VatrogasnaSluzba.Forms
 
             FillForm(full);
 
-            _izabranaLica = new List<LiceDTO>(full.Lica);
-            _izabranaVozila = new List<VoziloDTO>(full.Vozila);
-            _izabranaOprema = new List<OpremaDTO>(full.Oprema);
-            _izabranaVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
+            selectedLica = new List<LiceDTO>(full.Lica);
+            selectedVozila = new List<VoziloDTO>(full.Vozila);
+            selectedOprema = new List<OpremaDTO>(full.Oprema);
+            selectedVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
         }
 
         private void IntervencijaForm_Load(object sender, EventArgs e) => RefreshData();
@@ -128,10 +128,10 @@ namespace VatrogasnaSluzba.Forms
 
             FillForm(full);
 
-            _tempLica = new List<LiceDTO>(full.Lica);
-            _tempVozila = new List<VoziloDTO>(full.Vozila);
-            _tempOprema = new List<OpremaDTO>(full.Oprema);
-            _tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
+            tempLica = new List<LiceDTO>(full.Lica);
+            tempVozila = new List<VoziloDTO>(full.Vozila);
+            tempOprema = new List<OpremaDTO>(full.Oprema);
+            tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(full.VozilaVolontera);
 
             _editingId = row.IdIntervencije;
             SetEditMode(true);
@@ -148,10 +148,10 @@ namespace VatrogasnaSluzba.Forms
 
             if (IntervencijaDTOManager.UpdateIntervencija(dto))
             {
-                _izabranaLica = new List<LiceDTO>(_tempLica);
-                _izabranaVozila = new List<VoziloDTO>(_tempVozila);
-                _izabranaOprema = new List<OpremaDTO>(_tempOprema);
-                _izabranaVozilaVol = new List<VoziloVolonteraSimpleDTO>(_tempVozilaVol);
+                selectedLica = new List<LiceDTO>(tempLica);
+                selectedVozila = new List<VoziloDTO>(tempVozila);
+                selectedOprema = new List<OpremaDTO>(tempOprema);
+                selectedVozilaVol = new List<VoziloVolonteraSimpleDTO>(tempVozilaVol);
 
                 RefreshData();
                 CancelEdit();
@@ -190,10 +190,10 @@ namespace VatrogasnaSluzba.Forms
 
         private void CancelEdit()
         {
-            _tempLica.Clear();
-            _tempVozila.Clear();
-            _tempOprema.Clear();
-            _tempVozilaVol.Clear();
+            tempLica.Clear();
+            tempVozila.Clear();
+            tempOprema.Clear();
+            tempVozilaVol.Clear();
             SetEditMode(false);
         }
 
@@ -217,9 +217,14 @@ namespace VatrogasnaSluzba.Forms
             dtp.Checked = false;
         }
 
-        private void ResetNullableDtp(DateTimePicker dtp) => dtp.Checked = false;
+        private void ResetNullableDtp(DateTimePicker dtp)
+        {
+            dtp.Checked = false;
+        }
 
-        private DateTime? GetNullable(DateTimePicker dtp) => dtp.Checked ? dtp.Value : (DateTime?)null;
+        private DateTime? GetNullable(DateTimePicker dtp) {
+            return (dtp.Checked ? dtp.Value : null);
+        }
 
         private IntervencijaDTO? ReadDtoFromForm()
         {
@@ -252,10 +257,10 @@ namespace VatrogasnaSluzba.Forms
                 VremeDolaska = GetNullable(dateTimePickerVremeDolaska),
                 DatumPromene = GetNullable(dateTimePickerVremePromena),
                 Status = string.IsNullOrWhiteSpace(comboStatus.SelectedItem?.ToString()) ? null : comboStatus.SelectedItem?.ToString().Trim(),
-                Lica = _editMode ? _tempLica : _izabranaLica,
-                Vozila = _editMode ? _tempVozila : _izabranaVozila,
-                Oprema = _editMode ? _tempOprema : _izabranaOprema,
-                VozilaVolontera = _editMode ? _tempVozilaVol : _izabranaVozilaVol
+                Lica = _editMode ? tempLica : selectedLica,
+                Vozila = _editMode ? tempVozila : selectedVozila,
+                Oprema = _editMode ? tempOprema : selectedOprema,
+                VozilaVolontera = _editMode ? tempVozilaVol : selectedVozilaVol
             };
         }
 
@@ -299,21 +304,21 @@ namespace VatrogasnaSluzba.Forms
 
             var form = new IntervencijaResursiForm(new IntervencijaDTO
             {
-                Lica = new List<LiceDTO>(_tempLica),
-                Vozila = new List<VoziloDTO>(_tempVozila),
-                Oprema = new List<OpremaDTO>(_tempOprema),
-                VozilaVolontera = new List<VoziloVolonteraSimpleDTO>(_tempVozilaVol)
+                Lica = new List<LiceDTO>(tempLica),
+                Vozila = new List<VoziloDTO>(tempVozila),
+                Oprema = new List<OpremaDTO>(tempOprema),
+                VozilaVolontera = new List<VoziloVolonteraSimpleDTO>(tempVozilaVol)
             });
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                _tempLica = new List<LiceDTO>(form.IzabranaLica);
-                _tempVozila = new List<VoziloDTO>(form.IzabranaVozila);
-                _tempOprema = new List<OpremaDTO>(form.IzabranaOprema);
-                _tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(form.IzabranaVozilaVolontera);
+                tempLica = new List<LiceDTO>(form.IzabranaLica);
+                tempVozila = new List<VoziloDTO>(form.IzabranaVozila);
+                tempOprema = new List<OpremaDTO>(form.IzabranaOprema);
+                tempVozilaVol = new List<VoziloVolonteraSimpleDTO>(form.IzabranaVozilaVolontera);
 
                 MessageBox.Show(
-                    $"Označeno {_tempLica.Count} lica, {_tempVozila.Count} vozila, {_tempVozilaVol.Count} vozila volontera, {_tempOprema.Count} opreme.",
+                    $"Označeno {tempLica.Count} lica, {tempVozila.Count} vozila, {tempVozilaVol.Count} vozila volontera, {tempOprema.Count} opreme.",
                     "Resursi"
                 );
             }

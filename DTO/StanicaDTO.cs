@@ -90,7 +90,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetSveStaniceList: " + ex.Message);
+                MessageBox.Show("GetSveStaniceList: " + ex.Message);
                 return new List<StanicaListDTO>();
             }
         }
@@ -117,7 +117,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetStanica: " + ex.Message);
+                MessageBox.Show("GetStanica: " + ex.Message);
                 return null;
             }
         }
@@ -158,7 +158,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("AddStanica: " + ex.Message);
+                MessageBox.Show("AddStanica: " + ex.Message);
                 return false;
             }
         }
@@ -191,8 +191,13 @@ namespace VatrogasnaSluzba.DTO
                 }
 
                 e.Infrastruktura.Clear();
-                foreach (var inf in dto.Infrastruktura.Where(x => !string.IsNullOrWhiteSpace(x)))
-                    e.Infrastruktura.Add(inf.Trim());
+                foreach (string infra in dto.Infrastruktura)
+                {
+                    if (!string.IsNullOrWhiteSpace(infra))
+                    {
+                        e.Infrastruktura.Add(infra.Trim());
+                    }
+                }
 
                 s.Update(e);
                 tx.Commit();
@@ -200,7 +205,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("UpdateStanica: " + ex.Message);
+                MessageBox.Show("UpdateStanica: " + ex.Message);
                 return false;
             }
         }
@@ -223,7 +228,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DeleteStanica: " + ex.Message);
+                MessageBox.Show("DeleteStanica: " + ex.Message);
                 return false;
             }
         }

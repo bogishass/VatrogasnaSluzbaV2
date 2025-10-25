@@ -12,23 +12,17 @@ namespace VatrogasnaSluzba.Forms
     {
         private enum FormMode { Default, Creating, Editing }
 
-        private readonly string _regBroj; // vozilo za koje radimo servise
-        private readonly BindingList<ServisListDTO> _model = new();
-        private FormMode _mode = FormMode.Default;
-        private int _editingId = 0;
-
-        // Pretpostavljene kontrole u Designer-u:
-        // Label lblNaslov; DataGridView dgvServisi;
-        // DateTimePicker dtpDatum; ComboBox cbTip;
-        // TextBox txtTehnicar;
-        // Button btnNovi, btnIzmeni, btnObrisi, btnSacuvaj, btnOtkazi;
+        private readonly string currentRegBroj;
+        private readonly BindingList<ServisListDTO> model = new();
+        private FormMode mode = FormMode.Default;
+        private int editingId = 0;
 
         public ServisiForm(string regBroj)
         {
             InitializeComponent();
 
-            _regBroj = regBroj;
-            lblNaslov.Text = $"Servisi za vozilo: {_regBroj}";
+            currentRegBroj = regBroj;
+            lblNaslov.Text = $"Servisi za vozilo: {currentRegBroj}";
 
             InitGrid();
             InitTipovi();
@@ -54,14 +48,14 @@ namespace VatrogasnaSluzba.Forms
                 DataPropertyName = nameof(ServisListDTO.Tip),
                 HeaderText = "Tip",
                 ReadOnly = true,
-                
+
             };
             var colMbr = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = nameof(ServisListDTO.TehnicarMbr),
                 HeaderText = "MBR tehničara",
                 ReadOnly = true,
-                
+
             };
             var colId = new DataGridViewTextBoxColumn
             {
@@ -71,12 +65,11 @@ namespace VatrogasnaSluzba.Forms
             };
 
             dgvServisi.Columns.AddRange(colDatum, colTip, colMbr, colId);
-            dgvServisi.DataSource = _model;
+            dgvServisi.DataSource = model;
             dgvServisi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvServisi.MultiSelect = false;
             dgvServisi.ReadOnly = true;
             dgvServisi.AllowUserToAddRows = false;
-            
         }
 
         private void InitTipovi()
@@ -102,17 +95,16 @@ namespace VatrogasnaSluzba.Forms
             btnObrisi.Click += (_, __) => DeleteSelected();
             btnSacuvaj.Click += (_, __) => Save();
             btnOtkazi.Click += (_, __) => CancelEdit();
-            dgvServisi.SelectionChanged += (_, __) => SyncSelectionToInputs();
+            dgvServisi.SelectionChanged += (_, __) => SyncInputs();
 
-            // (opciono) dozvoli samo cifre i max 13 znakova u MBR polju
             txtTehnicar.KeyPress += (s, e) =>
             {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     e.Handled = true;
             };
+
             txtTehnicar.TextChanged += (_, __) =>
             {
-                // trim na 13 cifara
                 if (txtTehnicar.Text.Length > 13)
                     txtTehnicar.Text = txtTehnicar.Text.Substring(0, 13);
                 txtTehnicar.SelectionStart = txtTehnicar.Text.Length;
@@ -121,7 +113,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void SetMode(FormMode mode)
         {
-            _mode = mode;
+            mode = mode;
             bool editing = mode != FormMode.Default;
 
             dtpDatum.Enabled = editing;
@@ -138,19 +130,17 @@ namespace VatrogasnaSluzba.Forms
 
         private void RefreshData()
         {
-            _model.Clear();
-            foreach (var r in ServisDTOManager.GetServisiZaVozilo(_regBroj))
-                _model.Add(r);
+            model.Clear();
+            foreach (var r in ServisDTOManager.GetServisiZaVozilo(currentRegBroj))
+                model.Add(r);
 
             btnIzmeni.Enabled = dgvServisi.SelectedRows.Count == 1;
             btnObrisi.Enabled = dgvServisi.SelectedRows.Count == 1;
         }
 
-        // === CRUD UI ===
-
         private void BeginCreate()
         {
-            _editingId = 0;
+            editingId = 0;
             dtpDatum.Value = DateTime.Today;
             if (cbTip.Items.Count > 0) cbTip.SelectedIndex = 0;
             txtTehnicar.Clear();
@@ -162,7 +152,7 @@ namespace VatrogasnaSluzba.Forms
         {
             if (dgvServisi.CurrentRow?.DataBoundItem is not ServisListDTO row) return;
 
-            _editingId = row.IdServisa;
+            editingId = row.IdServisa;
             dtpDatum.Value = row.Datum?.Date ?? DateTime.Today;
             cbTip.SelectedItem = cbTip.Items.Cast<object>().FirstOrDefault(x => x.ToString() == row.Tip) ?? cbTip.Items[0];
             txtTehnicar.Text = row.TehnicarMbr ?? "";
@@ -199,14 +189,14 @@ namespace VatrogasnaSluzba.Forms
 
             var dto = new ServisDTO
             {
-                IdServisa = _editingId,
-                RegBrojVozila = _regBroj,
+                IdServisa = editingId,
+                RegBrojVozila = currentRegBroj,
                 Datum = datum,
                 Tip = tip,
-                TehnicarMbr = mbr // ISKLJUČIVO MBR
+                TehnicarMbr = mbr
             };
 
-            bool ok = _mode == FormMode.Creating
+            bool ok = mode == FormMode.Creating
                 ? ServisDTOManager.AddServis(dto)
                 : ServisDTOManager.UpdateServis(dto);
 
@@ -220,12 +210,12 @@ namespace VatrogasnaSluzba.Forms
         private void CancelEdit()
         {
             SetMode(FormMode.Default);
-            SyncSelectionToInputs();
+            SyncInputs();
         }
 
-        private void SyncSelectionToInputs()
+        private void SyncInputs()
         {
-            if (_mode != FormMode.Default) return;
+            if (mode != FormMode.Default) return;
 
             if (dgvServisi.CurrentRow?.DataBoundItem is ServisListDTO row)
             {

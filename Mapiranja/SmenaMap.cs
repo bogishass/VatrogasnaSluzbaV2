@@ -17,9 +17,10 @@ namespace VatrogasnaSluzba.Mapiranja
 
             References(x => x.Stanica).Column("ID_stanice").Not.Nullable();
 
-            HasMany(x => x.Lica)
-                .KeyColumn("ID_smene")
-                .Inverse()
+            HasManyToMany(x => x.Lica)
+                .Table("LICE_U_SMENI")
+                .ParentKeyColumn("ID_SMENE")
+                .ChildKeyColumn("MATICNI_BROJ")
                 .Cascade.None();
 
             HasManyToMany(x => x.Intervencije)

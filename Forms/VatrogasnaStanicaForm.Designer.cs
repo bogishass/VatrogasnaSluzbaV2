@@ -121,6 +121,7 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -131,7 +132,7 @@ namespace VatrogasnaSluzba.Forms
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(404, 271);
+            dataGridView1.Size = new Size(454, 271);
             dataGridView1.TabIndex = 0;
             // 
             // ID_Stanice
@@ -139,24 +140,28 @@ namespace VatrogasnaSluzba.Forms
             ID_Stanice.HeaderText = "ID stanice";
             ID_Stanice.Name = "ID_Stanice";
             ID_Stanice.ReadOnly = true;
+            ID_Stanice.Width = 83;
             // 
             // Adresa
             // 
             Adresa.HeaderText = "Adresa";
             Adresa.Name = "Adresa";
             Adresa.ReadOnly = true;
+            Adresa.Width = 68;
             // 
             // BrojZaposlenih
             // 
             BrojZaposlenih.HeaderText = "Broj zaposlenih";
             BrojZaposlenih.Name = "BrojZaposlenih";
             BrojZaposlenih.ReadOnly = true;
+            BrojZaposlenih.Width = 112;
             // 
             // BrojVozila
             // 
             BrojVozila.HeaderText = "Broj vozila";
             BrojVozila.Name = "BrojVozila";
             BrojVozila.ReadOnly = true;
+            BrojVozila.Width = 86;
             // 
             // groupBox2
             // 

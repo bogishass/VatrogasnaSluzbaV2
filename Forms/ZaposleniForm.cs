@@ -8,7 +8,6 @@ using VatrogasnaSluzba.Helpers;
 
 namespace VatrogasnaSluzba.Forms
 {
-
     public partial class ZaposleniForm : Form
     {
         private readonly Dictionary<string, (DataGridView Grid, GroupBox Box)> pozicijeMap;
@@ -34,7 +33,6 @@ namespace VatrogasnaSluzba.Forms
             PopulateStanice();
             PopulateLica();
         }
-
 
         private void InitUI()
         {
@@ -96,7 +94,6 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-
         private void SetMode(FormMode mode)
         {
             CurrentMode = mode;
@@ -133,7 +130,6 @@ namespace VatrogasnaSluzba.Forms
                 txbMatbr.Enabled = false;
             }
         }
-
 
         private void btnNovi_Click(object sender, EventArgs e)
         {
@@ -222,7 +218,9 @@ namespace VatrogasnaSluzba.Forms
                 {
                     var newLice = CreateLiceDTOFromForm(pozicija, selektovanaStanica);
                     if (LiceDTOManager.AddLice(newLice))
+                    {
                         MessageBox.Show("Zaposleni uspešno dodat.");
+                    }
                 }
                 else if (CurrentMode == FormMode.Editing)
                 {
@@ -234,7 +232,9 @@ namespace VatrogasnaSluzba.Forms
 
                     var updatedLice = CreateLiceDTOFromForm(pozicija, selektovanaStanica, currentLice);
                     if (LiceDTOManager.UpdateLice(updatedLice))
+                    {
                         MessageBox.Show("Podaci uspešno izmenjeni.");
+                    }
                 }
 
                 ClearSelection();
@@ -313,26 +313,23 @@ namespace VatrogasnaSluzba.Forms
             }
         }
 
-
         private LiceDTO CreateLiceDTOFromForm(string pozicija, StanicaSimpleDTO stanica, LiceDTO? baseLice = null)
         {
             // pravimo novo prazno lice 
-            LiceDTO lice = baseLice switch
-            {
-                VatrogasacDTO => new VatrogasacDTO(),
-                TehnicarDTO => new TehnicarDTO(),
-                DispecerDTO => new DispecerDTO(),
-                VolonterDTO => new VolonterDTO(),
-                _ => pozicija switch
-                {
-                    "Vatrogasac" => new VatrogasacDTO(),
-                    "Tehnicar" => new TehnicarDTO(),
-                    "Dispecer" => new DispecerDTO(),
-                    "Volonter" => new VolonterDTO(),
-                    _ => new LiceDTO()
-                }
-            };
+            LiceDTO lice;
 
+            if (pozicija == "Vatrogasac")
+                lice = new VatrogasacDTO();
+            else if (pozicija == "Tehnicar")
+                lice = new TehnicarDTO();
+            else if (pozicija == "Dispecer")
+                lice = new DispecerDTO();
+            else if (pozicija == "Volonter")
+                lice = new VolonterDTO();
+            else
+                lice = new LiceDTO();
+
+            // osnovni atributi
             lice.MaticniBroj = baseLice?.MaticniBroj ?? txbMatbr.Text.Trim();
             lice.Ime = txbIme.Text.Trim();
             lice.Prezime = txbPrezime.Text.Trim();
@@ -348,6 +345,7 @@ namespace VatrogasnaSluzba.Forms
                 .Where(t => !string.IsNullOrEmpty(t))
                 .ToList();
 
+            // dodatni atributi na osnovu pozicije lica
             if (lice is VatrogasacDTO v)
             {
                 v.NivoObucenosti = comboObucenost.SelectedItem?.ToString();

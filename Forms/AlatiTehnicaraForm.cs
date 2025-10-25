@@ -49,8 +49,6 @@ namespace VatrogasnaSluzba.Forms
                 return;
             }
 
-
-
             tempAlati.Add(noviAlat);
             listBoxAlati.Refresh();
             txbNaziv.Clear();

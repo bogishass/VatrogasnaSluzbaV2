@@ -3,7 +3,6 @@ using VatrogasnaSluzba.Entiteti;
 
 namespace VatrogasnaSluzba.Mapiranja
 {
-    
     public class LiceMap : ClassMap<Lice>
     {
         public LiceMap()

@@ -77,7 +77,6 @@ namespace VatrogasnaSluzba.DTO
             );
         }
 
-       
         public static List<SmenaDTO> GetByFilter(int? idStanice, DateTime od, DateTime @do)
         {
             using var s = DataLayer.GetSession();
@@ -96,13 +95,9 @@ namespace VatrogasnaSluzba.DTO
 
             var dtos = smene.Select(x => ToDto(x)).ToList();
 
-            
-
             return dtos;
         }
 
-
-        
         public static int Add(SmenaDTO dto)
         {
             using var s = DataLayer.GetSession();
@@ -126,7 +121,6 @@ namespace VatrogasnaSluzba.DTO
             tx.Commit();
             return e.IdSmene;
         }
-
        
         public static void Update(SmenaDTO dto)
         {
@@ -141,7 +135,6 @@ namespace VatrogasnaSluzba.DTO
             e.VremePocetka = dto.VremePocetka;
             e.VremeKraja = dto.VremeKraja;
             
-
             //MessageBox.Show(dto.BrojIntervencija.ToString());
             //MessageBox.Show(e.BrojIntervencija.ToString());
 
@@ -152,7 +145,6 @@ namespace VatrogasnaSluzba.DTO
             tx.Commit();
         }
 
-      
         public static void Delete(int idSmene)
         {
             using var s = DataLayer.GetSession();

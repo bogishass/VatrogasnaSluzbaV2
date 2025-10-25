@@ -69,7 +69,7 @@ namespace VatrogasnaSluzba.DTO
 
                 if (s.Query<Oprema>().Any(x => x.InventarskiBroj == dto.InventarskiBroj))
                 {
-                    System.Windows.Forms.MessageBox.Show("Oprema sa tim inventarskim brojem već postoji.");
+                    MessageBox.Show("Oprema sa tim inventarskim brojem već postoji.");
                     return false;
                 }
 
@@ -95,7 +95,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("AddOprema: " + ex.Message);
+                MessageBox.Show("AddOprema: " + ex.Message);
                 return false;
             }
         }
@@ -110,7 +110,7 @@ namespace VatrogasnaSluzba.DTO
                 var e = s.Get<Oprema>(dto.InventarskiBroj);
                 if (e == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Oprema nije pronađena u bazi.");
+                    MessageBox.Show("Oprema nije pronađena u bazi.");
                     return false;
                 }
 
@@ -128,7 +128,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("UpdateOprema: " + ex.Message);
+                MessageBox.Show("UpdateOprema: " + ex.Message);
                 return false;
             }
         }
@@ -149,7 +149,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DeleteOprema: " + ex.Message);
+                MessageBox.Show("DeleteOprema: " + ex.Message);
                 return false;
             }
         }
@@ -163,7 +163,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetSvaOprema: " + ex.Message);
+                MessageBox.Show("GetSvaOprema: " + ex.Message);
                 return new List<OpremaDTO>();
             }
         }
@@ -177,7 +177,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetSvaOpremaList: " + ex.Message);
+                MessageBox.Show("GetSvaOpremaList: " + ex.Message);
                 return new List<OpremaListDTO>();
             }
         }
@@ -192,7 +192,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetOprema: " + ex.Message);
+                MessageBox.Show("GetOprema: " + ex.Message);
                 return null;
             }
         }

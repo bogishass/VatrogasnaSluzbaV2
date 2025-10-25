@@ -10,12 +10,12 @@ namespace VatrogasnaSluzba.Forms
     {
         public enum FormMode { Default, Creating, Editing }
         private FormMode CurrentMode = FormMode.Default;
-        private int _editingId = 0;
+        private int editingId = 0;
 
-        private readonly string[] _infraKatalog = new[]
+        private readonly string[] tipoviInfrastrukture = new[]
         {
-            "Garaže","Sala za obuku","Skladišta","Servisna radionica",
-            "Punjač aparata","Toranj za vežbe","Rezervoar vode","Komunikacioni centar"
+            "Garaže", "Sala za obuku", "Skladišta", "Servisna radionica",
+            "Punjač aparata", "Toranj za vežbe", "Rezervoar vode", "Komunikacioni centar"
         };
 
         public VatrogasnaStanicaForm()
@@ -36,7 +36,7 @@ namespace VatrogasnaSluzba.Forms
             btnSmene.Click += btnSmene_Click;
 
             comboDostupnaInfrastruktura.Items.Clear();
-            comboDostupnaInfrastruktura.Items.AddRange(_infraKatalog);
+            comboDostupnaInfrastruktura.Items.AddRange(tipoviInfrastrukture);
             comboDostupnaInfrastruktura.SelectedIndex = -1;
 
             SetFormMode(FormMode.Default);
@@ -67,7 +67,7 @@ namespace VatrogasnaSluzba.Forms
 
             return new StanicaDTO
             {
-                IdStanice = _editingId,
+                IdStanice = editingId,
                 Adresa = tbxAdresa.Text?.Trim(),
                 BrojZaposlenih = int.TryParse(txbBrojZaposlenih.Text, out var bz) ? bz : (int?)null,
                 BrojVozila = int.TryParse(tbxBrojVozila.Text, out var bv) ? bv : (int?)null,
@@ -87,10 +87,14 @@ namespace VatrogasnaSluzba.Forms
             txbKomandir.Text = s?.KomandirMbr ?? "";
 
             if (s != null && s.Infrastruktura != null && s.Infrastruktura.Count > 0)
+            {
                 comboDostupnaInfrastruktura.SelectedItem =
-                    _infraKatalog.FirstOrDefault(x => string.Equals(x, s.Infrastruktura[0], StringComparison.OrdinalIgnoreCase));
+                    tipoviInfrastrukture.FirstOrDefault(x => string.Equals(x, s.Infrastruktura[0], StringComparison.OrdinalIgnoreCase));
+            }
             else
+            {
                 comboDostupnaInfrastruktura.SelectedIndex = -1;
+            }
         }
 
         private void ClearForm()
@@ -117,19 +121,19 @@ namespace VatrogasnaSluzba.Forms
 
         private void EnterEditMode(int id)
         {
-            _editingId = id;
+            editingId = id;
             SetFormMode(FormMode.Editing);
         }
 
         private void EnterCreateMode()
         {
-            _editingId = 0;
+            editingId = 0;
             SetFormMode(FormMode.Creating);
         }
 
         private void ExitMode()
         {
-            _editingId = 0;
+            editingId = 0;
             SetFormMode(FormMode.Default);
         }
 

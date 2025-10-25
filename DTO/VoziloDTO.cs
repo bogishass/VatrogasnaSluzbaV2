@@ -1,5 +1,4 @@
-﻿// File: DTO/VoziloDTO.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
@@ -47,7 +46,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetSvaVozila: " + ex.Message);
+                MessageBox.Show("GetSvaVozila: " + ex.Message);
                 return new List<VoziloDTO>();
             }
         }
@@ -62,7 +61,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetVozilo: " + ex.Message);
+                MessageBox.Show("GetVozilo: " + ex.Message);
                 return null;
             }
         }
@@ -76,13 +75,13 @@ namespace VatrogasnaSluzba.DTO
 
                 if (string.IsNullOrWhiteSpace(dto.RegBroj))
                 {
-                    System.Windows.Forms.MessageBox.Show("Registarski broj je obavezan.");
+                    MessageBox.Show("Registarski broj je obavezan.");
                     return false;
                 }
 
                 if (s.Get<Vozilo>(dto.RegBroj) != null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Vozilo sa tim registarskim brojem već postoji.");
+                    MessageBox.Show("Vozilo sa tim registarskim brojem već postoji.");
                     return false;
                 }
 
@@ -105,7 +104,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("AddVozilo: " + ex.Message);
+                MessageBox.Show("AddVozilo: " + ex.Message);
                 return false;
             }
         }
@@ -120,7 +119,7 @@ namespace VatrogasnaSluzba.DTO
                 var v = s.Get<Vozilo>(dto.RegBroj);
                 if (v == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Vozilo nije pronađeno.");
+                    MessageBox.Show("Vozilo nije pronađeno.");
                     return false;
                 }
 
@@ -133,9 +132,13 @@ namespace VatrogasnaSluzba.DTO
                 v.DatIstekaReg = dto.DatIstekaReg;
 
                 v.Sertifikati.Clear();
-                if (dto.Sertifikati != null)
-                    foreach (var srt in dto.Sertifikati.Where(x => !string.IsNullOrWhiteSpace(x)))
-                        v.Sertifikati.Add(srt.Trim());
+                foreach (string sert in dto.Sertifikati)
+                {
+                    if (!string.IsNullOrWhiteSpace(sert))
+                    {
+                        v.Sertifikati.Add(sert.Trim());
+                    }
+                }
 
                 s.Update(v);
                 tx.Commit();
@@ -143,7 +146,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("UpdateVozilo: " + ex.Message);
+                MessageBox.Show("UpdateVozilo: " + ex.Message);
                 return false;
             }
         }
@@ -158,7 +161,7 @@ namespace VatrogasnaSluzba.DTO
                 var v = s.Get<Vozilo>(reg);
                 if (v == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Vozilo nije pronađeno.");
+                    MessageBox.Show("Vozilo nije pronađeno.");
                     return false;
                 }
 
@@ -168,7 +171,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DeleteVozilo: " + ex.Message);
+                MessageBox.Show("DeleteVozilo: " + ex.Message);
                 return false;
             }
         }

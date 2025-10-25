@@ -101,22 +101,21 @@ namespace VatrogasnaSluzba.Forms
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Upravljanje vozilima";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // btnServis
             // 
             btnServis.BackColor = SystemColors.ButtonHighlight;
-            btnServis.Location = new Point(8, 145);
+            btnServis.Location = new Point(6, 144);
             btnServis.Margin = new Padding(3, 2, 3, 2);
             btnServis.Name = "btnServis";
-            btnServis.Size = new Size(147, 22);
+            btnServis.Size = new Size(149, 22);
             btnServis.TabIndex = 0;
-            btnServis.Text = "Servis";
+            btnServis.Text = "Istorija servisa";
             btnServis.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
-            button1.Location = new Point(8, 182);
+            button1.Location = new Point(6, 188);
             button1.Name = "button1";
             button1.Size = new Size(149, 23);
             button1.TabIndex = 4;
@@ -126,7 +125,7 @@ namespace VatrogasnaSluzba.Forms
             // 
             // btnOtkazi
             // 
-            btnOtkazi.Location = new Point(8, 211);
+            btnOtkazi.Location = new Point(6, 217);
             btnOtkazi.Name = "btnOtkazi";
             btnOtkazi.Size = new Size(149, 23);
             btnOtkazi.TabIndex = 3;
@@ -308,6 +307,7 @@ namespace VatrogasnaSluzba.Forms
             comboTip.Name = "comboTip";
             comboTip.Size = new Size(163, 23);
             comboTip.TabIndex = 9;
+            comboTip.SelectedIndexChanged += comboTip_SelectedIndexChanged;
             // 
             // comboPodtip
             // 

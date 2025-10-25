@@ -43,7 +43,7 @@ namespace VatrogasnaSluzba
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show($"Database Error: {ex.Message}\n\nInner: {ex.InnerException?.Message}");
+                MessageBox.Show($"Database Error: {ex.Message}\n\nInner: {ex.InnerException?.Message}");
                 throw;
             }
         }

@@ -8,11 +8,11 @@ namespace VatrogasnaSluzba.Forms
 {
     public partial class OpremaForm : Form
     {
-        private bool _editMode = false;
-        private int _editingId = 0;
+        private bool isEditing = false;
+        private int editingId = 0;
 
-        // Tipovi i podtipovi
-        private readonly Dictionary<string, List<string>> _katalog =
+        // dozvoljeni tipovi i podtipovi opreme
+        private readonly Dictionary<string, List<string>> tipoviOpreme =
             new(StringComparer.OrdinalIgnoreCase)
             {
                 { "Zaštitna oprema",   new List<string>{ "Odelo", "Kaciga", "Čizme" } },
@@ -41,11 +41,11 @@ namespace VatrogasnaSluzba.Forms
 
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             btnDodajOpremu.Click += btnDodajOpremu_Click;
-            btnUkloniOpremu.Click += button2_Click;
+            btnUkloniOpremu.Click += btnUkloniOpremu_Click;
             btnEditujOpremu.Click += btnEditujOpremu_Click;
             btnSacuvaj.Click += btnSacuvaj_Click;
             btnOtkazi.Click += btnOtkazi_Click;
-            comboTip.SelectedIndexChanged += (_, __) => PopulatePodtip();
+            comboTip.SelectedIndexChanged += (o, e) => PopulatePodtip();
 
             SetEditButtonsVisible(false);
 
@@ -62,7 +62,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void dataGridView1_SelectionChanged(object? sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
             if (dataGridView1.CurrentRow?.DataBoundItem is not OpremaListDTO row) return;
             var full = OpremaDTOManager.GetOprema(row.InventarskiBroj);
             FillForm(full);
@@ -115,7 +115,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnDodajOpremu_Click(object? sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
 
             var dto = ReadForm();
             if (dto.InventarskiBroj == 0) { MessageBox.Show("Inventarski broj je obavezan."); return; }
@@ -126,9 +126,9 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void btnUkloniOpremu_Click(object sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
             if (dataGridView1.CurrentRow?.DataBoundItem is not OpremaListDTO row) return;
 
             if (OpremaDTOManager.DeleteOprema(row.InventarskiBroj))
@@ -141,10 +141,10 @@ namespace VatrogasnaSluzba.Forms
         {
             if (dataGridView1.CurrentRow?.DataBoundItem is not OpremaListDTO row) return;
 
-            _editMode = true;
-            _editingId = row.InventarskiBroj;
+            isEditing = true;
+            editingId = row.InventarskiBroj;
 
-            var full = OpremaDTOManager.GetOprema(_editingId);
+            var full = OpremaDTOManager.GetOprema(editingId);
             FillForm(full);
 
             txbInvBroj.ReadOnly = true;
@@ -156,10 +156,10 @@ namespace VatrogasnaSluzba.Forms
         }
         private void btnSacuvaj_Click(object? sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (!isEditing) return;
 
             var dto = ReadForm();
-            dto.InventarskiBroj = _editingId;
+            dto.InventarskiBroj = editingId;
 
             if (OpremaDTOManager.UpdateOprema(dto))
             {
@@ -170,7 +170,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void btnOtkazi_Click(object? sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (!isEditing) return;
 
             ExitEditMode();
 
@@ -182,8 +182,8 @@ namespace VatrogasnaSluzba.Forms
 
         private void ExitEditMode()
         {
-            _editMode = false;
-            _editingId = 0;
+            isEditing = false;
+            editingId = 0;
 
             txbInvBroj.ReadOnly = false;
             SetEditButtonsVisible(false);
@@ -202,14 +202,14 @@ namespace VatrogasnaSluzba.Forms
         private void LoadTipovi()
         {
             comboTip.BeginUpdate();
-            comboTip.DataSource = _katalog.Keys.OrderBy(s => s).ToList();
+            comboTip.DataSource = tipoviOpreme.Keys.OrderBy(s => s).ToList();
             comboTip.EndUpdate();
         }
 
         private void PopulatePodtip()
         {
             var tip = comboTip.Text;
-            var pods = _katalog.TryGetValue(tip, out var lst) ? lst : new List<string>();
+            var pods = tipoviOpreme.TryGetValue(tip, out var lst) ? lst : new List<string>();
 
             comboPodTip.BeginUpdate();
             comboPodTip.DataSource = pods;

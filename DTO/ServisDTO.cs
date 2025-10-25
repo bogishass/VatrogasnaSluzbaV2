@@ -62,7 +62,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("GetServisiZaVozilo: " + ex.Message);
+                MessageBox.Show("GetServisiZaVozilo: " + ex.Message);
                 return new List<ServisListDTO>();
             }
         }
@@ -78,12 +78,12 @@ namespace VatrogasnaSluzba.DTO
 
                 if (string.IsNullOrWhiteSpace(dto.RegBrojVozila))
                 {
-                    System.Windows.Forms.MessageBox.Show("Nedostaje registarski broj vozila.");
+                    MessageBox.Show("Nedostaje registarski broj vozila.");
                     return false;
                 }
                 if (string.IsNullOrWhiteSpace(dto.TehnicarMbr))
                 {
-                    System.Windows.Forms.MessageBox.Show("Nedostaje tehničar (MBR).");
+                    MessageBox.Show("Nedostaje tehničar (MBR).");
                     return false;
                 }
 
@@ -92,12 +92,12 @@ namespace VatrogasnaSluzba.DTO
 
                 if (vozilo == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Vozilo nije pronađeno.");
+                    MessageBox.Show("Vozilo nije pronađeno.");
                     return false;
                 }
                 if (tehnicar == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Tehničar nije pronađen.");
+                    MessageBox.Show("Tehničar nije pronađen.");
                     return false;
                 }
 
@@ -115,7 +115,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("AddServis: " + ex.Message);
+                MessageBox.Show("AddServis: " + ex.Message);
                 return false;
             }
         }
@@ -131,31 +131,31 @@ namespace VatrogasnaSluzba.DTO
                 var ent = s.Get<Servis>(dto.IdServisa);
                 if (ent == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Servis nije pronađen.");
+                    MessageBox.Show("Servis nije pronađen.");
                     return false;
                 }
 
-                // opciono promena vozila:
+                // izmena reg broja
                 if (!string.IsNullOrWhiteSpace(dto.RegBrojVozila) &&
                     ent.Vozilo?.RegBroj != dto.RegBrojVozila)
                 {
                     var novoVozilo = s.Get<Vozilo>(dto.RegBrojVozila);
                     if (novoVozilo == null)
                     {
-                        System.Windows.Forms.MessageBox.Show("Novo vozilo nije pronađeno.");
+                        MessageBox.Show("Novo vozilo nije pronađeno.");
                         return false;
                     }
                     ent.Vozilo = novoVozilo;
                 }
 
-                // promena tehničara (samo MBR):
+                // izmena tehnicara
                 if (!string.IsNullOrWhiteSpace(dto.TehnicarMbr) &&
                     ent.Tehnicar?.MaticniBroj != dto.TehnicarMbr)
                 {
                     var noviTeh = s.Get<Tehnicar>(dto.TehnicarMbr);
                     if (noviTeh == null)
                     {
-                        System.Windows.Forms.MessageBox.Show("Novi tehničar nije pronađen.");
+                        MessageBox.Show("Novi tehničar nije pronađen.");
                         return false;
                     }
                     ent.Tehnicar = noviTeh;
@@ -170,7 +170,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("UpdateServis: " + ex.Message);
+                MessageBox.Show("UpdateServis: " + ex.Message);
                 return false;
             }
         }
@@ -186,7 +186,7 @@ namespace VatrogasnaSluzba.DTO
                 var ent = s.Get<Servis>(idServisa);
                 if (ent == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Servis nije pronađen.");
+                    MessageBox.Show("Servis nije pronađen.");
                     return false;
                 }
 
@@ -196,7 +196,7 @@ namespace VatrogasnaSluzba.DTO
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DeleteServis: " + ex.Message);
+                MessageBox.Show("DeleteServis: " + ex.Message);
                 return false;
             }
         }

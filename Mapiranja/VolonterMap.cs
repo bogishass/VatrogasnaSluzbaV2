@@ -14,7 +14,7 @@ namespace VatrogasnaSluzba.Mapiranja
                 .KeyColumn("Mbr_volontera")
                 .Table("VOZILO_VOLONTERA")
                 .Cascade.AllDeleteOrphan()
-                .Inverse(); // ?
+                .Inverse(); // VoziloVolontera.Vlasnik je zaduzen za ovu vezu jer je tamo fk
         }
     }
 }

@@ -26,7 +26,6 @@ namespace VatrogasnaSluzba.DTO
         public List<VoziloDTO> Vozila { get; set; } = new();
         public List<OpremaDTO> Oprema { get; set; } = new();
         public List<VoziloVolonteraSimpleDTO> VozilaVolontera { get; set; } = new();
-        public bool _isTemp { get; set; } // za potrebe intervencija forme
 
         public IntervencijaDTO() { }
 
@@ -54,8 +53,6 @@ namespace VatrogasnaSluzba.DTO
 
             if (i.VozilaVolontera != null)
                 VozilaVolontera = i.VozilaVolontera.Select(v => new VoziloVolonteraSimpleDTO(v)).ToList();
-
-            _isTemp = false;
         }
     }
 
@@ -91,7 +88,6 @@ namespace VatrogasnaSluzba.DTO
             Status = i.Status;
         }
     }
-
     
     public static class IntervencijaDTOManager
     {
@@ -197,6 +193,7 @@ namespace VatrogasnaSluzba.DTO
                 ent.Lica.Clear();
                 ent.Vozila.Clear();
                 ent.Oprema.Clear();
+                ent.VozilaVolontera.Clear();
 
                 if (dto.Lica != null)
                 {

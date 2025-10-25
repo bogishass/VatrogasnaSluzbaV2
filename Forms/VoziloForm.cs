@@ -10,19 +10,18 @@ namespace VatrogasnaSluzba.Forms
 {
     public partial class VoziloForm : Form
     {
-        private bool _editMode = false;
-        private string _editingReg = null;
+        private bool isEditing = false;
+        private string editingRegBroj = null;
         private BindingList<VoziloDTO> vozila = new();
 
-        
-        private readonly Dictionary<string, List<string>> _podtipi = new(StringComparer.OrdinalIgnoreCase)
+        private readonly Dictionary<string, List<string>> tipoviVozila = new(StringComparer.OrdinalIgnoreCase)
         {
             { "Vatrogasno",       new List<string>{ "Cisterna", "Platforma", "Vozilo za gašenje šuma" } },
             { "Spasilačko",       new List<string>{ "Za poplave", "Za saobraćajne nesreće" } },
             { "Tehnička podrška", new List<string>{ "Prevoz opreme", "Prevoz tehničara" } }
         };
 
-        private readonly string[] _katalogSertifikata =
+        private readonly string[] tipoviSertifikata =
         {
             "ADR – prevoz opasnih materija",
             "Atest pumpe za vodu",
@@ -48,13 +47,12 @@ namespace VatrogasnaSluzba.Forms
             btnDodajVozilo.Click += btnDodajVozilo_Click;
             btnObrisiVozilo.Click += btnObrisiVozilo_Click;
             btnIzmeniVozilo.Click += btnIzmeniVozilo_Click;
-            button1.Click += btnSacuvaj_Click;     
-            btnOtkazi.Click += btnOtkazi_Click;    
+            button1.Click += btnSacuvaj_Click;
+            btnOtkazi.Click += btnOtkazi_Click;
             btnServis.Click += btnPrikaziServise_Click;
-            comboTip.SelectedIndexChanged += (_, __) => LoadPodtip();
+            comboTip.SelectedIndexChanged += comboTip_SelectedIndexChanged;
 
-            
-            clbSertifikati.Items.AddRange(_katalogSertifikata);
+            clbSertifikati.Items.AddRange(tipoviSertifikata);
 
             SetEditButtons(false);
             LoadList();
@@ -66,7 +64,7 @@ namespace VatrogasnaSluzba.Forms
             comboPodtip.BeginUpdate();
             comboPodtip.Items.Clear();
 
-            if (!string.IsNullOrWhiteSpace(tip) && _podtipi.TryGetValue(tip, out var lst))
+            if (!string.IsNullOrWhiteSpace(tip) && tipoviVozila.TryGetValue(tip, out var lst))
                 comboPodtip.Items.AddRange(lst.Cast<object>().ToArray());
 
             comboPodtip.SelectedIndex = comboPodtip.Items.Count > 0 ? 0 : -1;
@@ -80,7 +78,7 @@ namespace VatrogasnaSluzba.Forms
             vozila = new BindingList<VoziloDTO>(data);
             dataGridView1.DataSource = vozila;
 
-            
+
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
                 col.Visible = new[]
@@ -92,7 +90,7 @@ namespace VatrogasnaSluzba.Forms
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
             if (dataGridView1.SelectedRows.Count == 0) { ClearForm(); return; }
 
             var dto = dataGridView1.SelectedRows[0].DataBoundItem as VoziloDTO;
@@ -100,21 +98,24 @@ namespace VatrogasnaSluzba.Forms
                 FillForm(VoziloDTOManager.GetVozilo(dto.RegBroj));
         }
 
-        private VoziloDTO ReadForm() => new VoziloDTO
+        private VoziloDTO ReadForm()
         {
-            RegBroj = txbReg.Text?.Trim() ?? "",
-            Tip = comboTip.Text?.Trim() ?? "",
-            Podtip = comboPodtip.Text?.Trim() ?? "",
-            Proizvodjac = txbProiz.Text?.Trim() ?? "",
-            GodProizvodnje = int.TryParse(txbGodProiz.Text, out var g) ? g : (int?)null,
-            Status = "Operativno",
-            Kapacitet = int.TryParse(txbKapacitet.Text, out var k) ? k : (int?)null,
-            DatIstekaReg = dateTimeIstek.Value.Date,
-            Sertifikati = clbSertifikati.CheckedItems.Cast<object>()
-                                 .Select(o => o?.ToString())
-                                 .Where(s => !string.IsNullOrWhiteSpace(s))
-                                 .ToList()
-        };
+            return new VoziloDTO()
+            {
+                RegBroj = txbReg.Text?.Trim() ?? "",
+                Tip = comboTip.Text?.Trim() ?? "",
+                Podtip = comboPodtip.Text?.Trim() ?? "",
+                Proizvodjac = txbProiz.Text?.Trim() ?? "",
+                GodProizvodnje = int.TryParse(txbGodProiz.Text, out var g) ? g : (int?)null,
+                Status = "Operativno",
+                Kapacitet = int.TryParse(txbKapacitet.Text, out var k) ? k : (int?)null,
+                DatIstekaReg = dateTimeIstek.Value.Date,
+                Sertifikati = clbSertifikati.CheckedItems
+                                        .OfType<string>()
+                                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                                        .ToList()
+            };
+        }
 
         private void FillForm(VoziloDTO v)
         {
@@ -136,6 +137,7 @@ namespace VatrogasnaSluzba.Forms
                 clbSertifikati.SetItemChecked(i, v.Sertifikati?.Contains(name) == true);
             }
         }
+
         private void ClearForm()
         {
             txbReg.Clear();
@@ -150,9 +152,10 @@ namespace VatrogasnaSluzba.Forms
             for (int i = 0; i < clbSertifikati.Items.Count; i++)
                 clbSertifikati.SetItemChecked(i, false);
         }
+
         private void btnDodajVozilo_Click(object sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
 
             var dto = ReadForm();
             if (VoziloDTOManager.AddVozilo(dto))
@@ -161,9 +164,10 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
+
         private void btnObrisiVozilo_Click(object sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
             if (dataGridView1.SelectedRows.Count == 0) return;
 
             var dto = dataGridView1.SelectedRows[0].DataBoundItem as VoziloDTO;
@@ -175,24 +179,26 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
+
         private void btnIzmeniVozilo_Click(object sender, EventArgs e)
         {
-            if (_editMode) return;
+            if (isEditing) return;
             if (dataGridView1.SelectedRows.Count == 0) return;
 
-            _editMode = true;
+            isEditing = true;
             var dto = dataGridView1.SelectedRows[0].DataBoundItem as VoziloDTO;
-            _editingReg = dto?.RegBroj;
+            editingRegBroj = dto?.RegBroj;
 
             txbReg.ReadOnly = true;
             SetEditButtons(true);
         }
+
         private void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (!isEditing) return;
 
             var dto = ReadForm();
-            dto.RegBroj = _editingReg;
+            dto.RegBroj = editingRegBroj;
 
             if (VoziloDTOManager.UpdateVozilo(dto))
             {
@@ -200,9 +206,10 @@ namespace VatrogasnaSluzba.Forms
                 LoadList();
             }
         }
+
         private void btnOtkazi_Click(object sender, EventArgs e)
         {
-            if (!_editMode) return;
+            if (!isEditing) return;
 
             ExitEditMode();
 
@@ -217,32 +224,10 @@ namespace VatrogasnaSluzba.Forms
                 ClearForm();
             }
         }
-        private void ExitEditMode()
-        {
-            _editMode = false;
-            _editingReg = null;
-
-            txbReg.ReadOnly = false;
-            SetEditButtons(false);
-        }
-        private void SetEditButtons(bool editing)
-        {
-            button1.Visible = editing;   
-            btnOtkazi.Visible = editing; 
-
-            btnDodajVozilo.Enabled = !editing;
-            btnObrisiVozilo.Enabled = !editing;
-            btnIzmeniVozilo.Enabled = !editing;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnPrikaziServise_Click(object sender, EventArgs e)
         {
-            var grid = dataGridView1; 
+            var grid = dataGridView1;
             if (grid == null || grid.SelectedRows.Count == 0) return;
 
             string regBroj = grid.SelectedRows[0].Cells[0].Value?.ToString() ?? "";
@@ -252,5 +237,28 @@ namespace VatrogasnaSluzba.Forms
                 frm.ShowDialog(this);
         }
 
+        private void comboTip_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadPodtip();
+        }
+
+        private void ExitEditMode()
+        {
+            isEditing = false;
+            editingRegBroj = null;
+
+            txbReg.ReadOnly = false;
+            SetEditButtons(false);
+        }
+
+        private void SetEditButtons(bool editing)
+        {
+            button1.Visible = editing;
+            btnOtkazi.Visible = editing;
+
+            btnDodajVozilo.Enabled = !editing;
+            btnObrisiVozilo.Enabled = !editing;
+            btnIzmeniVozilo.Enabled = !editing;
+        }
     }
 }

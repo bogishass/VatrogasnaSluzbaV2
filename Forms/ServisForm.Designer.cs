@@ -52,7 +52,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 81F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(535, 420);
+            tableLayoutPanel1.Size = new Size(531, 420);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panelTop
@@ -68,15 +68,15 @@
             panelTop.Location = new Point(3, 2);
             panelTop.Margin = new Padding(3, 2, 3, 2);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(529, 64);
+            panelTop.Size = new Size(525, 64);
             panelTop.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(335, 37);
+            label1.Location = new Point(340, 34);
             label1.Name = "label1";
-            label1.Size = new Size(55, 15);
+            label1.Size = new Size(54, 15);
             label1.TabIndex = 14;
             label1.Text = "Tehničar:";
             // 
@@ -93,7 +93,7 @@
             // lblOd
             // 
             lblOd.AutoSize = true;
-            lblOd.Location = new Point(9, 34);
+            lblOd.Location = new Point(12, 34);
             lblOd.Name = "lblOd";
             lblOd.Size = new Size(46, 15);
             lblOd.TabIndex = 1;
@@ -112,9 +112,9 @@
             // lblTip
             // 
             lblTip.AutoSize = true;
-            lblTip.Location = new Point(173, 37);
+            lblTip.Location = new Point(177, 34);
             lblTip.Name = "lblTip";
-            lblTip.Size = new Size(27, 15);
+            lblTip.Size = new Size(26, 15);
             lblTip.TabIndex = 5;
             lblTip.Text = "Tip:";
             // 
@@ -150,7 +150,7 @@
             gbLista.Margin = new Padding(3, 2, 3, 2);
             gbLista.Name = "gbLista";
             gbLista.Padding = new Padding(3, 2, 3, 2);
-            gbLista.Size = new Size(529, 335);
+            gbLista.Size = new Size(525, 335);
             gbLista.TabIndex = 1;
             gbLista.TabStop = false;
             gbLista.Text = "Istorija servisa";
@@ -161,7 +161,7 @@
             dgvServisi.AllowUserToDeleteRows = false;
             dgvServisi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgvServisi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServisi.Location = new Point(3, 18);
+            dgvServisi.Location = new Point(6, 20);
             dgvServisi.Margin = new Padding(3, 2, 3, 2);
             dgvServisi.MultiSelect = false;
             dgvServisi.Name = "dgvServisi";
@@ -169,55 +169,55 @@
             dgvServisi.RowHeadersVisible = false;
             dgvServisi.RowHeadersWidth = 51;
             dgvServisi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvServisi.Size = new Size(373, 313);
+            dgvServisi.Size = new Size(391, 306);
             dgvServisi.TabIndex = 0;
             // 
             // btnNovi
             // 
-            btnNovi.Location = new Point(396, 18);
+            btnNovi.Location = new Point(403, 20);
             btnNovi.Margin = new Padding(3, 2, 3, 2);
             btnNovi.Name = "btnNovi";
-            btnNovi.Size = new Size(116, 40);
+            btnNovi.Size = new Size(116, 30);
             btnNovi.TabIndex = 10;
             btnNovi.Text = "Dodaj";
             btnNovi.UseVisualStyleBackColor = true;
             // 
             // btnIzmeni
             // 
-            btnIzmeni.Location = new Point(396, 62);
+            btnIzmeni.Location = new Point(403, 52);
             btnIzmeni.Margin = new Padding(3, 2, 3, 2);
             btnIzmeni.Name = "btnIzmeni";
-            btnIzmeni.Size = new Size(116, 40);
+            btnIzmeni.Size = new Size(116, 30);
             btnIzmeni.TabIndex = 11;
             btnIzmeni.Text = "Izmeni";
             btnIzmeni.UseVisualStyleBackColor = true;
             // 
             // btnObrisi
             // 
-            btnObrisi.Location = new Point(396, 106);
+            btnObrisi.Location = new Point(403, 86);
             btnObrisi.Margin = new Padding(3, 2, 3, 2);
             btnObrisi.Name = "btnObrisi";
-            btnObrisi.Size = new Size(116, 40);
+            btnObrisi.Size = new Size(116, 30);
             btnObrisi.TabIndex = 12;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = true;
             // 
             // btnSacuvaj
             // 
-            btnSacuvaj.Location = new Point(396, 249);
+            btnSacuvaj.Location = new Point(403, 262);
             btnSacuvaj.Margin = new Padding(3, 2, 3, 2);
             btnSacuvaj.Name = "btnSacuvaj";
-            btnSacuvaj.Size = new Size(116, 40);
+            btnSacuvaj.Size = new Size(116, 30);
             btnSacuvaj.TabIndex = 9;
             btnSacuvaj.Text = "Sačuvaj";
             btnSacuvaj.UseVisualStyleBackColor = true;
             // 
             // btnOtkazi
             // 
-            btnOtkazi.Location = new Point(396, 291);
+            btnOtkazi.Location = new Point(403, 296);
             btnOtkazi.Margin = new Padding(3, 2, 3, 2);
             btnOtkazi.Name = "btnOtkazi";
-            btnOtkazi.Size = new Size(116, 40);
+            btnOtkazi.Size = new Size(116, 30);
             btnOtkazi.TabIndex = 13;
             btnOtkazi.Text = "Otkaži";
             btnOtkazi.UseVisualStyleBackColor = true;
@@ -227,7 +227,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(535, 420);
+            ClientSize = new Size(531, 420);
             Controls.Add(tableLayoutPanel1);
             Font = new Font("Segoe UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedDialog;

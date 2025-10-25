@@ -164,17 +164,14 @@ namespace VatrogasnaSluzba.Forms
         {
             bool editing = CurrentMode != FormMode.Default;
 
-            // Glavni delovi forme
             gbLista.Enabled = !editing;
             panelFilter.Enabled = !editing;
 
-            // Desni panel
             dtpDatum.Enabled = editing;
             dtpStart.Enabled = editing;
             dtpEnd.Enabled = editing;
             cbStanica.Enabled = editing;
 
-            // Dugmici
             btnNova.Enabled = !editing;
             btnIzmeni.Enabled = !editing && _current != null;
             btnObrisi.Enabled = !editing && _current != null;
